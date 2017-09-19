@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.tcl.isport.Bean.Constant;
 import com.tcl.isport.IView.IHomeFragment;
+import com.tcl.isport.Presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
 import com.tcl.isport.Util.StepService;
 
@@ -28,12 +29,13 @@ import com.tcl.isport.Util.StepService;
 public class HomeWalkFragment extends Fragment implements IHomeFragment {
     //首页健走
     private View view;
+    private HomeFragmentPresenter homeWalkFragmentPresenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_walk,container,false);
-
+        homeWalkFragmentPresenter=new HomeFragmentPresenter(this);
         return view;
     }
 
