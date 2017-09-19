@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ISport</string>
+    <string name="input_phonenumber">请输入手机号</string>
+    <string name="input_password1">请输入密码</string>
+    <string name="input_password2">请再次输入密码</string>
+    <string name="login">登 录</string>
+    <string name="register">注 册</string>
+    <string name="trying">试 用</string>
+    <string name="home">首页</string>
+    <string name="sport">运动</string>
+    <string name="find">运动圈</string>
+    <string name="mine">我</string>
+    <string name="walk">健走</string>
+    <string name="run">跑步</string>
+    <string name="ride">骑行</string>
+    <string name="weather">良好</string>
+    <string name="history_record">历史记录</string>
+</resources>

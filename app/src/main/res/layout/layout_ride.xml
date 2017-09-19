@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/return_ride"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/settings_ride"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:background="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView_ride"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:clickable="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/miles_ride"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:text="0.00"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignBottom="@+id/miles_ride"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/miles_ride"
+            android:gravity="bottom"
+            android:text="公里"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/time_ride"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_gravity="center"
+            android:text="00:25:55"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/start_pause_ride"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/time_ride"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/camera_ride"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/start_pause_ride"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/stop_ride"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/camera_ride"
+            android:layout_marginEnd="40dp"
+            android:background="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+</LinearLayout>

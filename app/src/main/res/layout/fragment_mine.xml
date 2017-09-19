@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--主界面-我-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/colorGray">
+        <!--头像-->
+        <ImageView
+            android:id="@+id/photo_mine"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/name_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/photo_mine"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/photo_mine"
+            android:gravity="center"
+            android:text="昵称"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/signature_mine"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignStart="@+id/name_mine"
+            android:layout_below="@+id/name_mine"
+            android:text="运动宣言~~~~~~~~~~~~~~~~~~~~~~~~~~~~" />
+        <!--编辑按钮图标-->
+        <ImageView
+            android:id="@+id/edit_data_mine"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/system_message_mine"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorGray"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="系统通知"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/sports_history_mine"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="运动历史"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/my_collection_mine"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="我的收藏"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/contact_us_mine"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="联系我们"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/change_account_mine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorRed"
+        android:gravity="center"
+        android:text="切换帐号"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+</LinearLayout>

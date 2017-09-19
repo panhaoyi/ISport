@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--该页面从数据库中获取当天的健走信息并显示-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <!--网络获取天气图标-->
+        <ImageView
+            android:id="@+id/weather_icon_walk_home"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/weather_walk_home"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather"
+            android:layout_below="@+id/weather_icon_walk_home"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/timescount_walk_home"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 次"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:id="@+id/speed_walk_home"
+            android:layout_marginEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0 km/h"
+            android:layout_below="@+id/timescount_walk_home"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/step_walk_home"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@drawable/border_count"
+        android:text="0 步"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/distance_walk_home"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.00 公里"
+        android:textSize="30sp"/>
+    <TextView
+        android:id="@+id/duration_walk_home"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 h"
+        android:textSize="20sp"/>
+    <LinearLayout
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGray"/>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_record"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/history1_walk_home"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="1111111"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/history2_walk_home"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2222222"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/history3_walk_home"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3333333"
+        android:textSize="16sp"/>
+</LinearLayout>
