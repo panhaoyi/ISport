@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ISport</string>
+    <string name="skip">SKIP</string>
+    <string name="next">NEXT</string>
     <string name="input_phonenumber">请输入手机号</string>
     <string name="input_password1">请输入密码</string>
     <string name="input_password2">请再次输入密码</string>

@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import com.tcl.isport.Activity.ContactUsActivity;
 import com.tcl.isport.Activity.SportsHistoryActivity;
+import com.tcl.isport.IView.IMineFragment;
 import com.tcl.isport.R;
 
 /**
  * Created by user on 17-9-4.
  */
-public class MineFragment extends Fragment implements View.OnClickListener {
+public class MineFragment extends Fragment implements View.OnClickListener,IMineFragment {
     //主界面-我
     //photo默认从数据库读取头像，点击头像可以更改头像，editData为编辑个人资料按钮
     private ImageView photo, editData;
@@ -55,29 +56,51 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.photo_mine:
                 //点击从图库选择图片更换头像
+
                 break;
             case R.id.edit_data_mine:
+                //跳转到编辑个人资料
 
                 break;
             case R.id.system_message_mine:
+                //跳转到系统消息
 
                 break;
             case R.id.sports_history_mine:
+                //跳转到历史记录
                 intent = new Intent(getActivity(), SportsHistoryActivity.class);
                 startActivity(intent);
                 break;
             case R.id.my_collection_mine:
+                //跳转到我的收藏
 
                 break;
             case R.id.contact_us_mine:
+                //跳转到联系我们
                 intent = new Intent(getActivity(), ContactUsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.change_account_mine:
+                //切换帐号
 
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void setPhoto() {
+
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name.setText(name);
+    }
+
+    @Override
+    public void setSignature(String signature) {
+        this.signature.setText(signature);
     }
 }

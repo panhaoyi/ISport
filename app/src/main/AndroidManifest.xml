@@ -11,6 +11,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="q7WbqfGwR0Ld0mxlkwGde66QS48CywVe"/>
+        <activity android:name=".Activity.WelcomeActivity"/>
         <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>
@@ -18,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.LoginQuickActivity"/>
         <activity android:name=".Activity.RegisterActivity"/>
         <activity android:name=".Activity.WalkActivity"/>
         <activity android:name=".Activity.RunActivity"/>
