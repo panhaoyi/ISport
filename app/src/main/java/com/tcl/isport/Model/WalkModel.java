@@ -10,7 +10,7 @@ public class WalkModel implements ISportModel {
 
     @Override
     public String getDistance() {
-        return "0.00";
+        return "10.00";
     }
 
     @Override

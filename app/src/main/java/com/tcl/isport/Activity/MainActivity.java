@@ -68,51 +68,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.item_home:
                 viewPager.setCurrentItem(0);
-                changeColor(0);
+                changeIcon(0);
                 break;
             case R.id.item_sport:
                 viewPager.setCurrentItem(1);
-                changeColor(1);
+                changeIcon(1);
                 break;
             case R.id.item_find:
                 viewPager.setCurrentItem(2);
-                changeColor(2);
+                changeIcon(2);
                 break;
             case R.id.item_mine:
                 viewPager.setCurrentItem(3);
-                changeColor(3);
+                changeIcon(3);
                 break;
             default:
                 break;
         }
     }
 
-    public void changeColor(int position) {
+    public void changeIcon(int position) {
         //区分选中的按钮
         switch (position) {
             case 0:
-                item_home.setBackgroundColor(Color.parseColor("#00FF00"));
-                item_sport.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_find.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_mine.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                item_home.setBackgroundResource(R.drawable.ic_selected_home);
+                item_sport.setBackgroundResource(R.drawable.ic_unselected_sport);
+                item_find.setBackgroundResource(R.drawable.ic_unselected_find);
+                item_mine.setBackgroundResource(R.drawable.ic_unselected_mine);
                 break;
             case 1:
-                item_home.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_sport.setBackgroundColor(Color.parseColor("#00FF00"));
-                item_find.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_mine.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                item_home.setBackgroundResource(R.drawable.ic_unselected_home);
+                item_sport.setBackgroundResource(R.drawable.ic_selected_sport);
+                item_find.setBackgroundResource(R.drawable.ic_unselected_find);
+                item_mine.setBackgroundResource(R.drawable.ic_unselected_mine);
                 break;
             case 2:
-                item_home.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_sport.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_find.setBackgroundColor(Color.parseColor("#00FF00"));
-                item_mine.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                item_home.setBackgroundResource(R.drawable.ic_unselected_home);
+                item_sport.setBackgroundResource(R.drawable.ic_unselected_sport);
+                item_find.setBackgroundResource(R.drawable.ic_selected_find);
+                item_mine.setBackgroundResource(R.drawable.ic_unselected_mine);
                 break;
             case 3:
-                item_home.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_sport.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_find.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                item_mine.setBackgroundColor(Color.parseColor("#00FF00"));
+                item_home.setBackgroundResource(R.drawable.ic_unselected_home);
+                item_sport.setBackgroundResource(R.drawable.ic_unselected_sport);
+                item_find.setBackgroundResource(R.drawable.ic_unselected_find);
+                item_mine.setBackgroundResource(R.drawable.ic_selected_mine);
                 break;
             default:
                 break;

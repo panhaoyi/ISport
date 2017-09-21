@@ -1,70 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
     <!--主界面-首页-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@color/colorGray">
-        <!--打卡按钮-->
-        <Button
-            android:id="@+id/signin_home"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:background="@mipmap/ic_launcher" />
-    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:background="#444444"/>
+
+    <!--打卡按钮-->
+    <Button
+        android:id="@+id/signin_home"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_calendar" />
+
+    <TextView
+        android:id="@+id/item_walk"
+        android:layout_width="32dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginStart="57dp"
+        android:gravity="center"
+        android:text="@string/walk"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/colorGray"
-        android:orientation="horizontal">
+        android:id="@+id/selected_walk_home"
+        android:layout_width="40dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginStart="53dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"/>
 
-        <TextView
-            android:id="@+id/item_walk"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border_bottom"
-            android:gravity="center"
-            android:text="@string/walk"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/item_run"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/run"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/item_ride"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/ride"
-            android:textSize="18sp" />
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/item_run"
+        android:layout_width="32dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginStart="168dp"
+        android:gravity="center"
+        android:text="@string/run"
+        android:textColor="#9b9b9b"
+        android:textSize="14sp" />
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/colorGray" />
+        android:id="@+id/selected_run_home"
+        android:layout_width="40dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginStart="164dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/item_ride"
+        android:layout_width="32dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginStart="279dp"
+        android:gravity="center"
+        android:text="@string/ride"
+        android:textColor="#9b9b9b"
+        android:textSize="14sp" />
+    <LinearLayout
+        android:id="@+id/selected_ride_home"
+        android:layout_width="40dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginStart="275dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:visibility="gone"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"/>
+</RelativeLayout>

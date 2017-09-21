@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tcl.isport.Activity.MainActivity;
@@ -24,6 +25,7 @@ public class SportFragment extends Fragment implements View.OnClickListener,View
     //主界面-运动
     private View view;
     private TextView item_walk_sport, item_run_sport, item_ride_sport;
+    private LinearLayout walk,run,ride;
     private SportWalkFragment walkFragment;
     private SportRunFragment runFragment;
     private SportRideFragment rideFragment;
@@ -49,6 +51,9 @@ public class SportFragment extends Fragment implements View.OnClickListener,View
         item_walk_sport.setOnClickListener(this);
         item_run_sport.setOnClickListener(this);
         item_ride_sport.setOnClickListener(this);
+        walk= (LinearLayout) view.findViewById(R.id.selected_walk_sport);
+        run= (LinearLayout) view.findViewById(R.id.selected_run_sport);
+        ride= (LinearLayout) view.findViewById(R.id.selected_ride_sport);
         fragmentAdapter = new FragmentAdapter(getFragmentManager(), lf);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(fragmentAdapter);
@@ -61,29 +66,37 @@ public class SportFragment extends Fragment implements View.OnClickListener,View
         //标识当前选中的fragment
         switch (position) {
             case 0:
-                item_walk_sport.setTextColor(Color.parseColor("#000000"));
-                item_walk_sport.setBackgroundResource(R.drawable.border_bottom);
-                item_run_sport.setTextColor(Color.parseColor("#5d5d5d"));
-                item_run_sport.setBackground(null);
-                item_ride_sport.setTextColor(Color.parseColor("#5d5d5d"));
-                item_ride_sport.setBackground(null);
+                item_walk_sport.setTextColor(Color.parseColor("#ffffff"));
+                item_walk_sport.setTextSize(16);
+                walk.setVisibility(View.VISIBLE);
+                item_run_sport.setTextColor(Color.parseColor("#9b9b9b"));
+                item_run_sport.setTextSize(14);
+                run.setVisibility(View.GONE);
+                item_ride_sport.setTextColor(Color.parseColor("#9b9b9b"));
+                item_ride_sport.setTextSize(14);
+                ride.setVisibility(View.GONE);
                 break;
             case 1:
-                item_walk_sport.setTextColor(Color.parseColor("#5d5d5d"));
-                item_walk_sport.setBackground(null);
-                item_run_sport.setTextColor(Color.parseColor("#000000"));
-                item_run_sport.setBackgroundResource(R.drawable.border_bottom);
-                item_ride_sport.setTextColor(Color.parseColor("#5d5d5d"));
-                item_ride_sport.setBackground(null);
+                item_walk_sport.setTextColor(Color.parseColor("#9b9b9b"));
+                item_walk_sport.setTextSize(14);
+                walk.setVisibility(View.GONE);
+                item_run_sport.setTextColor(Color.parseColor("#ffffff"));
+                item_run_sport.setTextSize(16);
+                run.setVisibility(View.VISIBLE);
+                item_ride_sport.setTextColor(Color.parseColor("#9b9b9b"));
+                item_ride_sport.setTextSize(14);
+                ride.setVisibility(View.GONE);
                 break;
             case 2:
-                item_walk_sport.setTextColor(Color.parseColor("#5d5d5d"));
-                item_walk_sport.setBackground(null);
-                item_run_sport.setTextColor(Color.parseColor("#5d5d5d"));
-                item_run_sport.setBackground(null);
-                item_ride_sport.setTextColor(Color.parseColor("#000000"));
-                item_ride_sport.setBackgroundResource(R.drawable.border_bottom);
-                break;
+                item_walk_sport.setTextColor(Color.parseColor("#9b9b9b"));
+                item_walk_sport.setTextSize(14);
+                walk.setVisibility(View.GONE);
+                item_run_sport.setTextColor(Color.parseColor("#9b9b9b"));
+                item_run_sport.setTextSize(14);
+                run.setVisibility(View.GONE);
+                item_ride_sport.setTextColor(Color.parseColor("#ffffff"));
+                item_ride_sport.setTextSize(16);
+                ride.setVisibility(View.VISIBLE);
             default:
                 break;
         }

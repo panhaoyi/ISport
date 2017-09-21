@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tcl.isport.Adapter.FragmentAdapter;
@@ -23,6 +24,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //主界面-首页
     private View view;
     private TextView item_walk, item_run, item_ride;
+    private LinearLayout walk,run,ride;
     private HomeWalkFragment walkFragment;
     private HomeRunFragment runFragment;
     private HomeRideFragment rideFragment;
@@ -48,6 +50,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_walk.setOnClickListener(this);
         item_run.setOnClickListener(this);
         item_ride.setOnClickListener(this);
+        walk= (LinearLayout) view.findViewById(R.id.selected_walk_home);
+        run= (LinearLayout) view.findViewById(R.id.selected_run_home);
+        ride= (LinearLayout) view.findViewById(R.id.selected_ride_home);
         fragmentAdapter = new FragmentAdapter(getFragmentManager(), lf);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(fragmentAdapter);
@@ -76,28 +81,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         //标识选中fragment
         switch (position) {
             case 0:
-                item_walk.setTextColor(Color.parseColor("#000000"));
-                item_walk.setBackgroundResource(R.drawable.border_bottom);
-                item_run.setTextColor(Color.parseColor("#5d5d5d"));
-                item_run.setBackground(null);
-                item_ride.setTextColor(Color.parseColor("#5d5d5d"));
-                item_ride.setBackground(null);
+                item_walk.setTextColor(Color.parseColor("#ffffff"));
+                item_walk.setTextSize(16);
+                walk.setVisibility(View.VISIBLE);
+                item_run.setTextColor(Color.parseColor("#9b9b9b"));
+                item_run.setTextSize(14);
+                run.setVisibility(View.GONE);
+                item_ride.setTextColor(Color.parseColor("#9b9b9b"));
+                item_ride.setTextSize(14);
+                ride.setVisibility(View.GONE);
                 break;
             case 1:
-                item_walk.setTextColor(Color.parseColor("#5d5d5d"));
-                item_walk.setBackground(null);
-                item_run.setTextColor(Color.parseColor("#000000"));
-                item_run.setBackgroundResource(R.drawable.border_bottom);
-                item_ride.setTextColor(Color.parseColor("#5d5d5d"));
-                item_ride.setBackground(null);
+                item_walk.setTextColor(Color.parseColor("#9b9b9b"));
+                item_walk.setTextSize(14);
+                walk.setVisibility(View.GONE);
+                item_run.setTextColor(Color.parseColor("#ffffff"));
+                item_run.setTextSize(16);
+                run.setVisibility(View.VISIBLE);
+                item_ride.setTextColor(Color.parseColor("#9b9b9b"));
+                item_ride.setTextSize(14);
+                ride.setVisibility(View.GONE);
                 break;
             case 2:
-                item_walk.setTextColor(Color.parseColor("#5d5d5d"));
-                item_walk.setBackground(null);
-                item_run.setTextColor(Color.parseColor("#5d5d5d"));
-                item_run.setBackground(null);
-                item_ride.setTextColor(Color.parseColor("#000000"));
-                item_ride.setBackgroundResource(R.drawable.border_bottom);
+                item_walk.setTextColor(Color.parseColor("#9b9b9b"));
+                item_walk.setTextSize(14);
+                walk.setVisibility(View.GONE);
+                item_run.setTextColor(Color.parseColor("#9b9b9b"));
+                item_run.setTextSize(14);
+                run.setVisibility(View.GONE);
+                item_ride.setTextColor(Color.parseColor("#ffffff"));
+                item_ride.setTextSize(16);
+                ride.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
