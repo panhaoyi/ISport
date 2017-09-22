@@ -7,14 +7,14 @@
 
     <LinearLayout
         android:layout_width="360dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="#444444"/>
 
     <TextView
         android:id="@+id/item_friend"
         android:layout_width="70dp"
         android:layout_height="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="38dp"
         android:gravity="center"
         android:text="好友"
@@ -25,7 +25,7 @@
         android:id="@+id/selected_friend"
         android:layout_width="40dp"
         android:layout_height="2dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="55dp"
         android:layout_marginStart="53dp"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
@@ -35,7 +35,7 @@
         android:id="@+id/item_activity"
         android:layout_width="70dp"
         android:layout_height="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="150dp"
         android:gravity="center"
         android:text="活动"
@@ -45,7 +45,7 @@
         android:id="@+id/selected_activity"
         android:layout_width="40dp"
         android:layout_height="2dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="55dp"
         android:layout_marginStart="164dp"
         android:background="@color/colorWhite"
         android:orientation="horizontal"/>
@@ -54,7 +54,7 @@
         android:id="@+id/item_topic"
         android:layout_width="70dp"
         android:layout_height="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="260dp"
         android:gravity="center"
         android:text="话题"
@@ -64,7 +64,7 @@
         android:id="@+id/selected_topic"
         android:layout_width="40dp"
         android:layout_height="2dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="55dp"
         android:layout_marginStart="275dp"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
