@@ -54,8 +54,6 @@ public class SportWalkFragment extends Fragment implements View.OnClickListener,
             case R.id.start_walk_sport:
                 //点击切换到WalkActivity开始运动
                 Intent intent = new Intent(getContext(), WalkActivity.class);
-                //设置flag使activity不会被销毁
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.track_walk_sport:
