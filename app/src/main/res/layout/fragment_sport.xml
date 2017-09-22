@@ -3,7 +3,7 @@
     android:id="@+id/fragment_sport"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--主界面-运动-->
+    <!--主界面-首页-->
 
     <LinearLayout
         android:layout_width="360dp"
@@ -12,10 +12,10 @@
 
     <TextView
         android:id="@+id/item_walk_sport"
-        android:layout_width="32dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginStart="57dp"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="38dp"
         android:gravity="center"
         android:text="@string/walk"
         android:textColor="@color/colorWhite"
@@ -32,10 +32,10 @@
 
     <TextView
         android:id="@+id/item_run_sport"
-        android:layout_width="32dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginStart="168dp"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="150dp"
         android:gravity="center"
         android:text="@string/run"
         android:textColor="#9b9b9b"
@@ -52,10 +52,10 @@
 
     <TextView
         android:id="@+id/item_ride_sport"
-        android:layout_width="32dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginStart="279dp"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="260dp"
         android:gravity="center"
         android:text="@string/ride"
         android:textColor="#9b9b9b"
