@@ -1,27 +1,15 @@
 package com.tcl.isport.Fragment;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.tcl.isport.Bean.Constant;
 import com.tcl.isport.IView.IHomeFragment;
 import com.tcl.isport.Presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
-import com.tcl.isport.Util.StepService;
 
 /**
  * Created by user on 17-9-4.

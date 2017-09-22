@@ -83,8 +83,8 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     }
 
     @Override
-    public void setDistance(double distance) {
-        distance_walk.setText(distance+"");
+    public void setDistance(String distance) {
+        distance_walk.setText(distance);
     }
 
     @Override

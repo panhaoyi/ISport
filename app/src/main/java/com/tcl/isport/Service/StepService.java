@@ -1,4 +1,4 @@
-package com.tcl.isport.Util;
+package com.tcl.isport.Service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -29,6 +29,8 @@ import com.tcl.isport.Activity.MainActivity;
 import com.tcl.isport.Bean.Constant;
 import com.tcl.isport.Bean.StepData;
 import com.tcl.isport.R;
+import com.tcl.isport.Util.DbUtil;
+import com.tcl.isport.Util.StepDetector;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

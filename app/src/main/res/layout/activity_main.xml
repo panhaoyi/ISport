@@ -13,44 +13,62 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true" />
 
-    <RelativeLayout
-        android:layout_width="360dp"
+    <LinearLayout
+        android:id="@+id/item_home"
+        android:layout_width="90dp"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
-        <Button
-            android:id="@+id/item_home"
+        <ImageView
+            android:id="@+id/icon_home"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_marginStart="38dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/ic_selected_home" />
+            android:src="@drawable/ic_selected_home" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/item_sport"
+    <LinearLayout
+        android:id="@+id/item_sport"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="90dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon_sport"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_marginStart="114dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/ic_unselected_sport"/>
+            android:src="@drawable/ic_unselected_sport" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/item_find"
+    <LinearLayout
+        android:id="@+id/item_find"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="180dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon_find"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_marginStart="206dp"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/ic_unselected_find"/>
+            android:src="@drawable/ic_unselected_find" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/item_mine"
+    <LinearLayout
+        android:id="@+id/item_mine"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="270dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon_mine"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_marginStart="287dp"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/ic_unselected_mine"/>
-    </RelativeLayout>
+            android:src="@drawable/ic_unselected_mine" />
+    </LinearLayout>
 </RelativeLayout>

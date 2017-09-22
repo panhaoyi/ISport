@@ -13,9 +13,6 @@ import com.tcl.isport.IView.ISportActivity;
 import com.tcl.isport.Presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
-/**
- * Created by user on 17-9-8.
- */
 public class RideActivity extends Activity implements View.OnClickListener,ISportActivity {
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
@@ -81,7 +78,7 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
     }
 
     @Override
-    public void setDistance(double distance) {
+    public void setDistance(String distance) {
         distance_ride.setText(distance+"");
     }
 
