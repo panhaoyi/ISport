@@ -29,7 +29,7 @@
         <activity android:name=".Activity.ContactUsActivity"/>
         <activity android:name=".Activity.SportsHistoryActivity"/>
         <service
-            android:name=".Util.StepService">
+            android:name=".Service.StepService">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.inteng.action.DATE_CHANGED"/>

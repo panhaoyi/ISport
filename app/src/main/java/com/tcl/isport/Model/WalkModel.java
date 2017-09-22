@@ -10,6 +10,7 @@ public class WalkModel implements ISportModel {
 
     @Override
     public String getDistance() {
+        //从服务器获取数据
         return "0.00";
     }
 

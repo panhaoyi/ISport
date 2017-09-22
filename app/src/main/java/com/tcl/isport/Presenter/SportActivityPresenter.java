@@ -29,6 +29,7 @@ public class SportActivityPresenter {
         else if(view.getClass().getName().equals(RideActivity.class.getName())){
             iSportModel=new RideModel();
         }
+        iSportActivity.setDistance(iSportModel.getDistance());
     }
 
 }
