@@ -20,8 +20,11 @@ public class MapActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
         map_type= (ImageView) findViewById(R.id.map_type);
+        map_type.setOnClickListener(this);
         my_location= (ImageView) findViewById(R.id.my_location);
+        my_location.setOnClickListener(this);
         change_view= (ImageView) findViewById(R.id.change_view);
+        change_view.setOnClickListener(this);
     }
 
     @Override
