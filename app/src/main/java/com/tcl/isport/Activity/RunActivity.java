@@ -81,8 +81,8 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     }
 
     @Override
-    public void setDistance(double distance) {
-        distance_run.setText(distance+"");
+    public void setDistance(String distance) {
+        distance_run.setText(distance);
     }
 
     @Override
