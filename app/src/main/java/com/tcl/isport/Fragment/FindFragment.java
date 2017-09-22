@@ -104,7 +104,7 @@ public class FindFragment extends Fragment implements View.OnClickListener,ViewP
     public void onClick(View v) {
         //点击切换fragment
         switch (v.getId()) {
-            case R.id.item_walk:
+            case R.id.item_friend:
                 viewPager.setCurrentItem(0);
                 changeColor(0);
                 break;
