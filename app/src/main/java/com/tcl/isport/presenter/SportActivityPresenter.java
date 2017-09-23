@@ -3,10 +3,7 @@ package com.tcl.isport.presenter;
 import com.tcl.isport.activity.RideActivity;
 import com.tcl.isport.activity.RunActivity;
 import com.tcl.isport.activity.WalkActivity;
-<<<<<<< HEAD:app/src/main/java/com/tcl/isport/presenter/SportActivityPresenter.java
 import com.tcl.isport.imodel.ISportModel;
-=======
->>>>>>> 97d18ceb2b153c6824083d9d5cb27c5bd8c1cb5b:app/src/main/java/com/tcl/isport/presenter/SportActivityPresenter.java
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.model.RideModel;
 import com.tcl.isport.model.RunModel;
