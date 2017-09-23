@@ -3,7 +3,10 @@ package com.tcl.isport.presenter;
 import com.tcl.isport.fragment.HomeRideFragment;
 import com.tcl.isport.fragment.HomeRunFragment;
 import com.tcl.isport.fragment.HomeWalkFragment;
+<<<<<<< HEAD:app/src/main/java/com/tcl/isport/presenter/HomeFragmentPresenter.java
 import com.tcl.isport.imodel.ISportModel;
+=======
+>>>>>>> 97d18ceb2b153c6824083d9d5cb27c5bd8c1cb5b:app/src/main/java/com/tcl/isport/presenter/HomeFragmentPresenter.java
 import com.tcl.isport.iView.IHomeFragment;
 import com.tcl.isport.model.RideModel;
 import com.tcl.isport.model.RunModel;

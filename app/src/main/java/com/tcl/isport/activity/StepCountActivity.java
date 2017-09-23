@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.tcl.isport.bean.Constant;
 import com.tcl.isport.R;
-import com.tcl.isport.service.StepService;
+import com.tcl.isport.services.StepService;
 
 /**
  * Created by haoyi.pan on 17-9-18.
