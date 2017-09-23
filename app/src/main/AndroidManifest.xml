@@ -11,25 +11,26 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="q7WbqfGwR0Ld0mxlkwGde66QS48CywVe"/>
-        <activity android:name=".Activity.WelcomeActivity"/>
-        <activity android:name=".Activity.MainActivity"/>
-        <activity android:name=".Activity.LoginActivity">
+        <activity android:name=".activity.WelcomeActivity"/>
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginQuickActivity"/>
-        <activity android:name=".Activity.RegisterActivity"/>
-        <activity android:name=".Activity.WalkActivity"/>
-        <activity android:name=".Activity.RunActivity"/>
-        <activity android:name=".Activity.RideActivity"/>
-        <activity android:name=".Activity.MapActivity"/>
-        <activity android:name=".Activity.CameraActivity"/>
-        <activity android:name=".Activity.ContactUsActivity"/>
-        <activity android:name=".Activity.SportsHistoryActivity"/>
+        <activity android:name=".activity.LoginQuickActivity"/>
+        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.WalkActivity"/>
+        <activity android:name=".activity.RunActivity"/>
+        <activity android:name=".activity.RideActivity"/>
+        <activity android:name=".activity.MapActivity"/>
+        <activity android:name=".activity.CameraActivity"/>
+        <activity android:name=".activity.JoinActivityActivity"/>
+        <activity android:name=".activity.ContactUsActivity"/>
+        <activity android:name=".activity.SportsHistoryActivity"/>
         <service
-            android:name=".Service.StepService">
+            android:name=".service.StepService">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.inteng.action.DATE_CHANGED"/>
