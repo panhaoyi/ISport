@@ -12,7 +12,7 @@
         <!-- 设置key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="0c9b4fbb1c7f033dc37bf1161d8a3549" />
+            android:value="29ee72698a35142d5ad09ca7e6dcd305" />
 
         <activity android:name=".activity.WelcomeActivity"/>
         <activity android:name=".activity.MainActivity"/>
