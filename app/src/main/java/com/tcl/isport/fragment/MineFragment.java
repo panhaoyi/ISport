@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.tcl.isport.activity.ContactUsActivity;
 import com.tcl.isport.activity.SportsHistoryActivity;
-import com.tcl.isport.iView.IMineFragment;
+import com.tcl.isport.iview.IMineFragment;
 import com.tcl.isport.R;
 
 /**

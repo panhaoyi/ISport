@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tcl.isport.iView.ISportActivity;
+import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 

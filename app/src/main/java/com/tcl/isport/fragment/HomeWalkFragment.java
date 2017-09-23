@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tcl.isport.iView.IHomeFragment;
+import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
 

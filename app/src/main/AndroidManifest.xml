@@ -44,7 +44,7 @@
         <activity android:name=".activity.ContactUsActivity"/>
         <activity android:name=".activity.SportsHistoryActivity"/>
         <service
-            android:name=".services.StepService">
+            android:name=".service.StepService">
 >>>>>>> 97d18ceb2b153c6824083d9d5cb27c5bd8c1cb5b
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -59,7 +59,7 @@
 
         <!--自定义服务-->
         <service
-            android:name=".services.SportLocationService"
+            android:name=".service.SportLocationService"
             android:enabled="true"
             android:exported="true"/>
 
