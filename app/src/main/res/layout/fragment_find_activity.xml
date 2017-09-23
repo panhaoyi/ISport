@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#666666"
+        android:text="参加活动"
+        android:gravity="center"
+        android:textColor="#9b9b9b"
+        android:textSize="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:background="#666666"
+        android:text="发布活动"
+        android:gravity="center"
+        android:textColor="#9b9b9b"
+        android:textSize="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:background="#666666"
+        android:text="活动管理"
+        android:gravity="center"
+        android:textColor="#9b9b9b"
+        android:textSize="30dp"/>
+</LinearLayout>

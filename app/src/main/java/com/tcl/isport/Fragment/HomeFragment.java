@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by user on 17-9-4.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener,ViewPager.OnPageChangeListener {
     //主界面-首页
     private View view;
     private TextView item_walk, item_run, item_ride;
@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         walkFragment = new HomeWalkFragment();
         runFragment = new HomeRunFragment();
         rideFragment = new HomeRideFragment();
-        lf = new ArrayList<Fragment>();
+        lf = new ArrayList<>();
         lf.add(walkFragment);
         lf.add(runFragment);
         lf.add(rideFragment);
@@ -57,23 +57,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(fragmentAdapter);
         viewPager.setCurrentItem(0);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            //滑动切换fragment
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                changeColor(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        viewPager.addOnPageChangeListener(this);
         return view;
     }
 
@@ -137,5 +121,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        changeColor(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

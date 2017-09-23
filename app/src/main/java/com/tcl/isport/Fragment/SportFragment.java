@@ -41,7 +41,7 @@ public class SportFragment extends Fragment implements View.OnClickListener,View
         walkFragment = new SportWalkFragment();
         runFragment = new SportRunFragment();
         rideFragment = new SportRideFragment();
-        lf = new ArrayList<Fragment>();
+        lf = new ArrayList<>();
         lf.add(walkFragment);
         lf.add(runFragment);
         lf.add(rideFragment);
