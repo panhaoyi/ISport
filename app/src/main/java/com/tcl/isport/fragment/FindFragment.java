@@ -23,11 +23,10 @@ import java.util.List;
 public class FindFragment extends Fragment implements View.OnClickListener,ViewPager.OnPageChangeListener {
     //主界面-运动圈
     private View view;
-    private TextView item_friend, item_activity, item_topic;
-    private LinearLayout friend,activity,topic;
-    private FindActivityFragment findActivityFragment;
-    private FindFriendFragment findFriendFragment;
+    private TextView item_topic,item_activity;
+    private LinearLayout topic,activity;
     private FindTopicFragment findTopicFragment;
+    private FindActivityFragment findActivityFragment;
     private List<Fragment> lf;
     private ViewPager viewPager;
     private FragmentAdapter fragmentAdapter;
@@ -37,26 +36,21 @@ public class FindFragment extends Fragment implements View.OnClickListener,ViewP
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_find, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager_find);
-        findFriendFragment = new FindFriendFragment();
-        findActivityFragment = new FindActivityFragment();
         findTopicFragment = new FindTopicFragment();
+        findActivityFragment = new FindActivityFragment();
         lf = new ArrayList<>();
-        lf.add(findFriendFragment);
-        lf.add(findActivityFragment);
         lf.add(findTopicFragment);
-        item_friend = (TextView) view.findViewById(R.id.item_friend);
-        item_activity = (TextView) view.findViewById(R.id.item_activity);
+        lf.add(findActivityFragment);
         item_topic = (TextView) view.findViewById(R.id.item_topic);
-        item_friend.setOnClickListener(this);
-        item_activity.setOnClickListener(this);
+        item_activity = (TextView) view.findViewById(R.id.item_activity);
         item_topic.setOnClickListener(this);
-        friend= (LinearLayout) view.findViewById(R.id.selected_friend);
-        activity= (LinearLayout) view.findViewById(R.id.selected_activity);
+        item_activity.setOnClickListener(this);
         topic= (LinearLayout) view.findViewById(R.id.selected_topic);
+        activity= (LinearLayout) view.findViewById(R.id.selected_activity);
         fragmentAdapter = new FragmentAdapter(getFragmentManager(), lf);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(fragmentAdapter);
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(this);
         return view;
     }
@@ -64,37 +58,20 @@ public class FindFragment extends Fragment implements View.OnClickListener,ViewP
         //标识选中fragment
         switch (position) {
             case 0:
-                item_friend.setTextColor(Color.parseColor("#ffffff"));
-                item_friend.setTextSize(16);
-                friend.setVisibility(View.VISIBLE);
-                item_activity.setTextColor(Color.parseColor("#9b9b9b"));
-                item_activity.setTextSize(14);
-                activity.setVisibility(View.GONE);
-                item_topic.setTextColor(Color.parseColor("#9b9b9b"));
-                item_topic.setTextSize(14);
-                topic.setVisibility(View.GONE);
-                break;
-            case 1:
-                item_friend.setTextColor(Color.parseColor("#9b9b9b"));
-                item_friend.setTextSize(14);
-                friend.setVisibility(View.GONE);
-                item_activity.setTextColor(Color.parseColor("#ffffff"));
-                item_activity.setTextSize(16);
-                activity.setVisibility(View.VISIBLE);
-                item_topic.setTextColor(Color.parseColor("#9b9b9b"));
-                item_topic.setTextSize(14);
-                topic.setVisibility(View.GONE);
-                break;
-            case 2:
-                item_friend.setTextColor(Color.parseColor("#9b9b9b"));
-                item_friend.setTextSize(14);
-                friend.setVisibility(View.GONE);
-                item_activity.setTextColor(Color.parseColor("#9b9b9b"));
-                item_activity.setTextSize(14);
-                activity.setVisibility(View.GONE);
                 item_topic.setTextColor(Color.parseColor("#ffffff"));
                 item_topic.setTextSize(16);
                 topic.setVisibility(View.VISIBLE);
+                item_activity.setTextColor(Color.parseColor("#9b9b9b"));
+                item_activity.setTextSize(14);
+                activity.setVisibility(View.GONE);
+                break;
+            case 1:
+                item_topic.setTextColor(Color.parseColor("#9b9b9b"));
+                item_topic.setTextSize(14);
+                topic.setVisibility(View.GONE);
+                item_activity.setTextColor(Color.parseColor("#ffffff"));
+                item_activity.setTextSize(16);
+                activity.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
@@ -104,17 +81,13 @@ public class FindFragment extends Fragment implements View.OnClickListener,ViewP
     public void onClick(View v) {
         //点击切换fragment
         switch (v.getId()) {
-            case R.id.item_friend:
+            case R.id.item_topic:
                 viewPager.setCurrentItem(0);
                 changeColor(0);
                 break;
             case R.id.item_activity:
                 viewPager.setCurrentItem(1);
                 changeColor(1);
-                break;
-            case R.id.item_topic:
-                viewPager.setCurrentItem(2);
-                changeColor(2);
                 break;
             default:
                 break;

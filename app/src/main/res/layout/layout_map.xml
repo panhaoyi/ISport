@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333">
@@ -12,7 +13,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_map_setting"/>
+        android:src="@drawable/ic_map_setting" />
 
     <!--定位到我的位置-->
     <ImageView
@@ -21,7 +22,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="524dp"
-        android:src="@drawable/bt_map_location"/>
+        android:src="@drawable/bt_map_location" />
 
     <!--切换界面-->
     <ImageView
@@ -30,5 +31,5 @@
         android:layout_height="50dp"
         android:layout_marginStart="280dp"
         android:layout_marginTop="524dp"
-        android:src="@drawable/ic_map_turn"/>
+        android:src="@drawable/ic_map_turn" />
 </RelativeLayout>

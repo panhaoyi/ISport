@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.tcl.isport.R;
+import com.tcl.isport.application.MyApplication;
 
 /**
  * Created by haoyi.pan on 17-9-22.
@@ -19,6 +20,9 @@ public class MapActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.layout_map);
+
         map_type= (ImageView) findViewById(R.id.map_type);
         map_type.setOnClickListener(this);
         my_location= (ImageView) findViewById(R.id.my_location);

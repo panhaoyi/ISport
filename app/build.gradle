@@ -4,6 +4,13 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
+    }
     defaultConfig {
         applicationId "com.tcl.isport"
         minSdkVersion 23
@@ -23,5 +30,15 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
+    //高德地图API
     compile files('libs/AMap3DMap_5.3.0_AMapNavi_5.3.0_AMapSearch_5.3.1_AMapLocation_3.5.0_20170817.jar')
+    //LeanCloud基本存储包
+    compile files('libs/avoscloud-sdk-v4.4.8.jar')
+    compile files('libs/fastjson-1.2.30.jar')
+    compile files('libs/okhttp-3.8.0.jar')
+    compile files('libs/okio-1.13.0.jar')
+    //LeanCloud实时推送包
+    compile files('libs/avoscloud-push-v4.4.8.jar')
+    //LeanCloud统计包
+    compile files('libs/avoscloud-statistics-v4.4.8.jar')
 }
