@@ -17,4 +17,9 @@ public class RideModel implements ISportModel {
     public String getDuration() {
         return "0 h";
     }
+
+    @Override
+    public String getWeather() {
+        return null;
+    }
 }

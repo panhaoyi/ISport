@@ -17,4 +17,10 @@ public class RunModel implements ISportModel {
     public String getDuration() {
         return "0 h";
     }
+
+
+    @Override
+    public String getWeather() {
+        return null;
+    }
 }

@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/weather_run_home"
-        android:layout_width="19dp"
+        android:layout_width="wrap_content"
         android:layout_height="13dp"
         android:layout_marginStart="18dp"
         android:layout_marginTop="47dp"

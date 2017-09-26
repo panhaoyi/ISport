@@ -1,5 +1,7 @@
 package com.tcl.isport.iview;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by haoyi.pan on 17-9-18.
  */
@@ -10,7 +12,7 @@ public interface IHomeFragment {
     public void setStep(String step);
     public void setTimes(String times);
     public void setSpeed(String speed);
-    public void setWeatherIcon();
+    public void setWeatherIcon(int resId);
     public void setWeather(String weather);
     public void setHistory();
 }
