@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.tcl.isport.adapter.FragmentAdapter;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.HomeFragmentPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

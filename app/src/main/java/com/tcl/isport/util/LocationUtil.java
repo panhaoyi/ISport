@@ -90,12 +90,6 @@ public class LocationUtil {
         poiName = aMapLocation.getPoiName();
     }
 
-    //获取天气
-    public String getWeatherData() {
-        Log.e(LocationUtil.ISPORT_TAG, "weather:" + weather);
-        return weather;
-    }
-
     public void initLocatin() {
         aMapLocationClientOption = new AMapLocationClientOption();
         aMapLocationClientOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);

@@ -14,10 +14,6 @@ public class WalkModel implements ISportModel {
     private boolean isFlag = false;
     //Walk数据模型接口实现
     public WalkModel() {}
-    //通过presenter传递context
-    public WalkModel(Context mContext) {
-        this.mContext = mContext;
-    }
 
     @Override
     public String getDistance() {

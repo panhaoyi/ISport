@@ -1,8 +1,10 @@
 package com.tcl.isport.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
+import com.tcl.isport.util.LocationUtil;
 
 
 /**
@@ -31,14 +34,7 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
         //注意调用先后顺序，防止产生空指针
         initView();
         homeWalkFragmentPresenter=new HomeFragmentPresenter(this, this.getActivity());
-//        homeWalkFragmentPresenter.initWeather();
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //homeWalkFragmentPresenter.initWeather();
     }
 
     private void initView() {
@@ -72,13 +68,13 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     }
 
     @Override
-    public void setWeatherIcon() {
+    public void setWeatherIcon(int resId) {
+        mWeatherIconWalkHome.setImageResource(resId);
 
     }
 
     @Override
     public void setWeather(String weather) {
-
         if (weather != null && !weather.equals("")) {
             mWeatherWalkHome.setText(weather);
         }
@@ -93,7 +89,6 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);
     }
 
 }
