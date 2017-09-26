@@ -79,7 +79,7 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     @Override
     public void setWeather(String weather) {
 
-        if (weather != null && weather.equals("")) {
+        if (weather != null && !weather.equals("")) {
             mWeatherWalkHome.setText(weather);
         }
 

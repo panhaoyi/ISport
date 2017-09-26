@@ -21,6 +21,7 @@ import com.amap.api.services.weather.WeatherSearch;
 import com.amap.api.services.weather.WeatherSearchQuery;
 import com.tcl.isport.fragment.HomeWalkFragment;
 import com.tcl.isport.model.WalkModel;
+import com.tcl.isport.presenter.HomeFragmentPresenter;
 
 /**
  * Created by lishui.lin on 17-9-20 20:20
@@ -28,27 +29,36 @@ import com.tcl.isport.model.WalkModel;
 
 public class LocationUtil {
 
-    public static String ISPORT_TAG = "ISportTag";
-    public static String WEATHER_RECEIVER = "com.tcl.isport.weather.receiver";
+    public static LocationUtil instance;
 
+    public static String ISPORT_TAG = "ISportTag";
     private AMapLocationClient aMapLocationClient = null;
     private AMapLocationClientOption aMapLocationClientOption = null;
     private String weather = "";
     private Context mContext;
-
+    private HomeFragmentPresenter homeFragmentPresenter;
 
     public static float speed;
     public static String city = "";
     public static String poiName;
 
 
-    public LocationUtil(Context mContext){
+    private LocationUtil(Context mContext, HomeFragmentPresenter homeFragmentPresenter){
         this.mContext = mContext;
+        this.homeFragmentPresenter = homeFragmentPresenter;
+    }
+
+    private LocationUtil(){
 
     }
 
-    public LocationUtil(){
+    //单例模式
+    public static LocationUtil getInstance(Context mContext, HomeFragmentPresenter homeFragmentPresenter) {
+        if (instance == null) {
+            instance = new LocationUtil(mContext, homeFragmentPresenter);
+        }
 
+        return instance;
     }
     //定位类型LocationType
     /*
@@ -153,11 +163,7 @@ public class LocationUtil {
 
                     weather = weatherLive.getWeather();
 
-//                    Intent intent = new Intent();
-//                    intent.putExtra("weather", weather);
-//                    intent.setAction(WEATHER_RECEIVER);
-//                    mContext.sendBroadcast(intent);
-
+                    homeFragmentPresenter.setWeather(weather);
                     Log.e(LocationUtil.ISPORT_TAG, weatherLive.getWeather());
                 }
             }
@@ -184,6 +190,9 @@ public class LocationUtil {
 
     }
 
+    public interface IWeather {
+        void setWeather(String weather);
+    }
     public static String getManufacture(Context context) {
         return Build.MANUFACTURER;
     }
