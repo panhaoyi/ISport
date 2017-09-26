@@ -1,4 +1,4 @@
-package com.tcl.isport.iModel;
+package com.tcl.isport.imodel;
 
 /**
  * Created by haoyi.pan on 17-9-18.

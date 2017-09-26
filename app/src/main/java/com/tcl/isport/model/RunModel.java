@@ -1,6 +1,6 @@
 package com.tcl.isport.model;
 
-import com.tcl.isport.iModel.ISportModel;
+import com.tcl.isport.imodel.ISportModel;
 
 /**
  * Created by haoyi.pan on 17-9-18.
@@ -16,5 +16,11 @@ public class RunModel implements ISportModel {
     @Override
     public String getDuration() {
         return "0 h";
+    }
+
+
+    @Override
+    public String getWeather() {
+        return null;
     }
 }

@@ -2,6 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tcl.isport">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.hardware.wensor.accelerometer" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,66 +35,45 @@
             android:name="com.amap.api.v2.apikey"
             android:value="29ee72698a35142d5ad09ca7e6dcd305" />
 
-        <activity android:name=".activity.WelcomeActivity"/>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.WelcomeActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginQuickActivity"/>
-        <activity android:name=".activity.RegisterActivity"/>
-        <activity android:name=".activity.WalkActivity"/>
-        <activity android:name=".activity.RunActivity"/>
-        <activity android:name=".activity.RideActivity"/>
-        <activity android:name=".activity.MapActivity"/>
-        <activity android:name=".activity.CameraActivity"/>
-        <activity android:name=".activity.ContactUsActivity"/>
-        <activity android:name=".activity.SportsHistoryActivity"/>
-        <service
-            android:name=".services.StepService">
+        <activity android:name=".activity.LoginQuickActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.WalkActivity" />
+        <activity android:name=".activity.RunActivity" />
+        <activity android:name=".activity.RideActivity" />
+        <activity android:name=".activity.MapActivity" />
+        <activity android:name=".activity.CameraActivity" />
+        <activity android:name=".activity.ContactUsActivity" />
+        <activity android:name=".activity.SportsHistoryActivity" />
+
+        <service android:name=".service.StepService">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.inteng.action.DATE_CHANGED"/>
-                <action android:name="android.inteng.action.MEDIA_MOUNTED"/>
-                <action android:name="android.inteng.action.USER_PRESENT"/>
-                <action android:name="android.inteng.action.ACTION_TIME_TICK"/>
-                <action android:name="android.inteng.action.ACTION_POWER_CONNECTED"/>
-                <action android:name="android.inteng.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.inteng.action.DATE_CHANGED" />
+                <action android:name="android.inteng.action.MEDIA_MOUNTED" />
+                <action android:name="android.inteng.action.USER_PRESENT" />
+                <action android:name="android.inteng.action.ACTION_TIME_TICK" />
+                <action android:name="android.inteng.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.inteng.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </service>
 
-        <!--自定义服务-->
+        <!-- 自定义服务 -->
         <service
-            android:name=".services.SportLocationService"
+            android:name=".service.SportLocationService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <!-- 高德定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
-
     </application>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.hardware.wensor.accelerometer"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 </manifest>

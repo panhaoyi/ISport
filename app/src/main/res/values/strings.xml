@@ -17,4 +17,7 @@
     <string name="ride">骑行</string>
     <string name="weather">良好</string>
     <string name="history_record">历史记录</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

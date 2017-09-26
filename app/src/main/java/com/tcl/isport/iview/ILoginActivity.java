@@ -1,4 +1,4 @@
-package com.tcl.isport.iView;
+package com.tcl.isport.iview;
 
 /**
  * Created by haoyi.pan on 17-9-18.

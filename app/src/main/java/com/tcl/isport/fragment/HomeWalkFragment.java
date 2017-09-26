@@ -6,10 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.tcl.isport.iView.IHomeFragment;
+import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
+
 
 /**
  * Created by user on 17-9-4.
@@ -18,13 +21,29 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     //首页健走
     private View view;
     private HomeFragmentPresenter homeWalkFragmentPresenter;
+    private TextView mWeatherWalkHome;
+    private ImageView mWeatherIconWalkHome;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_walk,container,false);
-        homeWalkFragmentPresenter=new HomeFragmentPresenter(this);
+        //注意调用先后顺序，防止产生空指针
+        initView();
+        homeWalkFragmentPresenter=new HomeFragmentPresenter(this, this.getActivity());
+//        homeWalkFragmentPresenter.initWeather();
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //homeWalkFragmentPresenter.initWeather();
+    }
+
+    private void initView() {
+        mWeatherWalkHome = (TextView) view.findViewById(R.id.weather_walk_home);
+        mWeatherIconWalkHome = (ImageView) view.findViewById(R.id.weather_icon_walk_home);
     }
 
     @Override
@@ -60,10 +79,21 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     @Override
     public void setWeather(String weather) {
 
+        if (weather != null && weather.equals("")) {
+            mWeatherWalkHome.setText(weather);
+        }
+
     }
 
     @Override
     public void setHistory() {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
+    }
+
 }

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tcl.isport.iView.IHomeFragment;
+import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
 
@@ -23,7 +23,7 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_ride, container, false);
-        homeRideFragmentPresenter=new HomeFragmentPresenter(this);
+        homeRideFragmentPresenter=new HomeFragmentPresenter(this, this.getActivity());
         return view;
     }
 

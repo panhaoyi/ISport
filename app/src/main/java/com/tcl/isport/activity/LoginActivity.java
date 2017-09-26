@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.tcl.isport.iView.ILoginActivity;
+import com.tcl.isport.iview.ILoginActivity;
 import com.tcl.isport.R;
 
 import java.util.ArrayList;

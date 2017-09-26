@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tcl.isport.activity.WalkActivity;
-import com.tcl.isport.iView.ISportFragment;
+import com.tcl.isport.iview.ISportFragment;
 import com.tcl.isport.presenter.SportFragmentPresenter;
 import com.tcl.isport.R;
 

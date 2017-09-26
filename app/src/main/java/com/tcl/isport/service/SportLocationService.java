@@ -1,4 +1,4 @@
-package com.tcl.isport.services;
+package com.tcl.isport.service;
 
 import android.app.Service;
 import android.content.Intent;
