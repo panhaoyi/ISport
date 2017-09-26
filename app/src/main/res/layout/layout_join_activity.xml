@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#333333">
+    <!--参加活动界面,显示所有活动列表-->
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:src="@mipmap/ic_launcher"/>
+
+    <!--活动列表容器,divider设置分割线透明,dividerHeight设置两个内容间的间距-->
+    <ListView
+        android:id="@+id/listview_show_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"/>
+</LinearLayout>

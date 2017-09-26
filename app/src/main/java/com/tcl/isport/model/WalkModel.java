@@ -1,19 +1,8 @@
 package com.tcl.isport.model;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.CountDownTimer;
-import android.util.Log;
-
-import com.tcl.isport.bean.MessageEvent;
 import com.tcl.isport.imodel.ISportModel;
-import com.tcl.isport.util.LocationUtil;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by haoyi.pan on 17-9-18.

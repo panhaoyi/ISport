@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/join_activity"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="#666666"
@@ -12,6 +13,7 @@
         android:textColor="#9b9b9b"
         android:textSize="30dp"/>
     <TextView
+        android:id="@+id/new_activity"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
@@ -21,6 +23,7 @@
         android:textColor="#9b9b9b"
         android:textSize="30dp"/>
     <TextView
+        android:id="@+id/manage_activity"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
