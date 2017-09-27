@@ -3,7 +3,6 @@ package com.tcl.isport.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,7 +23,7 @@ public class MapActivity extends Activity implements View.OnClickListener {
     protected AMap aMap;
     private MyLocationStyle myLocationStyle;
 
-//运动地图轨迹界面
+    //运动地图轨迹界面
     private ImageView map_type,my_location,change_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,10 @@ public class MapActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.layout_map);
 
         //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
-        MyApplication.hide(this,R.id.layout_map);
+        //MyApplication.hide(this,R.id.layout_map);
 
+        initView();
+        mapView.onCreate(savedInstanceState);
         initParams();
 
         initListener();
