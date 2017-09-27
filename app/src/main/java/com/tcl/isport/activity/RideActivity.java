@@ -23,6 +23,9 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
     private String start_pause = "pause";
     private SportActivityPresenter rideActivityPresenter;
 
+    //给开始定时和暂停计时的判断
+    private boolean isStart = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +79,20 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
                 } else {
                     start_pause_ride.setImageResource(R.drawable.bt_pause);
                     start_pause = "pause";
+
+                    if (!isStart) {
+                        //启动定时器
+                        rideActivityPresenter.startTime();
+                        isStart = true;
+                    } else {
+                        rideActivityPresenter.pauseTime();
+                        isStart = false;
+                    }
                 }
                 break;
             case R.id.stop_ride:
 
+                rideActivityPresenter.stopTime();
                 break;
             default:
                 break;

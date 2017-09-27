@@ -36,4 +36,5 @@ public class WalkModel implements ISportModel {
         return weather;
     }
 
+
 }
