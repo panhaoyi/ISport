@@ -20,17 +20,16 @@ import com.tcl.isport.util.LocationUtil;
  */
 public class MapActivity extends Activity implements View.OnClickListener {
     //运动地图轨迹界面
-    private ImageView map_type, my_location, change_view;
     private MapView mapView;
     protected AMap aMap;
     private MyLocationStyle myLocationStyle;
 
+//运动地图轨迹界面
+    private ImageView map_type,my_location,change_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
-        initView();
-        mapView.onCreate(savedInstanceState);
 
         initParams();
 
