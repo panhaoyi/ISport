@@ -24,6 +24,9 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
 
     private SportActivityPresenter runActivityPresenter;
 
+    //给开始定时和暂停计时的判断
+    private boolean isStart = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +71,18 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
 
                 break;
             case R.id.start_pause_run:
+                if (!isStart) {
+                    //启动定时器
+                    runActivityPresenter.startTime();
+                    isStart = true;
+                } else {
+                    runActivityPresenter.pauseTime();
+                    isStart = false;
+                }
 
                 break;
             case R.id.stop_run:
-
+                runActivityPresenter.stopTime();
                 break;
             default:
                 break;

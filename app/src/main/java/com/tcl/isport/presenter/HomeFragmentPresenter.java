@@ -12,39 +12,40 @@ import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.model.RideModel;
 import com.tcl.isport.model.RunModel;
 import com.tcl.isport.model.WalkModel;
-import com.tcl.isport.util.LocationUtil;
+import com.tcl.isport.util.WeatherUtil;
+
 /**
  * Created by haoyi.pan on 17-9-19.
  */
-public class HomeFragmentPresenter implements LocationUtil.IWeather{
+public class HomeFragmentPresenter implements WeatherUtil.IWeather{
     //主界面-首页HomeFragment中三个Fragment共用的业务逻辑处理Presenter
     private ISportModel iSportModel;
     private IHomeFragment iHomeFragment;
 
-    private  LocationUtil locationUtil;
-
     public HomeFragmentPresenter(IHomeFragment view, Context mContext){
         //构造器通过参数拿到view实例化view接口，根据view的类型初始化model
         this.iHomeFragment=view;
-        locationUtil = LocationUtil.getInstance(mContext, this);
-        locationUtil.initLocatin();
+        WeatherUtil weatherUtil = new WeatherUtil(mContext, this);
         if(view instanceof HomeWalkFragment){
             iSportModel=new WalkModel();
             iHomeFragment.setWeather("连接中");
-            locationUtil.initLocatin();
-        }
-        if(view instanceof HomeRunFragment){
+//            WeatherUtil weatherUtil = new WeatherUtil(mContext, this);
+            weatherUtil.initLocatin();
+        } else if(view instanceof HomeRunFragment){
             iSportModel=new RunModel();
             iHomeFragment.setWeather("连接中");
+//            WeatherUtil weatherUtil = new WeatherUtil(mContext, this);
+            weatherUtil.initLocatin();
 
-        }
-        if(view instanceof HomeRideFragment){
+        } else if(view instanceof HomeRideFragment){
             iSportModel=new RideModel();
             iHomeFragment.setWeather("连接中");
+//            WeatherUtil weatherUtil = new WeatherUtil(mContext, this);
+            weatherUtil.initLocatin();
 
         }
     }
-    
+
     @Override
     public void setWeather(String weather) {
         if (weather !=null && !weather.equals("")){

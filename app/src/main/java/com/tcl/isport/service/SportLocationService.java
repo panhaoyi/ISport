@@ -207,7 +207,7 @@ public class SportLocationService extends Service {
                         }
                         LocationUtil.setLocationData(aMapLocation);
                     }
-//                    latLng = converLatLng(aMapLocation);
+
                 } else {
                     //定位错误码，对定位失败进行判断处理
                 }

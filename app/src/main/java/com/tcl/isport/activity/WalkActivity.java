@@ -3,6 +3,8 @@ package com.tcl.isport.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +29,9 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     private SportActivityPresenter walkActivityPresenter;
     private Intent intent;
 
+    //给开始定时和暂停计时的判断
+    private boolean isStart = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,7 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         start_pause_walk.setOnClickListener(this);
         stop_walk = (Button) findViewById(R.id.stop_walk);
         stop_walk.setOnClickListener(this);
+
         walkActivityPresenter=new SportActivityPresenter(this);
     }
 
@@ -72,10 +78,24 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
                 startActivity(intent);
                 break;
             case R.id.start_pause_walk:
+                //启动服务，设置一个flag判断是否首次启动服务
+                //开始计时要给时间让定位服务初始化，建议弄个倒计时
+//                walkActivityPresenter.startLocationService(this);
+//                walkActivityPresenter.bindLocationService(this);
+                if (!isStart) {
+                    //启动定时器
+                    walkActivityPresenter.startTime();
+                    isStart = true;
+                } else {
+                    walkActivityPresenter.pauseTime();
+                    isStart = false;
+                }
 
                 break;
             case R.id.stop_walk:
-
+//                walkActivityPresenter.unbindLocationService(this);
+//                walkActivityPresenter.stopLocationService(this);
+                walkActivityPresenter.stopTime();
                 break;
             default:
                 break;

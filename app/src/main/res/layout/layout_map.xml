@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:background="#333333">
     <!--地图，运动轨迹界面-->
+    <com.amap.api.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"/>
 
     <!--更改卫星/平面图-->
     <ImageView
@@ -31,4 +35,5 @@
         android:layout_marginStart="280dp"
         android:layout_marginTop="524dp"
         android:src="@drawable/ic_map_turn"/>
+
 </RelativeLayout>
