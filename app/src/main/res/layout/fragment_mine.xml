@@ -5,111 +5,269 @@
     android:orientation="vertical">
     <!--主界面-我-->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="个人资料"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="18dp"
-        android:background="@color/colorGray">
+        android:layout_height="100dp"
+        android:background="#4a4949">
         <!--头像-->
         <ImageView
             android:id="@+id/photo_mine"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_user_photo" />
 
         <TextView
             android:id="@+id/name_mine"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/photo_mine"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/photo_mine"
-            android:gravity="center"
-            android:text="昵称"
-            android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
+            android:layout_width="188dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="122dp"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="昵称666666"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/signature_mine"
-            android:layout_width="220dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/name_mine"
-            android:layout_below="@+id/name_mine"
-            android:text="运动宣言~~~~~~~~~~~~~~~~~~~~~~~~~~~~" />
+            android:layout_width="188dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="122dp"
+            android:layout_marginTop="58dp"
+            android:gravity="start"
+            android:text="爱生活爱运动~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            android:textColor="@color/colorWhite"
+            android:textSize="10sp" />
         <!--编辑按钮图标-->
         <ImageView
-            android:id="@+id/edit_data_mine"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:src="@mipmap/ic_launcher" />
+            android:id="@+id/edit_information_mine"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="318dp"
+            android:layout_marginTop="38dp"
+            android:src="@drawable/bt_edit_mine" />
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/system_message_mine"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/colorGray"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="系统通知"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/sports_history_mine"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorGray"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="运动历史"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/my_collection_mine"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorGray"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="我的收藏"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/contact_us_mine"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorGray"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="联系我们"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/change_account_mine"
+        android:layout_height="80dp">
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/border_lv1"/>
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="11dp"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="52dp"
+            android:text="LV.1"
+            android:textColor="#9b9b9b"
+            android:textSize="8sp"/>
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/border_lv2"/>
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="11dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginTop="52dp"
+            android:text="LV.2"
+            android:textColor="#9b9b9b"
+            android:textSize="8sp"/>
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="178dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/border_lv3"/>
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="11dp"
+            android:layout_marginStart="239dp"
+            android:layout_marginTop="52dp"
+            android:text="LV.3"
+            android:textColor="#9b9b9b"
+            android:textSize="8sp"/>
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/border_lv4"/>
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="11dp"
+            android:layout_marginStart="308dp"
+            android:layout_marginTop="52dp"
+            android:text="LV.4"
+            android:textColor="#9b9b9b"
+            android:textSize="8sp"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/my_message_mine"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorRed"
-        android:gravity="center"
-        android:text="切换帐号"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp" />
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_my_message" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="我的消息"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:background="#4a4949" />
+
+    <LinearLayout
+        android:id="@+id/friends_mine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_friends" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="好友列表"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:background="#4a4949" />
+
+    <LinearLayout
+        android:id="@+id/sports_history_mine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_history" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="运动历史"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:background="#4a4949" />
+
+    <LinearLayout
+        android:id="@+id/manage_activity_mine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_manage_activity" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="活动管理"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:background="#4a4949" />
+
+    <LinearLayout
+        android:id="@+id/my_collection_mine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_my_collection" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="我的收藏"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:background="#4a4949" />
+    <LinearLayout
+        android:id="@+id/contact_us_mine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_contact_us" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="联系我们"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:background="#4a4949" />
 </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_ride"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333">
@@ -13,7 +14,7 @@
         android:gravity="center"
         android:text="00.00"
         android:textColor="#9b9b9b"
-        android:textSize="80sp" />
+        android:textSize="90sp" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +36,7 @@
         android:gravity="center"
         android:text="00'00"
         android:textColor="#9b9b9b"
-        android:textSize="25dp"/>
+        android:textSize="25dp" />
 
     <TextView
         android:layout_width="55dp"
@@ -45,13 +46,13 @@
         android:gravity="center"
         android:text="分钟/公里"
         android:textColor="#9b9b9b"
-        android:textSize="11dp"/>
+        android:textSize="11dp" />
 
     <TextView
         android:id="@+id/duration_ride"
         android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="115dp"
         android:layout_marginTop="340dp"
         android:gravity="center"
         android:text="00:00:00"
@@ -66,7 +67,7 @@
         android:gravity="center"
         android:text="用时"
         android:textColor="#9b9b9b"
-        android:textSize="11sp"/>
+        android:textSize="11sp" />
 
     <ImageView
         android:id="@+id/map_ride"
@@ -74,7 +75,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="287dp"
         android:layout_marginTop="350dp"
-        android:src="@drawable/ic_map"/>
+        android:src="@drawable/ic_map" />
 
     <TextView
         android:layout_width="23dp"
@@ -83,7 +84,8 @@
         android:layout_marginTop="387dp"
         android:text="GPS"
         android:textColor="#9b9b9b"
-        android:textSize="11sp"/>
+        android:textSize="11sp" />
+
     <Button
         android:id="@+id/camera_ride"
         android:layout_width="34dp"
@@ -91,13 +93,14 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="494dp"
         android:background="@drawable/ic_camera" />
+
     <Button
         android:id="@+id/start_pause_ride"
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="467dp"
-        android:background="@mipmap/ic_launcher" />
+        android:background="@drawable/bt_pause" />
 
     <Button
         android:id="@+id/stop_ride"
@@ -105,7 +108,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="280dp"
         android:layout_marginTop="494dp"
-        android:background="@mipmap/ic_launcher" />
+        android:background="@drawable/bt_stop" />
 
     <TextView
         android:layout_width="44dp"
@@ -114,11 +117,11 @@
         android:layout_marginTop="530dp"
         android:text="长按结束"
         android:textColor="#9b9b9b"
-        android:textSize="11sp"/>
+        android:textSize="11sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_alignParentBottom="true"
-        android:background="#444444"/>
+        android:background="#444444" />
 </RelativeLayout>

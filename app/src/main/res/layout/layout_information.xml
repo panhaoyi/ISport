@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_information"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/back_information"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/bt_back" />
+
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="13dp"
+            android:text="资料编辑"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changePhoto_information"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="#444444">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="34dp"
+            android:text="更换头像"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/photo_information"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="238dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/bt_edit_information" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changeName_information"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_marginTop="2dp"
+        android:background="#444444">
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="34dp"
+            android:text="昵称"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/name_information"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="231dp"
+            android:gravity="center"
+            android:text="Yuri"
+            android:textColor="#9b9b9b"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/bt_edit_information" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changeSex_information"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_marginTop="2dp"
+        android:background="#444444">
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="34dp"
+            android:text="性别"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/sex_information"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="231dp"
+            android:gravity="center"
+            android:text="女"
+            android:textColor="#9b9b9b"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/bt_edit_information" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changeBirth_information"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_marginTop="2dp"
+        android:background="#444444">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="34dp"
+            android:text="出生年月"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/birth_information"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="231dp"
+            android:gravity="center"
+            android:text="1990-06"
+            android:textColor="#9b9b9b"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/bt_edit_information" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changeCity_information"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_marginTop="2dp"
+        android:background="#444444">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="34dp"
+            android:text="所在城市"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/city_information"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="231dp"
+            android:gravity="center"
+            android:text="广东,惠州"
+            android:textColor="#9b9b9b"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/bt_edit_information" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changeSignature_information"
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:layout_marginTop="2dp"
+        android:background="#444444">
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="21dp"
+            android:text="简介"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/signature_information"
+            android:layout_width="300dp"
+            android:layout_height="117dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="45dp"
+            android:text="爱生活爱运动"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

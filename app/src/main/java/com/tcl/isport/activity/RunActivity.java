@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
@@ -31,6 +32,8 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_run);
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.layout_run);
 
         //初始化view
         distance_run= (TextView) findViewById(R.id.distance_run);

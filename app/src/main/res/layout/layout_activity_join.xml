@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_activity_join"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#333333">
+    android:background="#333333"
+    android:orientation="vertical">
     <!--参加活动界面,显示所有活动列表-->
 
     <ImageView
@@ -11,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher" />
 
     <!--活动列表容器,divider设置分割线透明,dividerHeight设置两个内容间的间距-->
     <ListView
@@ -19,5 +20,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"/>
+        android:dividerHeight="10dp" />
 </LinearLayout>

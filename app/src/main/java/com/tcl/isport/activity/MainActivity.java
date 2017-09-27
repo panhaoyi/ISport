@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.tcl.isport.adapter.FragmentAdapter;
+import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.fragment.FindFragment;
 import com.tcl.isport.fragment.HomeFragment;
 import com.tcl.isport.fragment.MineFragment;
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //隐藏ActionBar
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.activity_main);
+
 
         viewPager = (NoScrollViewPager) findViewById(R.id.viewpager_main);
         viewPager.setCanScroll(false);

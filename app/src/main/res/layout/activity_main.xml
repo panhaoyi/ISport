@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
+    android:id="@+id/activity_main"
     tools:context=".activity.MainActivity">
 
     <!--自定义不能滑动的ViewPager作为主界面4个fragment的容器-->

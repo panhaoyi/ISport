@@ -13,7 +13,7 @@ import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.tcl.isport.R;
-import com.tcl.isport.util.LocationUtil;
+import com.tcl.isport.application.MyApplication;
 
 /**
  * Created by haoyi.pan on 17-9-22.
@@ -31,14 +31,15 @@ public class MapActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
 
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.layout_map);
+
         initParams();
 
         initListener();
-        Log.e(LocationUtil.ISPORT_TAG, "MapActivity onCreate");
     }
 
     private void initView() {
-
         mapView = (MapView) findViewById(R.id.map);
         map_type = (ImageView) findViewById(R.id.map_type);
         my_location = (ImageView) findViewById(R.id.my_location);
@@ -73,7 +74,6 @@ public class MapActivity extends Activity implements View.OnClickListener {
     }
 
     private void initListener() {
-
         map_type.setOnClickListener(this);
         my_location.setOnClickListener(this);
         change_view.setOnClickListener(this);

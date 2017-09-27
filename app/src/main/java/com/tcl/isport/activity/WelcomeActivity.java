@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.tcl.isport.adapter.MyPagerAdapter;
 import com.tcl.isport.R;
+import com.tcl.isport.application.MyApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener, V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_welcome);
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.layout_welcome);
+
         //获得屏幕宽度
         WindowManager windowManager = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
         width = windowManager.getDefaultDisplay().getWidth();
