@@ -12,6 +12,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
@@ -26,11 +27,11 @@ import com.tcl.isport.util.PowerManagerUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-*  by lishui.lin@tcl.coom
-*  生命周期 ：onCreate--onStartCommand--onBind--onUnbind--onRebind
-*  启动服务，绑定服务，解除绑定，停止服务
-*/
+/**
+ * Created by lishui.lin
+ * 生命周期 ：onCreate--onStartCommand--onBind--onUnbind--onRebind
+ *  启动服务，绑定服务，解除绑定，停止服务
+ */
 public class SportLocationService extends Service {
 
     private AMapLocationClient mLocationClient;
@@ -40,11 +41,14 @@ public class SportLocationService extends Service {
     //位置更新的标记点
     private LatLng newLatlng = new LatLng(0, 0);
     List<LatLng> polylineLatlngs = new ArrayList<>();
-    List<LatLng> totalLatlngLists = new ArrayList<>();
+    //    List<LatLng> totalLatlngLists = new ArrayList<>();
     //实时定位，存储轨迹线
     private List<Polyline> runningPolylineList = new ArrayList<>();
     //实时定位展示运动轨迹
     private PolylineOptions polylineOptions = new PolylineOptions();
+
+    //定时器暂停判断
+    private boolean isTimeRun = false;
 
     PathSmoothTool pathSmoothTool = null;
     /**
@@ -71,10 +75,9 @@ public class SportLocationService extends Service {
         //显示轨迹
         public void drawPolyLine(AMap aMap) {
             if (polylineOptions.getPoints() != null && polylineOptions.getPoints().size() > 1) {
+                polylineOptions.width(10).color(Color.argb(255, 12, 34, 56));
                 aMap.addPolyline(polylineOptions);
-//                for (int i = 0; i<polylineOptions.getPoints().size();i++) {
-                    Log.e("polylineOptions", "-- "+ polylineOptions.getPoints().size() +"--"+polylineOptions.getPoints().toString());
-//                }
+                Log.e("polylineOptions", "-- "+ polylineOptions.getPoints().size() +"--"+polylineOptions.getPoints().toString());
             }
         }
         //清除轨迹
@@ -89,6 +92,28 @@ public class SportLocationService extends Service {
         //计算当前行进距离
         public float getDistances(){
             return LocationUtil.getLocationDistance(polylineOptions);
+        }
+
+        //定时器状态设置
+        public void setTimeRun(boolean isRun) {
+            isTimeRun = isRun;
+        }
+
+        //设置地图移到哪个点上
+        public void setMapPoint(AMap aMap) {
+            //如果不用服务的定位点，可以使用定位蓝点进行中心点移动
+            if (aMap != null) {
+                aMap.moveCamera(CameraUpdateFactory.newLatLng(newLatlng));
+            }
+        }
+
+        //开始定位
+        public void startLocationSearch() {
+            startLocation();
+        }
+        //停止定位
+        public void stopLocationSearch() {
+            stopLocation();
         }
     }
 
@@ -194,18 +219,23 @@ public class SportLocationService extends Service {
 
                     if (aMapLocation.getAccuracy() < 30) {//尽量减少定位距离的误差,在室内，不开启GPS的准确度更高
                         // 根据精确度来区分使用轨迹纠偏，特别时在室内和室外的两种情况
-                        Log.e("GPS status", "--" + aMapLocation.getLocationType()+
-                                "--"+aMapLocation.getGpsAccuracyStatus()+"=="+aMapLocation.getAccuracy()
-                        +"--"+polylineOptions.isUseGradient());
-
-                        newLatlng = converLatLng(aMapLocation);
-
-                        tempLatLngs.add(newLatlng);
-                        //轨迹纠偏
-                        if (tempLatLngs.size() > 3) {
-                            filterPoints();
-                        }
+//                        Log.e("GPS status", "--" + aMapLocation.getLocationType()+
+//                                "--"+aMapLocation.getGpsAccuracyStatus()+"=="+aMapLocation.getAccuracy()
+//                        +"--"+polylineOptions.isUseGradient());
+//                        Log.e(LocationUtil.ISPORT_TAG, "--countDown");
                         LocationUtil.setLocationData(aMapLocation);
+                        if (isTimeRun) {
+//                            Log.e(LocationUtil.ISPORT_TAG, "--TimeRun");
+                            newLatlng = converLatLng(aMapLocation);
+
+                            tempLatLngs.add(newLatlng);
+                            //轨迹纠偏
+                            if (tempLatLngs.size() > 3) {
+                                filterPoints();
+                            }
+
+                        }
+
                     }
 
                 } else {
@@ -278,6 +308,7 @@ public class SportLocationService extends Service {
     @Override
     public void onDestroy() {
         stopLocation();
+        Log.e("SportLocationService", "----onDestroy");
         super.onDestroy();
     }
 }

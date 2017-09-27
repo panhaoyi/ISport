@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +17,12 @@ import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
+import com.tcl.isport.util.LocationUtil;
 
 /**
  * Created by user on 17-9-8.
  */
-public class WalkActivity extends Activity implements View.OnClickListener,ISportActivity {
+public class WalkActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener {
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
@@ -33,6 +35,8 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
 
     //给开始定时和暂停计时的判断
     private boolean isStart = false;
+    //倒计时是否已经取消
+    private boolean isCancelCountDown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +56,15 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         start_pause_walk = (Button) findViewById(R.id.start_pause_walk);
         start_pause_walk.setOnClickListener(this);
         stop_walk = (Button) findViewById(R.id.stop_walk);
-        stop_walk.setOnClickListener(this);
+        stop_walk.setOnLongClickListener(this);
 
         walkActivityPresenter=new SportActivityPresenter(this);
+
+        //启动服务，在点击事件设置一个flag判断是否首次启动服务
+        walkActivityPresenter.startLocationService(this);
+        walkActivityPresenter.bindLocationService(this);
+        //启动倒计时，当一直没有点击开始运动，则停止定位
+        walkActivityPresenter.startCountDown();
     }
 
     @Override
@@ -87,23 +97,45 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
 //                walkActivityPresenter.startLocationService(this);
 //                walkActivityPresenter.bindLocationService(this);
                 if (!isStart) {
+                    startExercise();
                     //启动定时器
                     walkActivityPresenter.startTime();
                     isStart = true;
+                    walkActivityPresenter.setTimeRun(isStart);
                 } else {
                     walkActivityPresenter.pauseTime();
                     isStart = false;
+                    walkActivityPresenter.setTimeRun(isStart);
                 }
 
-                break;
-            case R.id.stop_walk:
-//                walkActivityPresenter.unbindLocationService(this);
-//                walkActivityPresenter.stopLocationService(this);
-                walkActivityPresenter.stopTime();
                 break;
             default:
                 break;
         }
+    }
+
+    //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
+    private void startExercise(){
+        if (walkActivityPresenter.getLocationState()) {
+            if (!isCancelCountDown){
+                walkActivityPresenter.cancelCountDown();
+            }
+
+        } else {
+            walkActivityPresenter.startLocationSearch();
+        }
+    }
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()){
+            case R.id.stop_walk :
+                walkActivityPresenter.unbindLocationService(this);
+                walkActivityPresenter.stopLocationService(this);
+                walkActivityPresenter.stopTime();
+                this.finish();
+                break;
+        }
+        return true;
     }
 
     @Override
@@ -120,4 +152,25 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     public void setDuration(String duration) {
         duration_walk.setText(duration);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //停止服务和计时器
+        walkActivityPresenter.unbindLocationService(this);
+        walkActivityPresenter.stopLocationService(this);
+        walkActivityPresenter.stopTime();
+    }
+
+
 }

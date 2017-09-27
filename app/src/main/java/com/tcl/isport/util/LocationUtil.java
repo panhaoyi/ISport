@@ -11,7 +11,10 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapUtils;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.weather.LocalWeatherForecastResult;
@@ -22,6 +25,8 @@ import com.amap.api.services.weather.WeatherSearchQuery;
 import com.tcl.isport.fragment.HomeWalkFragment;
 import com.tcl.isport.model.WalkModel;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by lishui.lin on 17-9-20 20:20
@@ -36,6 +41,8 @@ public class LocationUtil {
     public static float speed;
     public static String city = "";
     public static String poiName;
+
+    public static LatLng latLngPoint = new LatLng(0, 0);
 
 
     private LocationUtil(){
@@ -71,16 +78,53 @@ public class LocationUtil {
                         polylineOptions.getPoints().get(i+1));
             }
         }
+//        Log.e(LocationUtil.ISPORT_TAG, "--" + distance);
         return distance;
     }
 
-    //获取当前速度
+    //将米转换为公里
+    public synchronized static String getFriendlyLength(float lenMeter) {
+
+        float dis = lenMeter / 1000;
+        DecimalFormat fnum = new DecimalFormat("#0.00");
+        String dstr = fnum.format(dis);
+        return dstr;
+
+    }
+
+    //转换为分钟/公里
+    public static String getMinforKilos(float speed) {
+
+        //通过数学计算，可以知道 m/s 转换为  min/km   等于 50/3 约等于16.667
+        float dis = speed * (50/3);
+        DecimalFormat fnum = new DecimalFormat("##0.00");
+        String dstr = fnum.format(dis);
+        return dstr;
+    }
+
+    //在定位服务中设置当前速度的值
     public synchronized static void setLocationData(AMapLocation aMapLocation) {
         speed = aMapLocation.getSpeed();
         city = aMapLocation.getCity();
         poiName = aMapLocation.getPoiName();
+        latLngPoint = converLatLng(aMapLocation);
     }
 
+    //设置地图移到哪个点上
+    public static void setMapPoint(AMap aMap) {
+        //如果不用服务的定位点，可以使用定位蓝点进行中心点移动
+        if (aMap != null) {
+            aMap.moveCamera(CameraUpdateFactory.newLatLng(latLngPoint));
+        }
+    }
+
+    //转换为LatLng坐标格式
+    public static LatLng converLatLng(AMapLocation aMapLocation) {
+
+        double latitude = aMapLocation.getLatitude();
+        double longitude = aMapLocation.getLongitude();
+        return new LatLng(latitude, longitude);
+    }
     public static String getManufacture(Context context) {
         return Build.MANUFACTURER;
     }

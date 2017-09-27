@@ -2,7 +2,9 @@ package com.tcl.isport.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -13,11 +15,12 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.tcl.isport.R;
 import com.tcl.isport.application.MyApplication;
+import com.tcl.isport.util.LocationUtil;
 
 /**
  * Created by haoyi.pan on 17-9-22.
  */
-public class MapActivity extends Activity implements View.OnClickListener {
+public class MapActivity extends Activity implements View.OnClickListener{
     //运动地图轨迹界面
     private MapView mapView;
     protected AMap aMap;
@@ -30,8 +33,8 @@ public class MapActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
 
-        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
-        //MyApplication.hide(this,R.id.layout_map);
+//        隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.layout_map);
 
         initView();
         mapView.onCreate(savedInstanceState);
@@ -55,8 +58,9 @@ public class MapActivity extends Activity implements View.OnClickListener {
 
         myLocationStyle = new MyLocationStyle();
         myLocationStyle.interval(2000);
-        //定位模式
+        //定位模式,定位一次，并将其移到中心点位置
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
+
         aMap.setMyLocationStyle(myLocationStyle);
         //显示定位蓝点
         aMap.setMyLocationEnabled(true);
@@ -89,7 +93,7 @@ public class MapActivity extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.my_location:
-
+                LocationUtil.setMapPoint(aMap);
                 break;
             case R.id.change_view:
                 //获取上一个Activity的名字判断是Walk/Run/Ride以返回到正确的Actiivty
@@ -100,6 +104,8 @@ public class MapActivity extends Activity implements View.OnClickListener {
                     //设置flag使activity不会被销毁
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
+                    //
+                    this.finish();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -132,4 +138,6 @@ public class MapActivity extends Activity implements View.OnClickListener {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
+
+
 }
