@@ -13,7 +13,7 @@ import com.tcl.isport.application.MyApplication;
  */
 public class ContactUsActivity extends Activity implements View.OnClickListener {
     //主界面-我-联系我们
-    private ImageView return_contact_us;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +22,15 @@ public class ContactUsActivity extends Activity implements View.OnClickListener 
         //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
         MyApplication.hide(this,R.id.layout_contact_us);
 
-        return_contact_us = (ImageView) findViewById(R.id.return_contact_us);
-        return_contact_us.setOnClickListener(this);
+        back = (ImageView) findViewById(R.id.back_contact_us);
+        back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         //返回按钮
         switch (v.getId()) {
-            case R.id.return_contact_us:
+            case R.id.back_contact_us:
                 finish();
                 break;
             default:

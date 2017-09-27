@@ -38,7 +38,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="315dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/ic_contacts"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="360dp"

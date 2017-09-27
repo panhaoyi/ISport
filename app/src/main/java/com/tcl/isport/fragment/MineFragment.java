@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tcl.isport.activity.ContactUsActivity;
+import com.tcl.isport.activity.HomepageActivity;
 import com.tcl.isport.activity.InformationActivity;
 import com.tcl.isport.activity.HistoryActivity;
 import com.tcl.isport.iview.IMineFragment;
@@ -20,13 +22,14 @@ import com.tcl.isport.R;
 /**
  * Created by user on 17-9-4.
  */
-public class MineFragment extends Fragment implements View.OnClickListener,IMineFragment {
+public class MineFragment extends Fragment implements View.OnClickListener, IMineFragment {
     //主界面-我
-    //photo默认从数据库读取头像，点击头像可以更改头像，editData为编辑个人资料按钮
-    private ImageView photo, editInformation;
-    //name和signatue从数据库读取加载
-    private TextView name, signature;
-    private LinearLayout myMessage,friends, sportsHistory,manageActivity, myCollection, contactUs;
+    //photo默认从数据库读取头像
+    private ImageView photo;
+    //editInformation为编辑个人资料按钮,name和signatue从数据库读取加载
+    private TextView editInformation, name, signature;
+    private RelativeLayout homepage;
+    private LinearLayout myMessage, friends, sportsHistory, manageActivity, myCollection, contactUs;
     private Intent intent;
 
     @Nullable
@@ -35,25 +38,24 @@ public class MineFragment extends Fragment implements View.OnClickListener,IMine
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         //头像
         photo = (ImageView) view.findViewById(R.id.photo_mine);
-        photo.setOnClickListener(this);
-        editInformation = (ImageView) view.findViewById(R.id.edit_information_mine);
+        editInformation = (TextView) view.findViewById(R.id.edit_information_mine);
         editInformation.setOnClickListener(this);
+        homepage= (RelativeLayout) view.findViewById(R.id.homepage_mine);
+        homepage.setOnClickListener(this);
         name = (TextView) view.findViewById(R.id.name_mine);
         signature = (TextView) view.findViewById(R.id.signature_mine);
         myMessage = (LinearLayout) view.findViewById(R.id.my_message_mine);
         myMessage.setOnClickListener(this);
-        friends= (LinearLayout) view.findViewById(R.id.friends_mine);
+        friends = (LinearLayout) view.findViewById(R.id.friends_mine);
         friends.setOnClickListener(this);
         sportsHistory = (LinearLayout) view.findViewById(R.id.sports_history_mine);
         sportsHistory.setOnClickListener(this);
-        manageActivity= (LinearLayout) view.findViewById(R.id.manage_activity_mine);
+        manageActivity = (LinearLayout) view.findViewById(R.id.manage_activity_mine);
         manageActivity.setOnClickListener(this);
         myCollection = (LinearLayout) view.findViewById(R.id.my_collection_mine);
         myCollection.setOnClickListener(this);
         contactUs = (LinearLayout) view.findViewById(R.id.contact_us_mine);
         contactUs.setOnClickListener(this);
-//        changeAccount = (TextView) view.findViewById(R.id.change_account_mine);
-//        changeAccount.setOnClickListener(this);
         return view;
     }
 
@@ -61,13 +63,14 @@ public class MineFragment extends Fragment implements View.OnClickListener,IMine
     public void onClick(View v) {
         //点击跳转至相应界面
         switch (v.getId()) {
-            case R.id.photo_mine:
-                //点击从图库选择图片更换头像
-
-                break;
             case R.id.edit_information_mine:
                 //跳转到编辑个人资料
-                intent=new Intent(this.getActivity(), InformationActivity.class);
+                intent = new Intent(getActivity(), InformationActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.homepage_mine:
+                //跳转到个人主页
+                intent=new Intent(getActivity(), HomepageActivity.class);
                 startActivity(intent);
                 break;
             case R.id.my_message_mine:

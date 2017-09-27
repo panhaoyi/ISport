@@ -15,14 +15,13 @@ import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
 
-public class RunActivity extends Activity implements View.OnClickListener,ISportActivity {
+public class RunActivity extends Activity implements View.OnClickListener, ISportActivity {
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
-    private TextView distance_run,speed_run,duration_run;
-    private ImageView map_run;
-    private Button camera_run, start_pause_run, stop_run;
-
+    private TextView distance_run, speed_run, duration_run;
+    private ImageView map_run, camera_run, start_pause_run, stop_run;
+    private String start_pause = "pause";
     private SportActivityPresenter runActivityPresenter;
 
     @Override
@@ -30,21 +29,21 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_run);
         //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
-        MyApplication.hide(this,R.id.layout_run);
+        MyApplication.hide(this, R.id.layout_run);
 
         //初始化view
-        distance_run= (TextView) findViewById(R.id.distance_run);
-        speed_run= (TextView) findViewById(R.id.speed_run);
-        duration_run= (TextView) findViewById(R.id.duration_run);
-        map_run= (ImageView) findViewById(R.id.map_run);
+        distance_run = (TextView) findViewById(R.id.distance_run);
+        speed_run = (TextView) findViewById(R.id.speed_run);
+        duration_run = (TextView) findViewById(R.id.duration_run);
+        map_run = (ImageView) findViewById(R.id.map_run);
         map_run.setOnClickListener(this);
-        camera_run = (Button) findViewById(R.id.camera_run);
+        camera_run = (ImageView) findViewById(R.id.camera_run);
         camera_run.setOnClickListener(this);
-        start_pause_run = (Button) findViewById(R.id.start_pause_run);
+        start_pause_run = (ImageView) findViewById(R.id.start_pause_run);
         start_pause_run.setOnClickListener(this);
-        stop_run = (Button) findViewById(R.id.stop_run);
+        stop_run = (ImageView) findViewById(R.id.stop_run);
         stop_run.setOnClickListener(this);
-        runActivityPresenter=new SportActivityPresenter(this);
+        runActivityPresenter = new SportActivityPresenter(this);
     }
 
     @Override
@@ -60,9 +59,9 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.map_run:
-                Intent intent=new Intent(RunActivity.this,MapActivity.class);
+                Intent intent = new Intent(RunActivity.this, MapActivity.class);
                 //将当前Activity的class名字通过intent传到MapActivity以便于返回
-                intent.putExtra("className",this.getClass().getName());
+                intent.putExtra("className", this.getClass().getName());
                 //设置flag使activity不会被销毁
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
@@ -71,7 +70,14 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
 
                 break;
             case R.id.start_pause_run:
-
+                //点击开始/暂停,切换图标并开始/暂停运动
+                if (start_pause.equals("pause")) {
+                    start_pause_run.setImageResource(R.drawable.bt_start);
+                    start_pause = "start";
+                } else {
+                    start_pause_run.setImageResource(R.drawable.bt_pause);
+                    start_pause = "pause";
+                }
                 break;
             case R.id.stop_run:
 
