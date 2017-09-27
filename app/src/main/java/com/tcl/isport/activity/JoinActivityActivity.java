@@ -25,7 +25,7 @@ public class JoinActivityActivity extends Activity implements AdapterView.OnItem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_join_activity);
+        setContentView(R.layout.layout_activity_join);
         listView= (ListView) findViewById(R.id.listview_show_activity);
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,getData(),R.layout.item_activity,new String[]{"a","b"},new int[]{R.id.item_activity_a,R.id.item_activity_b});
         listView.setAdapter(simpleAdapter);
