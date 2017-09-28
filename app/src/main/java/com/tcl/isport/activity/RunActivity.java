@@ -15,7 +15,7 @@ import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
 
-public class RunActivity extends Activity implements View.OnClickListener,ISportActivity {
+public class RunActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener {
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
@@ -24,9 +24,12 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     private Button camera_run, start_pause_run, stop_run;
 
     private SportActivityPresenter runActivityPresenter;
+    private Intent intent;
 
     //给开始定时和暂停计时的判断
     private boolean isStart = false;
+    //倒计时是否已经取消
+    private boolean isCancelCountDown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,14 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         start_pause_run = (Button) findViewById(R.id.start_pause_run);
         start_pause_run.setOnClickListener(this);
         stop_run = (Button) findViewById(R.id.stop_run);
-        stop_run.setOnClickListener(this);
+        stop_run.setOnLongClickListener(this);
         runActivityPresenter=new SportActivityPresenter(this);
+
+        //启动服务，在点击事件设置一个flag判断是否首次启动服务
+        runActivityPresenter.startLocationService(this);
+        runActivityPresenter.bindLocationService(this);
+        //启动倒计时，当一直没有点击开始运动，则停止定位
+        runActivityPresenter.startCountDown();
     }
 
     @Override
@@ -63,35 +72,58 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.map_run:
-                Intent intent=new Intent(RunActivity.this,MapActivity.class);
-                //将当前Activity的class名字通过intent传到MapActivity以便于返回
-                intent.putExtra("className",this.getClass().getName());
-                //设置flag使activity不会被销毁
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent=new Intent(RunActivity.this,MapActivity.class);
+//                //将当前Activity的class名字通过intent传到MapActivity以便于返回
+//                intent.putExtra("className",this.getClass().getName());
+//                //设置flag使activity不会被销毁
+//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.camera_run:
 
                 break;
             case R.id.start_pause_run:
+                //开始计时要给时间让定位服务初始化，同时有个倒计时判断用户行为
                 if (!isStart) {
+                    startExercise();
                     //启动定时器
                     runActivityPresenter.startTime();
                     isStart = true;
+                    runActivityPresenter.setTimeRun(isStart);
                 } else {
                     runActivityPresenter.pauseTime();
                     isStart = false;
+                    runActivityPresenter.setTimeRun(isStart);
                 }
-
-                break;
-            case R.id.stop_run:
-                runActivityPresenter.stopTime();
                 break;
             default:
                 break;
         }
     }
 
+    //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
+    private void startExercise(){
+        if (runActivityPresenter.getLocationState()) {
+            if (!isCancelCountDown){
+                runActivityPresenter.cancelCountDown();
+            }
+        } else {
+            runActivityPresenter.startLocationSearch();
+        }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()){
+            case R.id.stop_run :
+                runActivityPresenter.unbindLocationService(this);
+                runActivityPresenter.stopLocationService(this);
+                runActivityPresenter.stopTime();
+                this.finish();
+                break;
+        }
+        return true;
+    }
     @Override
     public void setDistance(String distance) {
         distance_run.setText(distance);
@@ -106,4 +138,23 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     public void setDuration(String duration) {
         duration_run.setText(duration);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //停止服务和计时器
+        runActivityPresenter.unbindLocationService(this);
+        runActivityPresenter.stopLocationService(this);
+        runActivityPresenter.stopTime();
+    }
+
 }

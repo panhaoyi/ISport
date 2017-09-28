@@ -82,20 +82,17 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
             case R.id.map_walk:
                 intent=new Intent(WalkActivity.this,MapActivity.class);
                 //将当前Activity的class名字通过intent传到MapActivity以便于返回
-                intent.putExtra("className",this.getClass().getName());
+//                intent.putExtra("className",this.getClass().getName());
                 //设置flag使activity不会被销毁
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.camera_walk:
-                intent=new Intent(WalkActivity.this,CameraActivity.class);
-                startActivity(intent);
+//                intent=new Intent(WalkActivity.this,CameraActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.start_pause_walk:
-                //启动服务，设置一个flag判断是否首次启动服务
-                //开始计时要给时间让定位服务初始化，建议弄个倒计时
-//                walkActivityPresenter.startLocationService(this);
-//                walkActivityPresenter.bindLocationService(this);
+                //开始计时要给时间让定位服务初始化，同时有个倒计时判断用户行为
                 if (!isStart) {
                     startExercise();
                     //启动定时器
@@ -120,11 +117,11 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
             if (!isCancelCountDown){
                 walkActivityPresenter.cancelCountDown();
             }
-
         } else {
             walkActivityPresenter.startLocationSearch();
         }
     }
+
     @Override
     public boolean onLongClick(View v) {
         switch (v.getId()){

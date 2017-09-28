@@ -3,6 +3,7 @@ package com.tcl.isport.util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.Location;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -44,8 +45,7 @@ public class LocationUtil {
 
     public static LatLng latLngPoint = new LatLng(0, 0);
 
-
-    private LocationUtil(){
+    private LocationUtil() {
 
     }
 
@@ -69,13 +69,13 @@ public class LocationUtil {
     * LOCATION_TYPE WIFI wifi定位结果  5
     * */
     //计算两点坐标的距离
-    public synchronized static float getLocationDistance(PolylineOptions polylineOptions){
+    public synchronized static float getLocationDistance(PolylineOptions polylineOptions) {
         float distance = 0.0f;
         if (polylineOptions.getPoints() != null && polylineOptions.getPoints().size() > 1) {
             int length = polylineOptions.getPoints().size();
-            for (int i =0; i < length-1; i++) {
+            for (int i = 0; i < length - 1; i++) {
                 distance += AMapUtils.calculateLineDistance(polylineOptions.getPoints().get(i),
-                        polylineOptions.getPoints().get(i+1));
+                        polylineOptions.getPoints().get(i + 1));
             }
         }
 //        Log.e(LocationUtil.ISPORT_TAG, "--" + distance);
@@ -96,7 +96,7 @@ public class LocationUtil {
     public static String getMinforKilos(float speed) {
 
         //通过数学计算，可以知道 m/s 转换为  min/km   等于 50/3 约等于16.667
-        float dis = speed * (50/3);
+        float dis = (50f / 3f) / speed;
         DecimalFormat fnum = new DecimalFormat("##0.00");
         String dstr = fnum.format(dis);
         return dstr;
@@ -125,10 +125,18 @@ public class LocationUtil {
         double longitude = aMapLocation.getLongitude();
         return new LatLng(latitude, longitude);
     }
+
+    //转换为LatLng坐标格式
+    public static LatLng converLatLng(Location location) {
+
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        return new LatLng(latitude, longitude);
+    }
+
     public static String getManufacture(Context context) {
         return Build.MANUFACTURER;
     }
-
 
 
 }

@@ -22,7 +22,9 @@ public class ChangeNameActivity extends Activity implements  View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_change_name);
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
         MyApplication.hide(this,R.id.layout_change_name);
+
         name= (EditText) findViewById(R.id.name_change_name);
         name.addTextChangedListener(this);
         cancel= (TextView) findViewById(R.id.cancel_change_name);
