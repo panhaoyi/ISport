@@ -79,7 +79,6 @@ public class SportLocationService extends Service {
             if (polylineOptions.getPoints() != null && polylineOptions.getPoints().size() > 1) {
                 polylineOptions.width(10).color(Color.argb(128, 255, 255, 255));
                 aMap.addPolyline(polylineOptions);
-                Log.e("polylineOptions", "-- "+ polylineOptions.getPoints().size() +"--"+polylineOptions.getPoints().toString());
             }
         }
         //清除轨迹

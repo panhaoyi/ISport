@@ -58,8 +58,22 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
         rideActivityPresenter.startLocationService(this);
         rideActivityPresenter.bindLocationService(this);
         //启动倒计时，当一直没有点击开始运动，则停止定位
-        rideActivityPresenter.startCountDown();
+//        rideActivityPresenter.startCountDown();
 
+    }
+
+    private void rideGo() {
+//        startExercise();
+        //启动定时器
+        rideActivityPresenter.startTime();
+        isStart = true;
+        rideActivityPresenter.setTimeRun(isStart);
+    }
+
+    private void ridePause() {
+        rideActivityPresenter.pauseTime();
+        isStart = false;
+        rideActivityPresenter.setTimeRun(isStart);
     }
 
     @Override
@@ -86,38 +100,19 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
 
                 break;
             case R.id.start_pause_ride:
-                //开始计时要给时间让定位服务初始化，同时有个倒计时判断用户行为
-//                if (!isStart) {
-//                    startExercise();
-//                    //启动定时器
-//                    rideActivityPresenter.startTime();
-//                    isStart = true;
-//                    rideActivityPresenter.setTimeRun(isStart);
-//                } else {
-//                    rideActivityPresenter.pauseTime();
-//                    isStart = false;
-//                    rideActivityPresenter.setTimeRun(isStart);
-//                }
                 //点击开始/暂停,切换图标并开始/暂停运动
                 if (start_pause.equals("pause")) {
                     start_pause_ride.setImageResource(R.drawable.bt_start);
 
-                    startExercise();
-                    //启动定时器
-                    rideActivityPresenter.startTime();
-                    isStart = true;
-                    rideActivityPresenter.setTimeRun(isStart);
+                    ridePause();
 
                     start_pause = "start";
                 } else {
                     start_pause_ride.setImageResource(R.drawable.bt_pause);
 
-                    rideActivityPresenter.pauseTime();
-                    isStart = false;
-                    rideActivityPresenter.setTimeRun(isStart);
+                    rideGo();
 
                     start_pause = "pause";
-
                 }
                 break;
             default:

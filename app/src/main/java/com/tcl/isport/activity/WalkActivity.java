@@ -64,7 +64,22 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         walkActivityPresenter.startLocationService(this);
         walkActivityPresenter.bindLocationService(this);
         //启动倒计时，当一直没有点击开始运动，则停止定位
-        walkActivityPresenter.startCountDown();
+        //walkActivityPresenter.startCountDown();
+
+    }
+
+    private void walkGo() {
+//        startExercise();
+        //启动定时器
+        walkActivityPresenter.startTime();
+        isStart = true;
+        walkActivityPresenter.setTimeRun(isStart);
+    }
+
+    private void walkPause() {
+        walkActivityPresenter.pauseTime();
+        isStart = false;
+        walkActivityPresenter.setTimeRun(isStart);
     }
 
     @Override
@@ -98,20 +113,25 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
                 if (start_pause.equals("pause")){
                     start_pause_walk.setImageResource(R.drawable.bt_start);
 
-                    startExercise();
-                    //启动定时器
-                    walkActivityPresenter.startTime();
-                    isStart = true;
-                    walkActivityPresenter.setTimeRun(isStart);
+//                    startExercise();
+//                    //启动定时器
+//                    walkActivityPresenter.startTime();
+//                    isStart = true;
+//                    walkActivityPresenter.setTimeRun(isStart);
+
+                    walkPause();
 
                     start_pause="start";
                 }
                 else{
                     start_pause_walk.setImageResource(R.drawable.bt_pause);
 
-                    walkActivityPresenter.pauseTime();
-                    isStart = false;
-                    walkActivityPresenter.setTimeRun(isStart);
+//                    walkActivityPresenter.pauseTime();
+//                    isStart = false;
+//                    walkActivityPresenter.setTimeRun(isStart);
+
+                    walkGo();
+
                     start_pause="pause";
                 }
                 break;
@@ -119,6 +139,8 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
                 break;
         }
     }
+
+
 
     //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
     private void startExercise(){

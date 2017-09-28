@@ -56,7 +56,21 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         runActivityPresenter.startLocationService(this);
         runActivityPresenter.bindLocationService(this);
         //启动倒计时，当一直没有点击开始运动，则停止定位
-        runActivityPresenter.startCountDown();
+//        runActivityPresenter.startCountDown();
+    }
+
+    private void runGo() {
+//        startExercise();
+        //启动定时器
+        runActivityPresenter.startTime();
+        isStart = true;
+        runActivityPresenter.setTimeRun(isStart);
+    }
+
+    private void runPause() {
+        runActivityPresenter.pauseTime();
+        isStart = false;
+        runActivityPresenter.setTimeRun(isStart);
     }
 
     @Override
@@ -73,10 +87,6 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         switch (v.getId()) {
             case R.id.map_run:
                 intent=new Intent(RunActivity.this,MapActivity.class);
-//                //将当前Activity的class名字通过intent传到MapActivity以便于返回
-//                intent.putExtra("className",this.getClass().getName());
-//                //设置flag使activity不会被销毁
-//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.camera_run:
@@ -87,34 +97,16 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
                 if (start_pause.equals("pause")) {
                     start_pause_run.setImageResource(R.drawable.bt_start);
 
-                    startExercise();
-                    //启动定时器
-                    runActivityPresenter.startTime();
-                    isStart = true;
-                    runActivityPresenter.setTimeRun(isStart);
+                    runPause();
 
                     start_pause = "start";
                 } else {
                     start_pause_run.setImageResource(R.drawable.bt_pause);
 
-                    runActivityPresenter.pauseTime();
-                    isStart = false;
-                    runActivityPresenter.setTimeRun(isStart);
+                    runGo();
 
                     start_pause = "pause";
                 }
-
-//                if (!isStart) {
-//                    startExercise();
-//                    //启动定时器
-//                    runActivityPresenter.startTime();
-//                    isStart = true;
-//                    runActivityPresenter.setTimeRun(isStart);
-//                } else {
-//                    runActivityPresenter.pauseTime();
-//                    isStart = false;
-//                    runActivityPresenter.setTimeRun(isStart);
-//                }
                 break;
             default:
                 break;

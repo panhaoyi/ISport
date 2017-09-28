@@ -90,6 +90,11 @@ public class SportActivityPresenter {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             mBinder = (SportLocationService.MyBinder) service;
+
+            //连接成功则开始计时
+            startTime();
+            setTimeRun(true);
+
             isBind = true;
         }
 
@@ -157,7 +162,7 @@ public class SportActivityPresenter {
 
         @Override
         public void onFinish() {
-           mBinder.stopLocationSearch();
+            mBinder.stopLocationSearch();
             isLocationRun = false;
         }
     };
