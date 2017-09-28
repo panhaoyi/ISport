@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/add_activity"
+        android:id="@+id/add_topic"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="278dp"

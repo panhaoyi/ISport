@@ -6,39 +6,32 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.tcl.isport.R;
 import com.tcl.isport.activity.ActivityDetailActivity;
-import com.tcl.isport.activity.NewActivityActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
- * Created by haoyi.pan on 17-9-22.
+ * Created by haoyi.pan on 17-9-28.
  */
-public class FindActivityFragment extends Fragment implements OnClickListener,AdapterView.OnItemClickListener {
-    //主界面-运动圈-活动
+public class PubActivityFragment extends Fragment implements AdapterView.OnItemClickListener {
+    //主界面-我-活动管理-我发布的
     private View view;
-    private ImageView add_activity;
     private ListView listView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_find_activity,container,false);
-        add_activity= (ImageView) view.findViewById(R.id.add_activity);
-        add_activity.setOnClickListener(this);
-
-        listView= (ListView) view.findViewById(R.id.listview_find_activity);
+        view=inflater.inflate(R.layout.fragment_activity_pub,container,false);
+        listView= (ListView) view.findViewById(R.id.listview_pub);
         SimpleAdapter simpleAdapter=new SimpleAdapter(this.getContext(),getData(),R.layout.item_activity
                 ,new String[]{"picture","theme","countdown","number"}
                 ,new int[]{R.id.picture_item_activity,R.id.theme_item_activity,R.id.countdown_item_activity,R.id.number_item_activity});
@@ -76,19 +69,6 @@ public class FindActivityFragment extends Fragment implements OnClickListener,Ad
 
         return list;
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.add_activity:
-                //跳转发布活动
-                Intent intent =new Intent(getActivity(), NewActivityActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent=new Intent(getActivity(), ActivityDetailActivity.class);

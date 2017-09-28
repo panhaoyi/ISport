@@ -3,7 +3,7 @@
     android:id="@+id/layout_information"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333333"
+    android:background="#262525"
     android:orientation="vertical">
 
     <RelativeLayout

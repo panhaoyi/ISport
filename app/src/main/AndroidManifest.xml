@@ -28,7 +28,7 @@
         android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_amy"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -49,6 +49,7 @@
         </activity>
         <activity android:name=".activity.LoginQuickActivity" />
         <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.CountdownActivity"/>
         <activity android:name=".activity.WalkActivity" />
         <activity android:name=".activity.RunActivity" />
         <activity android:name=".activity.RideActivity" />
@@ -62,6 +63,12 @@
         <activity android:name=".activity.HomepageActivity"/>
         <activity android:name=".activity.NewTopicActivity"/>
         <activity android:name=".activity.ActivityDetailActivity"/>
+        <activity android:name=".activity.NewActivityActivity"/>
+        <activity android:name=".activity.ActivityThemeActivity"/>
+        <activity android:name=".activity.ActivityIntroActivity"/>
+        <activity android:name=".activity.ActivityContentActivity"/>
+        <activity android:name=".activity.ActivityManageActivity"/>
+        <activity android:name=".activity.FriendActivity"/>
 
         <service android:name=".service.StepService">
             <intent-filter>

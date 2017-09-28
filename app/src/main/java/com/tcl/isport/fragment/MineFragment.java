@@ -12,7 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.tcl.isport.activity.ActivityManageActivity;
 import com.tcl.isport.activity.ContactUsActivity;
+import com.tcl.isport.activity.FriendActivity;
 import com.tcl.isport.activity.HomepageActivity;
 import com.tcl.isport.activity.InformationActivity;
 import com.tcl.isport.activity.HistoryActivity;
@@ -79,7 +81,8 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
                 break;
             case R.id.friends_mine:
                 //跳转到好友列表
-
+                intent=new Intent(getActivity(), FriendActivity.class);
+                startActivity(intent);
                 break;
             case R.id.sports_history_mine:
                 //跳转到历史记录
@@ -88,7 +91,8 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
                 break;
             case R.id.manage_activity_mine:
                 //跳转到活动管理
-
+                intent=new Intent(getActivity(), ActivityManageActivity.class);
+                startActivity(intent);
                 break;
             case R.id.my_collection_mine:
                 //跳转到我的收藏

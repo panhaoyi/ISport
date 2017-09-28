@@ -54,6 +54,7 @@ public class FindFragment extends Fragment implements View.OnClickListener,ViewP
         viewPager.addOnPageChangeListener(this);
         return view;
     }
+
     public void changeColor(int position) {
         //标识选中fragment
         switch (position) {

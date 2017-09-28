@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_change_name"
+    android:id="@+id/layout_activity_content"
     android:background="#262525">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
-            android:id="@+id/cancel_change_name"
+            android:id="@+id/cancel_activity_content"
             android:layout_width="48dp"
             android:layout_height="30dp"
             android:layout_marginStart="20dp"
@@ -23,11 +23,11 @@
             android:layout_height="22dp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="更换昵称"
+            android:text="行程详情"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"/>
         <TextView
-            android:id="@+id/confirm_change_name"
+            android:id="@+id/confirm_activity_content"
             android:layout_width="48dp"
             android:layout_height="30dp"
             android:layout_marginEnd="20dp"
@@ -40,24 +40,33 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="329dp"
-        android:layout_height="47dp"
+        android:layout_height="246dp"
         android:layout_gravity="center"
         android:background="#444444">
         <EditText
-            android:id="@+id/name_change_name"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_centerVertical="true"
+            android:id="@+id/content_activity_content"
+            android:layout_width="297dp"
+            android:layout_height="204dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="start"
             android:background="@null"
             android:textColor="@color/colorWhite"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="214dp"
+            android:src="@drawable/bt_add_picture"/>
         <TextView
-            android:id="@+id/number_change_name"
-            android:layout_width="27dp"
+            android:id="@+id/number_activity_content"
+            android:layout_width="39dp"
             android:layout_height="14dp"
-            android:layout_marginStart="285dp"
-            android:layout_marginTop="25dp"
-            android:text="0/24"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="229dp"
+            android:text="0/600"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorWhite"
             android:textSize="10sp"/>
     </RelativeLayout>

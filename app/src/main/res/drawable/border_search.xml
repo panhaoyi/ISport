@@ -5,7 +5,7 @@
             <solid android:color="@color/colorBlack" />
             <corners android:topLeftRadius="8dp" android:topRightRadius="8dp"
                 android:bottomRightRadius="8dp" android:bottomLeftRadius="8dp" />
-            <stroke android:width="0dp" android:color="#ffffffff" />
+            <stroke android:width="0dp" android:color="@color/colorBlack" />
         </shape>
     </item>
 </layer-list>

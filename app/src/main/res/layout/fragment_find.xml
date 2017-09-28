@@ -3,8 +3,7 @@
     android:id="@+id/fragment_find"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:background="#333333">
+    android:layout_height="match_parent">
     <!--主界面-运动圈-->
     <RelativeLayout
         android:layout_width="match_parent"

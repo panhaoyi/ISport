@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/option_photo"
+    android:background="#ffffff">
+    <TextView
+        android:id="@+id/text1_option"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="29dp"
+        android:gravity="center_vertical"
+        android:text="相册选择"
+        android:textColor="#4a4a4a"
+        android:textSize="14sp"/>
+    <TextView
+        android:id="@+id/text2_option"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="29dp"
+        android:gravity="center_vertical"
+        android:text="相机拍摄"
+        android:textColor="#4a4a4a"
+        android:textSize="14sp"/>
+</LinearLayout>

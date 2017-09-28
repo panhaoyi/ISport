@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tcl.isport.activity.CountdownActivity;
 import com.tcl.isport.activity.WalkActivity;
 import com.tcl.isport.iview.ISportFragment;
 import com.tcl.isport.presenter.SportFragmentPresenter;
@@ -53,7 +54,12 @@ public class SportWalkFragment extends Fragment implements View.OnClickListener,
                 break;
             case R.id.start_walk_sport:
                 //点击切换到WalkActivity开始运动
-                Intent intent = new Intent(getContext(), WalkActivity.class);
+//                Intent intent = new Intent(getContext(), WalkActivity.class);
+                //切换到倒计时界面
+                Intent intent = new Intent(getContext(), CountdownActivity.class);
+                intent.putExtra("sport","walk");
+                //设置flag使activity不会被销毁
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.track_walk_sport:
