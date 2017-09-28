@@ -15,6 +15,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -35,7 +36,7 @@ import static java.lang.Thread.sleep;
 /**
  * Created by haoyi.pan on 17-9-22.
  */
-public class MapActivity extends Activity implements View.OnClickListener ,AMap.OnMyLocationChangeListener{
+public class MapActivity extends Activity implements View.OnClickListener, AMap.OnMyLocationChangeListener {
     //运动地图轨迹界面
     private MapView mapView;
     protected AMap aMap;
@@ -52,14 +53,15 @@ public class MapActivity extends Activity implements View.OnClickListener ,AMap.
     private final int FILL_COLOR = Color.argb(10, 0, 0, 180);
 
     //运动地图轨迹界面
-    private ImageView map_type,my_location,change_view;
+    private ImageView map_type, my_location, change_view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
 
 //        隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
-        MyApplication.hide(this,R.id.layout_map);
+        MyApplication.hide(this, R.id.layout_map);
 
         initView();
         mapView.onCreate(savedInstanceState);
@@ -106,7 +108,7 @@ public class MapActivity extends Activity implements View.OnClickListener ,AMap.
     };
 
     //自动画轨迹
-    Handler mapHandler = new Handler(){
+    Handler mapHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -118,7 +120,7 @@ public class MapActivity extends Activity implements View.OnClickListener ,AMap.
         }
     };
 
-    private class MapTraceThread implements Runnable{
+    private class MapTraceThread implements Runnable {
         @Override
         public void run() {
             //设置一个中断线程
@@ -133,6 +135,7 @@ public class MapActivity extends Activity implements View.OnClickListener ,AMap.
 
         }
     }
+
     private void initView() {
         mapView = (MapView) findViewById(R.id.map);
         map_type = (ImageView) findViewById(R.id.map_type);
@@ -258,9 +261,12 @@ public class MapActivity extends Activity implements View.OnClickListener ,AMap.
     //我的位置变化
     @Override
     public void onMyLocationChange(Location location) {
+
         if (aMap != null) {
             aMap.moveCamera(CameraUpdateFactory.newLatLng(LocationUtil.converLatLng(location)));
         }
+
+
     }
 
 

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -38,8 +39,10 @@ public class SportLocationService extends Service {
     private AMapLocationClientOption mLocationOption;
     private LatLng startLatLng;
 
+    //以前的点
+    private LatLng oldLatlng = new LatLng(0, 0);
     //位置更新的标记点
-    private LatLng newLatlng = new LatLng(0, 0);
+    private LatLng newLatlng = new LatLng(1, 1);
     List<LatLng> polylineLatlngs = new ArrayList<>();
     //    List<LatLng> totalLatlngLists = new ArrayList<>();
     //实时定位，存储轨迹线
@@ -221,13 +224,19 @@ public class SportLocationService extends Service {
 //                        Log.e("GPS status", "--" + aMapLocation.getLocationType()+
 //                                "--"+aMapLocation.getGpsAccuracyStatus()+"=="+aMapLocation.getAccuracy()
 //                        +"--"+polylineOptions.isUseGradient());
-//                        Log.e(LocationUtil.ISPORT_TAG, "--countDown");
                         LocationUtil.setLocationData(aMapLocation);
                         if (isTimeRun) {
-//                            Log.e(LocationUtil.ISPORT_TAG, "--TimeRun");
 
-                            newLatlng = converLatLng(aMapLocation);
+                            oldLatlng = converLatLng(aMapLocation);
 
+                            //判断重复点
+                            if (newLatlng == oldLatlng) {
+                                return;
+                            } else {
+                                newLatlng = oldLatlng;
+                            }
+
+                            //起点判断
                             if (isStartPoint) {
                                 startLatLng = newLatlng;
                                 isStartPoint = false;
@@ -237,12 +246,8 @@ public class SportLocationService extends Service {
                             if (tempLatLngs.size() > 3) {
                                 filterPoints();
                             }
-
-
                         }
-
                     }
-
                 } else {
                     //定位错误码，对定位失败进行判断处理
                 }
