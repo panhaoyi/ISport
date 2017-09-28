@@ -15,13 +15,13 @@ import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
 public class RideActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener  {
+
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
-    private TextView distance_ride,speed_ride,duration_ride;
-    private ImageView map_ride;
-    private Button camera_ride, start_pause_ride, stop_ride;
-
+    private TextView distance_ride, speed_ride, duration_ride;
+    private ImageView map_ride, camera_ride, start_pause_ride, stop_ride;
+    private String start_pause = "pause";
     private SportActivityPresenter rideActivityPresenter;
 
     private Intent intent;
@@ -37,19 +37,20 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_ride);
         //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
-        MyApplication.hide(this,R.id.layout_ride);
+        MyApplication.hide(this, R.id.layout_ride);
 
         //初始化view
-        distance_ride= (TextView) findViewById(R.id.distance_ride);
-        speed_ride= (TextView) findViewById(R.id.speed_ride);
-        duration_ride= (TextView) findViewById(R.id.duration_ride);
-        map_ride= (ImageView) findViewById(R.id.map_ride);
+        distance_ride = (TextView) findViewById(R.id.distance_ride);
+        speed_ride = (TextView) findViewById(R.id.speed_ride);
+        duration_ride = (TextView) findViewById(R.id.duration_ride);
+        map_ride = (ImageView) findViewById(R.id.map_ride);
         map_ride.setOnClickListener(this);
-        camera_ride = (Button) findViewById(R.id.camera_ride);
+        camera_ride = (ImageView) findViewById(R.id.camera_ride);
         camera_ride.setOnClickListener(this);
-        start_pause_ride = (Button) findViewById(R.id.start_pause_ride);
+        start_pause_ride = (ImageView) findViewById(R.id.start_pause_ride);
         start_pause_ride.setOnClickListener(this);
-        stop_ride = (Button) findViewById(R.id.stop_ride);
+
+        stop_ride = (ImageView) findViewById(R.id.stop_ride);
         stop_ride.setOnLongClickListener(this);
         rideActivityPresenter=new SportActivityPresenter(this);
 
@@ -58,6 +59,7 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
         rideActivityPresenter.bindLocationService(this);
         //启动倒计时，当一直没有点击开始运动，则停止定位
         rideActivityPresenter.startCountDown();
+
     }
 
     @Override
@@ -85,16 +87,37 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
                 break;
             case R.id.start_pause_ride:
                 //开始计时要给时间让定位服务初始化，同时有个倒计时判断用户行为
-                if (!isStart) {
+//                if (!isStart) {
+//                    startExercise();
+//                    //启动定时器
+//                    rideActivityPresenter.startTime();
+//                    isStart = true;
+//                    rideActivityPresenter.setTimeRun(isStart);
+//                } else {
+//                    rideActivityPresenter.pauseTime();
+//                    isStart = false;
+//                    rideActivityPresenter.setTimeRun(isStart);
+//                }
+                //点击开始/暂停,切换图标并开始/暂停运动
+                if (start_pause.equals("pause")) {
+                    start_pause_ride.setImageResource(R.drawable.bt_start);
+
                     startExercise();
                     //启动定时器
                     rideActivityPresenter.startTime();
                     isStart = true;
                     rideActivityPresenter.setTimeRun(isStart);
+
+                    start_pause = "start";
                 } else {
+                    start_pause_ride.setImageResource(R.drawable.bt_pause);
+
                     rideActivityPresenter.pauseTime();
                     isStart = false;
                     rideActivityPresenter.setTimeRun(isStart);
+
+                    start_pause = "pause";
+
                 }
                 break;
             default:

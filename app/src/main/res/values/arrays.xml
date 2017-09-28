@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="sports_history">
-        <item>运动历史</item>
-        <item>健走</item>
-        <item>跑步</item>
-        <item>骑行</item>
-    </string-array>
-</resources>

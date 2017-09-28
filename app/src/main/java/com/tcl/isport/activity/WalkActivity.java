@@ -27,9 +27,8 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
     private TextView distance_walk,speed_walk,duration_walk;
-    private ImageView map_walk;
-    private Button camera_walk, start_pause_walk, stop_walk;
-
+    private ImageView map_walk,camera_walk, start_pause_walk, stop_walk;
+    private String start_pause = "pause";
     private SportActivityPresenter walkActivityPresenter;
     private Intent intent;
 
@@ -51,11 +50,12 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         duration_walk= (TextView) findViewById(R.id.duration_walk);
         map_walk= (ImageView) findViewById(R.id.map_walk);
         map_walk.setOnClickListener(this);
-        camera_walk = (Button) findViewById(R.id.camera_walk);
+        camera_walk = (ImageView) findViewById(R.id.camera_walk);
         camera_walk.setOnClickListener(this);
-        start_pause_walk = (Button) findViewById(R.id.start_pause_walk);
+        start_pause_walk = (ImageView) findViewById(R.id.start_pause_walk);
         start_pause_walk.setOnClickListener(this);
-        stop_walk = (Button) findViewById(R.id.stop_walk);
+        stop_walk = (ImageView) findViewById(R.id.stop_walk);
+        stop_walk.setOnClickListener(this);
         stop_walk.setOnLongClickListener(this);
 
         walkActivityPresenter=new SportActivityPresenter(this);
@@ -92,19 +92,28 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
 //                startActivity(intent);
                 break;
             case R.id.start_pause_walk:
+
                 //开始计时要给时间让定位服务初始化，同时有个倒计时判断用户行为
-                if (!isStart) {
+                //点击开始/暂停,切换图标并开始/暂停运动
+                if (start_pause.equals("pause")){
+                    start_pause_walk.setImageResource(R.drawable.bt_start);
+
                     startExercise();
                     //启动定时器
                     walkActivityPresenter.startTime();
                     isStart = true;
                     walkActivityPresenter.setTimeRun(isStart);
-                } else {
+
+                    start_pause="start";
+                }
+                else{
+                    start_pause_walk.setImageResource(R.drawable.bt_pause);
+
                     walkActivityPresenter.pauseTime();
                     isStart = false;
                     walkActivityPresenter.setTimeRun(isStart);
+                    start_pause="pause";
                 }
-
                 break;
             default:
                 break;

@@ -5,15 +5,30 @@
     android:orientation="vertical">
     <!--主界面-我-->
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="个人资料"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp" />
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="个人资料"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/edit_information_mine"
+            android:layout_width="32dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="311dp"
+            android:layout_centerVertical="true"
+            android:text="编辑"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"/>
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/homepage_mine"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#4a4949">
@@ -49,7 +64,6 @@
             android:textSize="10sp" />
         <!--编辑按钮图标-->
         <ImageView
-            android:id="@+id/edit_information_mine"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="318dp"

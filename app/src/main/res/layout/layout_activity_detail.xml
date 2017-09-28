@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_activity_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#262525">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_activity_detail"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/bt_back" />
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="309dp"
+            android:layout_marginTop="15dp"
+            android:text="加入"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/activity1" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="300dp"
+            android:text="2017红花湖马拉松"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="102dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="217dp"
+            android:layout_marginTop="293dp"
+            android:background="@drawable/frame_activity_time"
+            android:gravity="center"
+            android:text="距离活动开始还有10天"
+            android:textColor="@color/colorWhite"
+            android:textSize="8sp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="327dp"
+            android:layout_marginTop="290dp"
+            android:src="@drawable/ic_uncollected" />
+
+        <TextView
+            android:layout_width="316dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="343dp"
+            android:text="每一次的艰苦训练，总想着多前进一里就好。
+每一次的自我竞速，总想着再多快一秒就好。
+因缘际会爱上骑行后，透过骑行超越自己。"
+            android:textColor="@color/colorWhite"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="445dp"
+            android:text="活动详情"
+            android:textColor="@color/colorWhite"
+            android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:layout_marginTop="464dp"
+            android:background="#444444" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="471dp"
+            android:text="广东省惠州市惠城区红花湖"
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="491dp"
+            android:text="活动日期: 2017.10.17"
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="511dp"
+            android:text="人数规模: 0-50人"
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="46dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="531dp"
+            android:text="行程详情: "
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="531dp"
+            android:text="6:40集合 晨跑5公里，连续坚持1个月,挑战自我。
+小组打卡制度
+无收费项目"
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="581dp"
+            android:text="发起人"
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="581dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <TextView
+            android:layout_width="78dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="648dp"
+            android:text="当前报名人数: 47"
+            android:textColor="#df7d89"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="125dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="648dp"
+            android:text="报名截止时间: 2017.9.17. 0:00"
+            android:textColor="@color/textGray"
+            android:textSize="9sp" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="154dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="198dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="242dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="286dp"
+            android:layout_marginTop="674dp"
+            android:src="@drawable/ic_user_photo" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="331dp"
+            android:layout_marginTop="685dp"
+            android:src="@drawable/bt_edit_information" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="710dp" />
+    </RelativeLayout>
+</ScrollView>
