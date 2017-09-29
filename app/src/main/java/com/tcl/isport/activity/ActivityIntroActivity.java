@@ -1,12 +1,14 @@
 package com.tcl.isport.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tcl.isport.R;
 import com.tcl.isport.application.MyApplication;
@@ -43,6 +45,14 @@ public class ActivityIntroActivity extends Activity implements  View.OnClickList
                 break;
             case R.id.confirm_activity_intro:
                 //确定更改
+                if(!"".equals(intro.getText().toString())) {
+                    Intent data = new Intent();
+                    data.putExtra("intro", intro.getText().toString());
+                    setResult(2, data);
+                    finish();
+                }else{
+                    Toast.makeText(this,"请输入简介!",Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;

@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_new_activity"
+    android:id="@+id/layout_activity_new"
     android:background="#262525">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
-            android:id="@+id/back_new_activity"
+            android:id="@+id/back_activity_new"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="20dp"
@@ -23,7 +23,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="16sp"/>
         <TextView
-            android:id="@+id/pub_new_activity"
+            android:id="@+id/pub_activity_new"
             android:layout_width="32dp"
             android:layout_height="22dp"
             android:layout_marginStart="309dp"
@@ -44,6 +44,14 @@
             android:layout_centerVertical="true"
             android:text="活动主题"
             android:textColor="@color/colorWhite"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/theme_activity_new"
+            android:layout_width="78dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="231dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/textGray"
             android:textSize="14sp"/>
         <ImageView
             android:layout_width="20dp"
@@ -66,6 +74,14 @@
             android:text="活动简介"
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/intro_activity_new"
+            android:layout_width="78dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="231dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/textGray"
+            android:textSize="14sp"/>
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -86,6 +102,14 @@
             android:layout_centerVertical="true"
             android:text="行程详情"
             android:textColor="@color/colorWhite"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/content_activity_new"
+            android:layout_width="78dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="231dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/textGray"
             android:textSize="14sp"/>
         <ImageView
             android:layout_width="20dp"
@@ -109,12 +133,12 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
         <TextView
-            android:id="@+id/number_new_activity"
+            android:id="@+id/number_activity_new"
             android:layout_width="78dp"
             android:layout_height="20dp"
             android:layout_marginStart="231dp"
             android:layout_centerVertical="true"
-            android:text="0-50"
+            android:gravity="center"
             android:textColor="@color/textGray"
             android:textSize="14sp"/>
         <ImageView
@@ -139,12 +163,11 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
         <TextView
-            android:id="@+id/time_new_activity"
+            android:id="@+id/time_activity_new"
             android:layout_width="78dp"
             android:layout_height="20dp"
             android:layout_marginStart="231dp"
             android:layout_centerVertical="true"
-            android:text="2017-09-12"
             android:textColor="@color/textGray"
             android:textSize="14sp"/>
         <ImageView
@@ -169,13 +192,12 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
         <TextView
-            android:id="@+id/location_new_activity"
+            android:id="@+id/location_activity_new"
             android:layout_width="124dp"
-            android:layout_height="41dp"
+            android:layout_height="60dp"
             android:layout_marginStart="203dp"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="广东,惠州 红花湖南路6666号"
             android:textColor="@color/textGray"
             android:textSize="14sp"/>
         <ImageView
@@ -200,12 +222,11 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
         <TextView
-            android:id="@+id/deadline_new_activity"
+            android:id="@+id/deadline_activity_new"
             android:layout_width="78dp"
             android:layout_height="20dp"
             android:layout_marginStart="231dp"
             android:layout_centerVertical="true"
-            android:text="2017-09-10"
             android:textColor="@color/textGray"
             android:textSize="14sp"/>
         <ImageView
@@ -230,7 +251,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
         <ImageView
-            android:id="@+id/cover_new_activity"
+            android:id="@+id/cover_activity_new"
             android:layout_width="92dp"
             android:layout_height="62dp"
             android:layout_marginStart="227dp"

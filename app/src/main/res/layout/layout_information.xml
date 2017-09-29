@@ -141,7 +141,7 @@
             android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="34dp"
-            android:text="出生年月"
+            android:text="出生日期"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
 
@@ -152,7 +152,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="231dp"
             android:gravity="center"
-            android:text="1990-06"
+            android:text="1990-06-01"
             android:textColor="#9b9b9b"
             android:textSize="14sp" />
 

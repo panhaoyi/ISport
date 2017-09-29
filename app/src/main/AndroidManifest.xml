@@ -63,10 +63,11 @@
         <activity android:name=".activity.HomepageActivity"/>
         <activity android:name=".activity.NewTopicActivity"/>
         <activity android:name=".activity.ActivityDetailActivity"/>
-        <activity android:name=".activity.NewActivityActivity"/>
+        <activity android:name=".activity.ActivityNewActivity"/>
         <activity android:name=".activity.ActivityThemeActivity"/>
         <activity android:name=".activity.ActivityIntroActivity"/>
         <activity android:name=".activity.ActivityContentActivity"/>
+        <activity android:name=".activity.ActivityTimeActivity"/>
         <activity android:name=".activity.ActivityManageActivity"/>
         <activity android:name=".activity.FriendActivity"/>
 

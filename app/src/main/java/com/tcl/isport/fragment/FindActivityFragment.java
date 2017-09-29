@@ -15,13 +15,12 @@ import android.widget.SimpleAdapter;
 
 import com.tcl.isport.R;
 import com.tcl.isport.activity.ActivityDetailActivity;
-import com.tcl.isport.activity.NewActivityActivity;
+import com.tcl.isport.activity.ActivityNewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by haoyi.pan on 17-9-22.
@@ -81,7 +80,7 @@ public class FindActivityFragment extends Fragment implements OnClickListener,Ad
         switch (v.getId()){
             case R.id.add_activity:
                 //跳转发布活动
-                Intent intent =new Intent(getActivity(), NewActivityActivity.class);
+                Intent intent =new Intent(getActivity(), ActivityNewActivity.class);
                 startActivity(intent);
                 break;
             default:
