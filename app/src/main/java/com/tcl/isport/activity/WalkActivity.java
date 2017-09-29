@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
@@ -64,7 +65,22 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         walkActivityPresenter.startLocationService(this);
         walkActivityPresenter.bindLocationService(this);
         //启动倒计时，当一直没有点击开始运动，则停止定位
-        walkActivityPresenter.startCountDown();
+        //walkActivityPresenter.startCountDown();
+
+    }
+
+    private void walkGo() {
+//        startExercise();
+        //启动定时器
+        walkActivityPresenter.startTime();
+        isStart = true;
+        walkActivityPresenter.setTimeRun(isStart);
+    }
+
+    private void walkPause() {
+        walkActivityPresenter.pauseTime();
+        isStart = false;
+        walkActivityPresenter.setTimeRun(isStart);
     }
 
     @Override
@@ -82,48 +98,50 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
             case R.id.map_walk:
                 intent=new Intent(WalkActivity.this,MapActivity.class);
                 //将当前Activity的class名字通过intent传到MapActivity以便于返回
-                intent.putExtra("className",this.getClass().getName());
+//                intent.putExtra("className",this.getClass().getName());
                 //设置flag使activity不会被销毁
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.camera_walk:
-                intent=new Intent(WalkActivity.this,CameraActivity.class);
-                startActivity(intent);
+//                intent=new Intent(WalkActivity.this,CameraActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.start_pause_walk:
+
+                //开始计时要给时间让定位服务初始化，同时有个倒计时判断用户行为
                 //点击开始/暂停,切换图标并开始/暂停运动
                 if (start_pause.equals("pause")){
                     start_pause_walk.setImageResource(R.drawable.bt_start);
+
+//                    startExercise();
+//                    //启动定时器
+//                    walkActivityPresenter.startTime();
+//                    isStart = true;
+//                    walkActivityPresenter.setTimeRun(isStart);
+
+                    walkPause();
+
                     start_pause="start";
                 }
                 else{
                     start_pause_walk.setImageResource(R.drawable.bt_pause);
+
+//                    walkActivityPresenter.pauseTime();
+//                    isStart = false;
+//                    walkActivityPresenter.setTimeRun(isStart);
+
+                    walkGo();
+
                     start_pause="pause";
                 }
-                break;
-            case R.id.stop_walk:
-                //启动服务，设置一个flag判断是否首次启动服务
-                //开始计时要给时间让定位服务初始化，建议弄个倒计时
-//                walkActivityPresenter.startLocationService(this);
-//                walkActivityPresenter.bindLocationService(this);
-                if (!isStart) {
-                    startExercise();
-                    //启动定时器
-                    walkActivityPresenter.startTime();
-                    isStart = true;
-                    walkActivityPresenter.setTimeRun(isStart);
-                } else {
-                    walkActivityPresenter.pauseTime();
-                    isStart = false;
-                    walkActivityPresenter.setTimeRun(isStart);
-                }
-
                 break;
             default:
                 break;
         }
     }
+
+
 
     //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
     private void startExercise(){
@@ -131,11 +149,11 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
             if (!isCancelCountDown){
                 walkActivityPresenter.cancelCountDown();
             }
-
         } else {
             walkActivityPresenter.startLocationSearch();
         }
     }
+
     @Override
     public boolean onLongClick(View v) {
         switch (v.getId()){
@@ -167,11 +185,13 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     @Override
     protected void onResume() {
         super.onResume();
+        AVAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        AVAnalytics.onPause(this);
     }
 
     @Override

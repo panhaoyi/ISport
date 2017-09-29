@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -36,10 +37,12 @@ public class SportLocationService extends Service {
 
     private AMapLocationClient mLocationClient;
     private AMapLocationClientOption mLocationOption;
-    private LatLng latLng = new LatLng(0, 0);
+    private LatLng startLatLng;
 
+    //以前的点
+    private LatLng oldLatlng = new LatLng(0, 0);
     //位置更新的标记点
-    private LatLng newLatlng = new LatLng(0, 0);
+    private LatLng newLatlng = new LatLng(1, 1);
     List<LatLng> polylineLatlngs = new ArrayList<>();
     //    List<LatLng> totalLatlngLists = new ArrayList<>();
     //实时定位，存储轨迹线
@@ -49,6 +52,8 @@ public class SportLocationService extends Service {
 
     //定时器暂停判断
     private boolean isTimeRun = false;
+    //起点设置判断
+    private boolean isStartPoint = true;
 
     PathSmoothTool pathSmoothTool = null;
     /**
@@ -68,16 +73,15 @@ public class SportLocationService extends Service {
 
     public class MyBinder extends Binder {
         //动态获取location的运行状况
-        public LatLng getCurrentLatlng() {
-            return latLng;
-        }
+//        public LatLng getCurrentLatlng() {
+//            return latLng;
+//        }
         //处理精确度、速度和距离，此时可以用上BroadcastReceiver
         //显示轨迹
         public void drawPolyLine(AMap aMap) {
             if (polylineOptions.getPoints() != null && polylineOptions.getPoints().size() > 1) {
-                polylineOptions.width(10).color(Color.argb(255, 12, 34, 56));
+                polylineOptions.width(10).color(Color.argb(128, 255, 255, 255));
                 aMap.addPolyline(polylineOptions);
-                Log.e("polylineOptions", "-- "+ polylineOptions.getPoints().size() +"--"+polylineOptions.getPoints().toString());
             }
         }
         //清除轨迹
@@ -99,14 +103,12 @@ public class SportLocationService extends Service {
             isTimeRun = isRun;
         }
 
-        //设置地图移到哪个点上
-        public void setMapPoint(AMap aMap) {
-            //如果不用服务的定位点，可以使用定位蓝点进行中心点移动
-            if (aMap != null) {
-                aMap.moveCamera(CameraUpdateFactory.newLatLng(newLatlng));
+        public LatLng getStartLatLng() {
+            if (startLatLng != null) {
+                return startLatLng;
             }
+            return null;
         }
-
         //开始定位
         public void startLocationSearch() {
             startLocation();
@@ -222,22 +224,30 @@ public class SportLocationService extends Service {
 //                        Log.e("GPS status", "--" + aMapLocation.getLocationType()+
 //                                "--"+aMapLocation.getGpsAccuracyStatus()+"=="+aMapLocation.getAccuracy()
 //                        +"--"+polylineOptions.isUseGradient());
-//                        Log.e(LocationUtil.ISPORT_TAG, "--countDown");
                         LocationUtil.setLocationData(aMapLocation);
                         if (isTimeRun) {
-//                            Log.e(LocationUtil.ISPORT_TAG, "--TimeRun");
-                            newLatlng = converLatLng(aMapLocation);
 
+                            oldLatlng = converLatLng(aMapLocation);
+
+                            //判断重复点
+                            if (newLatlng == oldLatlng) {
+                                return;
+                            } else {
+                                newLatlng = oldLatlng;
+                            }
+
+                            //起点判断
+                            if (isStartPoint) {
+                                startLatLng = newLatlng;
+                                isStartPoint = false;
+                            }
                             tempLatLngs.add(newLatlng);
                             //轨迹纠偏
                             if (tempLatLngs.size() > 3) {
                                 filterPoints();
                             }
-
                         }
-
                     }
-
                 } else {
                     //定位错误码，对定位失败进行判断处理
                 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
 import com.tcl.isport.R;
 
@@ -18,8 +19,13 @@ import java.lang.reflect.Method;
  * Created by haoyi.pan on 17-9-25.
  */
 public class MyApplication extends Application {
-    private static final String APP_ID="L170AceMRxUFJVxa9cjQoBc1-gzGzoHsz";
-    private static final String APP_KEY="YLJjFIgV2Q1QPSwEKDtmxfAv";
+//    private static final String APP_ID="L170AceMRxUFJVxa9cjQoBc1-gzGzoHsz";
+//    private static final String APP_KEY="YLJjFIgV2Q1QPSwEKDtmxfAv";
+
+    //Add by lishui.lin  for test leanCloud in sport section
+    private static final String APP_ID="jOUCLfbGMIsMi1UGXwYGfBLV-gzGzoHsz";
+    private static final String APP_KEY="doOKhSNbWlpFczb6z7pkvcQA";
+
     public static int statusBarHeight = -1;
 
     @Override
@@ -30,6 +36,8 @@ public class MyApplication extends Application {
         AVOSCloud.initialize(this,APP_ID,APP_KEY);
         //开启leancloud debug log
         AVOSCloud.setDebugLogEnabled(true);
+        AVAnalytics.enableCrashReport(this, true);
+
         //获取状态栏高度
         //获取status_bar_height资源的ID
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");

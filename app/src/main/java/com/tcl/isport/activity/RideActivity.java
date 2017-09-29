@@ -14,7 +14,8 @@ import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
-public class RideActivity extends Activity implements View.OnClickListener, ISportActivity {
+public class RideActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener  {
+
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
@@ -23,8 +24,13 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
     private String start_pause = "pause";
     private SportActivityPresenter rideActivityPresenter;
 
+    private Intent intent;
+
     //给开始定时和暂停计时的判断
     private boolean isStart = false;
+    //倒计时是否已经取消
+    private boolean isCancelCountDown = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +49,31 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
         camera_ride.setOnClickListener(this);
         start_pause_ride = (ImageView) findViewById(R.id.start_pause_ride);
         start_pause_ride.setOnClickListener(this);
+
         stop_ride = (ImageView) findViewById(R.id.stop_ride);
-        stop_ride.setOnClickListener(this);
-        rideActivityPresenter = new SportActivityPresenter(this);
+        stop_ride.setOnLongClickListener(this);
+        rideActivityPresenter=new SportActivityPresenter(this);
+
+        //启动服务，在点击事件设置一个flag判断是否首次启动服务
+        rideActivityPresenter.startLocationService(this);
+        rideActivityPresenter.bindLocationService(this);
+        //启动倒计时，当一直没有点击开始运动，则停止定位
+//        rideActivityPresenter.startCountDown();
+
+    }
+
+    private void rideGo() {
+//        startExercise();
+        //启动定时器
+        rideActivityPresenter.startTime();
+        isStart = true;
+        rideActivityPresenter.setTimeRun(isStart);
+    }
+
+    private void ridePause() {
+        rideActivityPresenter.pauseTime();
+        isStart = false;
+        rideActivityPresenter.setTimeRun(isStart);
     }
 
     @Override
@@ -61,11 +89,11 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.map_ride:
-                Intent intent = new Intent(RideActivity.this, MapActivity.class);
-                //将当前Activity的class名字通过intent传到MapActivity以便于返回
-                intent.putExtra("className", this.getClass().getName());
-                //设置flag使activity不会被销毁
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent=new Intent(RideActivity.this,MapActivity.class);
+//                //将当前Activity的class名字通过intent传到MapActivity以便于返回
+//                intent.putExtra("className",this.getClass().getName());
+//                //设置flag使activity不会被销毁
+//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.camera_ride:
@@ -75,29 +103,47 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
                 //点击开始/暂停,切换图标并开始/暂停运动
                 if (start_pause.equals("pause")) {
                     start_pause_ride.setImageResource(R.drawable.bt_start);
+
+                    ridePause();
+
                     start_pause = "start";
                 } else {
                     start_pause_ride.setImageResource(R.drawable.bt_pause);
+
+                    rideGo();
+
                     start_pause = "pause";
-
-                    if (!isStart) {
-                        //启动定时器
-                        rideActivityPresenter.startTime();
-                        isStart = true;
-                    } else {
-                        rideActivityPresenter.pauseTime();
-                        isStart = false;
-                    }
                 }
-                break;
-            case R.id.stop_ride:
-
-                rideActivityPresenter.stopTime();
                 break;
             default:
                 break;
         }
     }
+
+    //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
+    private void startExercise(){
+        if (rideActivityPresenter.getLocationState()) {
+            if (!isCancelCountDown){
+                rideActivityPresenter.cancelCountDown();
+            }
+        } else {
+            rideActivityPresenter.startLocationSearch();
+        }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()){
+            case R.id.stop_ride :
+                rideActivityPresenter.unbindLocationService(this);
+                rideActivityPresenter.stopLocationService(this);
+                rideActivityPresenter.stopTime();
+                this.finish();
+                break;
+        }
+        return true;
+    }
+
 
     @Override
     public void setDistance(String distance) {
@@ -112,5 +158,25 @@ public class RideActivity extends Activity implements View.OnClickListener, ISpo
     @Override
     public void setDuration(String duration) {
         duration_ride.setText(duration);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //停止服务和计时器
+        rideActivityPresenter.unbindLocationService(this);
+        rideActivityPresenter.stopLocationService(this);
+        rideActivityPresenter.stopTime();
     }
 }

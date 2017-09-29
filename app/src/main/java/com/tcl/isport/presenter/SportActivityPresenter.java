@@ -10,8 +10,10 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Message;
+import android.util.Log;
 
 
+import com.amap.api.maps.model.LatLng;
 import com.tcl.isport.activity.RideActivity;
 import com.tcl.isport.activity.RunActivity;
 import com.tcl.isport.activity.WalkActivity;
@@ -47,7 +49,7 @@ public class SportActivityPresenter {
 
     }
 
-    //modifiy start by lishui.lin
+    //added start by lishui.lin
     public SportActivityPresenter(ISportActivity view){
         //构造器通过参数拿到view实例化view接口，根据view的类型初始化model
         this.iSportActivity=view;
@@ -88,6 +90,11 @@ public class SportActivityPresenter {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             mBinder = (SportLocationService.MyBinder) service;
+
+            //连接成功则开始计时
+            startTime();
+            setTimeRun(true);
+
             isBind = true;
         }
 
@@ -155,7 +162,7 @@ public class SportActivityPresenter {
 
         @Override
         public void onFinish() {
-           mBinder.stopLocationSearch();
+            mBinder.stopLocationSearch();
             isLocationRun = false;
         }
     };
@@ -205,7 +212,7 @@ public class SportActivityPresenter {
         }
     }
 
-    //modifiy end by lishui.lin
+    //added end by lishui.lin
 
 
 

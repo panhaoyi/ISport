@@ -2,6 +2,7 @@ package com.tcl.isport.util;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -81,7 +82,7 @@ public class WeatherUtil {
                     //此时停止定位
                     stopLocation();
                 } else {
-                    Log.e(LocationUtil.ISPORT_TAG, "无成功定位数据");
+                    Log.e(LocationUtil.ISPORT_TAG, "无定位数据");
                 }
             } else {
                 Log.e(LocationUtil.ISPORT_TAG, "定位失败");

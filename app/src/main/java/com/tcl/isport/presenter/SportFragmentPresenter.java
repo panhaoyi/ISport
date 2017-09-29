@@ -1,5 +1,8 @@
 package com.tcl.isport.presenter;
 
+import android.content.Context;
+import android.content.Intent;
+
 import com.tcl.isport.fragment.SportRideFragment;
 import com.tcl.isport.fragment.SportRunFragment;
 import com.tcl.isport.fragment.SportWalkFragment;
@@ -8,6 +11,7 @@ import com.tcl.isport.iview.ISportFragment;
 import com.tcl.isport.model.RideModel;
 import com.tcl.isport.model.RunModel;
 import com.tcl.isport.model.WalkModel;
+import com.tcl.isport.service.SportLocationService;
 
 /**
  * Created by haoyi.pan on 17-9-18.
@@ -38,4 +42,5 @@ public class SportFragmentPresenter {
         iSportFragment.setDistance(iSportModel.getDistance());
         iSportFragment.setDuration(iSportModel.getDuration());
     }
+
 }

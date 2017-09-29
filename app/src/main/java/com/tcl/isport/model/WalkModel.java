@@ -9,9 +9,6 @@ import com.tcl.isport.imodel.ISportModel;
  */
 public class WalkModel implements ISportModel {
 
-    String weather = "";
-    private Context mContext = null;
-    private boolean isFlag = false;
     //Walk数据模型接口实现
     public WalkModel() {}
 
@@ -33,7 +30,7 @@ public class WalkModel implements ISportModel {
     @Override
     public String getWeather() {
 
-        return weather;
+        return "";
     }
 
 
