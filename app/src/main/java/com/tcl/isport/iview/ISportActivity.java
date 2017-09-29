@@ -5,7 +5,11 @@ package com.tcl.isport.iview;
  */
 public interface ISportActivity {
     //开始运动view接口，封装WalkActivity,RunActivity,RideActivity的view操作
-    public void setDistance(String distance);
-    public void setSpeed(String speed);
-    public void setDuration(String duration);
+    void setDistance(String distance);
+    void setSpeed(String speed);
+    void setDuration(String duration);
+
+    String getDistance();
+    long getDuration();
+    String getSpeed();
 }

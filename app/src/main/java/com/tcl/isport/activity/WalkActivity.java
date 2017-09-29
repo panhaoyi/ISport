@@ -15,10 +15,13 @@ import android.widget.TextView;
 
 import com.avos.avoscloud.AVAnalytics;
 import com.tcl.isport.application.MyApplication;
+import com.tcl.isport.bean.SportBean;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 import com.tcl.isport.util.LocationUtil;
+
+import java.util.Date;
 
 /**
  * Created by user on 17-9-8.
@@ -31,7 +34,6 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     private ImageView map_walk,camera_walk, start_pause_walk, stop_walk;
     private String start_pause = "pause";
     private SportActivityPresenter walkActivityPresenter;
-    private Intent intent;
 
     //给开始定时和暂停计时的判断
     private boolean isStart = false;
@@ -96,11 +98,7 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.map_walk:
-                intent=new Intent(WalkActivity.this,MapActivity.class);
-                //将当前Activity的class名字通过intent传到MapActivity以便于返回
-//                intent.putExtra("className",this.getClass().getName());
-                //设置flag使activity不会被销毁
-//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Intent intent=new Intent(WalkActivity.this,MapActivity.class);
                 startActivity(intent);
                 break;
             case R.id.camera_walk:
@@ -114,22 +112,12 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
                 if (start_pause.equals("pause")){
                     start_pause_walk.setImageResource(R.drawable.bt_start);
 
-//                    startExercise();
-//                    //启动定时器
-//                    walkActivityPresenter.startTime();
-//                    isStart = true;
-//                    walkActivityPresenter.setTimeRun(isStart);
-
                     walkPause();
 
                     start_pause="start";
                 }
                 else{
                     start_pause_walk.setImageResource(R.drawable.bt_pause);
-
-//                    walkActivityPresenter.pauseTime();
-//                    isStart = false;
-//                    walkActivityPresenter.setTimeRun(isStart);
 
                     walkGo();
 
@@ -161,6 +149,8 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
                 walkActivityPresenter.unbindLocationService(this);
                 walkActivityPresenter.stopLocationService(this);
                 walkActivityPresenter.stopTime();
+
+                walkActivityPresenter.saveSportData(this);
                 this.finish();
                 break;
         }
@@ -180,6 +170,21 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     @Override
     public void setDuration(String duration) {
         duration_walk.setText(duration);
+    }
+
+    @Override
+    public String getDistance() {
+        return distance_walk.getText().toString();
+    }
+
+    @Override
+    public long getDuration() {
+        return walkActivityPresenter.convertStrToLong(duration_walk.getText().toString());
+    }
+
+    @Override
+    public String getSpeed() {
+        return speed_walk.getText().toString();
     }
 
     @Override

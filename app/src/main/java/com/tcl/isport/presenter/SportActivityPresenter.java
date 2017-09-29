@@ -17,6 +17,7 @@ import com.amap.api.maps.model.LatLng;
 import com.tcl.isport.activity.RideActivity;
 import com.tcl.isport.activity.RunActivity;
 import com.tcl.isport.activity.WalkActivity;
+import com.tcl.isport.bean.SportBean;
 import com.tcl.isport.imodel.ISportModel;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.model.RideModel;
@@ -25,6 +26,12 @@ import com.tcl.isport.model.WalkModel;
 import com.tcl.isport.service.SportLocationService;
 import com.tcl.isport.util.LocationUtil;
 import com.tcl.isport.util.TimeCounter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import static java.lang.Thread.sleep;
 
@@ -49,7 +56,7 @@ public class SportActivityPresenter {
 
     }
 
-    //added start by lishui.lin
+    /*added start by lishui.lin*/
     public SportActivityPresenter(ISportActivity view){
         //构造器通过参数拿到view实例化view接口，根据view的类型初始化model
         this.iSportActivity=view;
@@ -212,7 +219,47 @@ public class SportActivityPresenter {
         }
     }
 
-    //added end by lishui.lin
+    /*单位类型转换*/
+    //String时间类型转为long类型
+    public long convertStrToLong(String timeStr) {
+        long totalSecond = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = null;
+            date = sdf.parse(timeStr);
+            calendar.setTime(date);
+            if ((calendar.get(Calendar.SECOND)) != 0) {
+                totalSecond += (calendar.get(Calendar.SECOND));
+            }
+
+            if ((calendar.get(Calendar.MINUTE)) != 0) {
+                totalSecond += (calendar.get(Calendar.MINUTE))*60;
+            }
+
+            if ((calendar.get(Calendar.HOUR_OF_DAY)) != 0) {
+                totalSecond += (calendar.get(Calendar.HOUR_OF_DAY))*3600;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return totalSecond;
+    }
+
+    /*单位类型转换*/
+    //数据存储模块
+    public void saveSportData(Context mContext) {
+
+        //存储数据到服务器中
+        SportBean sportBean = new SportBean();
+        sportBean.setDistance(iSportActivity.getDistance());
+        sportBean.setDuration(iSportActivity.getDuration());
+        sportBean.setSpeed(iSportActivity.getSpeed());
+        sportBean.setUserId("test leanCloud");
+        iSportModel.saveSportData(mContext,sportBean);
+    }
+    /*added end by lishui.lin*/
 
 
 

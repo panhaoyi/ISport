@@ -20,11 +20,11 @@ import com.tcl.isport.R;
 /**
  * Created by haoyi.pan on 17-9-8.
  */
-public class SportWalkFragment extends Fragment implements View.OnClickListener,ISportFragment {
+public class SportWalkFragment extends Fragment implements View.OnClickListener, ISportFragment {
     //主界面-运动-跑步
     private ImageView route_walk_sport;
     private Button start_walk_sport;
-    private TextView distance_walk_sport,duration_walk_sport,track_walk_sport;
+    private TextView distance_walk_sport, duration_walk_sport, track_walk_sport;
     private SportFragmentPresenter sportWalkPresenter;
 
     @Nullable
@@ -40,7 +40,7 @@ public class SportWalkFragment extends Fragment implements View.OnClickListener,
         track_walk_sport = (TextView) view.findViewById(R.id.track_walk_sport);
         track_walk_sport.setOnClickListener(this);
 
-        sportWalkPresenter=new SportFragmentPresenter(this);
+        sportWalkPresenter = new SportFragmentPresenter(this);
         sportWalkPresenter.loadData();
         return view;
     }
@@ -79,5 +79,11 @@ public class SportWalkFragment extends Fragment implements View.OnClickListener,
     @Override
     public void setDuration(String duration) {
         duration_walk_sport.setText(duration);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sportWalkPresenter.getSportData();
     }
 }

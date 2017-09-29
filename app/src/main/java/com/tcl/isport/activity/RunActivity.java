@@ -14,6 +14,8 @@ import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
+import java.util.Date;
+
 
 public class RunActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener {
 
@@ -131,6 +133,8 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
                 runActivityPresenter.unbindLocationService(this);
                 runActivityPresenter.stopLocationService(this);
                 runActivityPresenter.stopTime();
+
+                runActivityPresenter.saveSportData(this);
                 this.finish();
                 break;
         }
@@ -150,6 +154,22 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     public void setDuration(String duration) {
         duration_run.setText(duration);
     }
+
+    @Override
+    public String getDistance() {
+        return distance_run.getText().toString();
+    }
+
+    @Override
+    public long getDuration() {
+        return  runActivityPresenter.convertStrToLong(duration_run.getText().toString());
+    }
+
+    @Override
+    public String getSpeed() {
+        return duration_run.getText().toString();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

@@ -15,6 +15,7 @@ import com.tcl.isport.activity.CountdownActivity;
 import com.tcl.isport.activity.RunActivity;
 import com.tcl.isport.iview.ISportFragment;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.SportFragmentPresenter;
 
 /**
  * Created by haoyi.pan on 17-9-8.
@@ -24,6 +25,8 @@ public class SportRunFragment extends Fragment implements View.OnClickListener,I
     private ImageView route_run_sport;
     private Button start_run_sport;
     private TextView distance_run_sport,duration_run_sport,track_run_sport;
+
+    private SportFragmentPresenter sportRunPresenter;
 
     @Nullable
     @Override
@@ -37,6 +40,9 @@ public class SportRunFragment extends Fragment implements View.OnClickListener,I
         duration_run_sport = (TextView) view.findViewById(R.id.duration_run_sport);
         track_run_sport = (TextView) view.findViewById(R.id.track_run_sport);
         track_run_sport.setOnClickListener(this);
+
+        sportRunPresenter=new SportFragmentPresenter(this);
+        sportRunPresenter.loadData();
         return view;
     }
 
@@ -74,5 +80,11 @@ public class SportRunFragment extends Fragment implements View.OnClickListener,I
     @Override
     public void setDuration(String duration) {
         duration_run_sport.setText(duration);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sportRunPresenter.getSportData();
     }
 }

@@ -15,15 +15,17 @@ import com.tcl.isport.activity.CountdownActivity;
 import com.tcl.isport.activity.RideActivity;
 import com.tcl.isport.iview.ISportFragment;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.SportFragmentPresenter;
 
 /**
  * Created by haoyi.pan on 17-9-8.
  */
-public class SportRideFragment extends Fragment implements View.OnClickListener,ISportFragment {
+public class SportRideFragment extends Fragment implements View.OnClickListener, ISportFragment {
     //主界面-运动-跑步
     private ImageView route_ride_sport;
     private Button start_ride_sport;
-    private TextView distance_ride_sport,duration_ride_sport,track_ride_sport;
+    private TextView distance_ride_sport, duration_ride_sport, track_ride_sport;
+    private SportFragmentPresenter sportRidePresenter;
 
     @Nullable
     @Override
@@ -37,6 +39,9 @@ public class SportRideFragment extends Fragment implements View.OnClickListener,
         duration_ride_sport = (TextView) view.findViewById(R.id.duration_ride_sport);
         track_ride_sport = (TextView) view.findViewById(R.id.track_ride_sport);
         track_ride_sport.setOnClickListener(this);
+
+        sportRidePresenter = new SportFragmentPresenter(this);
+        sportRidePresenter.loadData();
         return view;
     }
 
@@ -74,5 +79,11 @@ public class SportRideFragment extends Fragment implements View.OnClickListener,
     @Override
     public void setDuration(String duration) {
         duration_ride_sport.setText(duration);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sportRidePresenter.getSportData();
     }
 }

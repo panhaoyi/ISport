@@ -14,6 +14,8 @@ import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
+import java.util.Date;
+
 public class RideActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener  {
 
     //主界面-运动-健走-Go
@@ -138,6 +140,8 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
                 rideActivityPresenter.unbindLocationService(this);
                 rideActivityPresenter.stopLocationService(this);
                 rideActivityPresenter.stopTime();
+
+                rideActivityPresenter.saveSportData(this);
                 this.finish();
                 break;
         }
@@ -158,6 +162,21 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
     @Override
     public void setDuration(String duration) {
         duration_ride.setText(duration);
+    }
+
+    @Override
+    public String getDistance() {
+        return distance_ride.getText().toString();
+    }
+
+    @Override
+    public long getDuration() {
+        return  rideActivityPresenter.convertStrToLong(duration_ride.getText().toString());
+    }
+
+    @Override
+    public String getSpeed() {
+        return duration_ride.getText().toString();
     }
 
 
