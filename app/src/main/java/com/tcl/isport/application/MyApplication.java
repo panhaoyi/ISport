@@ -30,6 +30,8 @@ public class MyApplication extends Application {
         AVOSCloud.initialize(this,APP_ID,APP_KEY);
         //开启leancloud debug log
         AVOSCloud.setDebugLogEnabled(true);
+        AVAnalytics.enableCrashReport(this, true);
+
         //获取状态栏高度
         //获取status_bar_height资源的ID
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
