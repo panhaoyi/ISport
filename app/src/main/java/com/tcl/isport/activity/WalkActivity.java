@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
@@ -184,11 +185,13 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     @Override
     protected void onResume() {
         super.onResume();
+        AVAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        AVAnalytics.onPause(this);
     }
 
     @Override
