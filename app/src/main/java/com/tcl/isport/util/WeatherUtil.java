@@ -78,14 +78,14 @@ public class WeatherUtil {
                     city = aMapLocation.getCity();
                     //初始化天气
                     initWeather(city);
-                    Log.e(LocationUtil.ISPORT_TAG, city);
+//                    Log.e(LocationUtil.ISPORT_TAG, city);
                     //此时停止定位
                     stopLocation();
                 } else {
-                    Log.e(LocationUtil.ISPORT_TAG, "无定位数据");
+//                    Log.e(LocationUtil.ISPORT_TAG, "无定位数据");
                 }
             } else {
-                Log.e(LocationUtil.ISPORT_TAG, "定位失败");
+//                Log.e(LocationUtil.ISPORT_TAG, "定位失败");
             }
         }
     };
@@ -114,7 +114,7 @@ public class WeatherUtil {
                     weather = weatherLive.getWeather();
 
                     homeFragmentPresenter.setWeather(weather);
-                    Log.e(LocationUtil.ISPORT_TAG, weatherLive.getWeather());
+//                    Log.e(LocationUtil.ISPORT_TAG, weatherLive.getWeather());
                 }
             }
 

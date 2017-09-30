@@ -75,9 +75,9 @@ public class WalkModel implements ISportModel {
             public void done(AVException e) {
                 if (e == null) {
                     //提示成功的Toast
-                    Toast.makeText(mContext, "添加数据成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "添加健走数据成功！", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "添加数据失败！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "添加健走数据失败！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -109,7 +109,7 @@ public class WalkModel implements ISportModel {
     public void findHomeSportData() {
         final List<AVObject> sportBeanList = new ArrayList<>();
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_WALK);
-        avQuery.selectKeys(Arrays.asList("distance", "duration"));
+        avQuery.selectKeys(Arrays.asList("distance", "duration", "step"));
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {

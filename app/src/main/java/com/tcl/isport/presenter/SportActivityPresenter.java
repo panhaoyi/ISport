@@ -256,6 +256,7 @@ public class SportActivityPresenter {
         sportBean.setDistance(iSportActivity.getDistance());
         sportBean.setDuration(iSportActivity.getDuration());
         sportBean.setSpeed(iSportActivity.getSpeed());
+        sportBean.setStep(iSportActivity.getStep());
         sportBean.setUserId("test leanCloud");
         iSportModel.saveSportData(mContext,sportBean);
     }

@@ -8,8 +8,10 @@ public interface ISportActivity {
     void setDistance(String distance);
     void setSpeed(String speed);
     void setDuration(String duration);
+    void setStep(String step);
 
     String getDistance();
     long getDuration();
     String getSpeed();
+    int getStep();
 }

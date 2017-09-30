@@ -85,13 +85,30 @@ public class HomeFragmentPresenter implements WeatherUtil.IWeather, WalkModel.IW
         iSportModel.findHomeSportData();
     }
 
-    private void refreshHomeData() {
+    //更新主页模块的骑行信息
+    private void refreshHomeRideData() {
         if (SportUtil.getTotalDistance(sportDataList) != null){
             iHomeFragment.setDistance(SportUtil.getTotalDistance(sportDataList));
         }
         if (SportUtil.getTotalTime(sportDataList) != null) {
             iHomeFragment.setDuration(SportUtil.getTotalTime(sportDataList));
         }
+
+        iHomeFragment.setTimes(SportUtil.getTotalTimes(sportDataList));
+        iHomeFragment.setSpeed(SportUtil.getAverageSpeed(sportDataList));
+
+    }
+    //更新主页模块的健走和跑步信息
+    private void refreshHomeWalkRunData() {
+        if (SportUtil.getTotalDistance(sportDataList) != null){
+            iHomeFragment.setDistance(SportUtil.getTotalDistance(sportDataList));
+        }
+        if (SportUtil.getTotalTime(sportDataList) != null) {
+            iHomeFragment.setDuration(SportUtil.getTotalTime(sportDataList));
+        }
+        iHomeFragment.setStep(SportUtil.getTotalStep(sportDataList));
+        iHomeFragment.setTimes(SportUtil.getTotalTimes(sportDataList));
+        iHomeFragment.setSpeed(SportUtil.getAverageSpeed(sportDataList));
 
     }
 
@@ -102,7 +119,7 @@ public class HomeFragmentPresenter implements WeatherUtil.IWeather, WalkModel.IW
 
     @Override
     public void doInWalkToHome() {
-        refreshHomeData();
+        refreshHomeWalkRunData();
     }
 
     @Override
@@ -112,7 +129,7 @@ public class HomeFragmentPresenter implements WeatherUtil.IWeather, WalkModel.IW
 
     @Override
     public void doInRunToHome() {
-        refreshHomeData();
+        refreshHomeWalkRunData();
     }
 
     @Override
@@ -122,6 +139,6 @@ public class HomeFragmentPresenter implements WeatherUtil.IWeather, WalkModel.IW
 
     @Override
     public void doInRideToHome() {
-        refreshHomeData();
+        refreshHomeRideData();
     }
 }

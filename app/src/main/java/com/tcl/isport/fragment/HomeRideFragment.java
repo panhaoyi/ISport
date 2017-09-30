@@ -23,7 +23,7 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     private HomeFragmentPresenter homeRideFragmentPresenter;
     private TextView mWeatherRideHome;
     private ImageView mWeatherIconRideHome;
-    private TextView distance_ride_home,duration_ride_home;
+    private TextView distance_ride_home,duration_ride_home, timescount_ride_home, speed_ride_home;
 
     @Nullable
     @Override
@@ -41,6 +41,8 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
 
         distance_ride_home = (TextView) view.findViewById(R.id.distance_ride_home);
         duration_ride_home = (TextView) view.findViewById(R.id.duration_ride_home);
+        timescount_ride_home = (TextView) view.findViewById(R.id.timescount_ride_home);
+        speed_ride_home = (TextView) view.findViewById(R.id.speed_ride_home);
     }
 
     @Override
@@ -60,12 +62,12 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
 
     @Override
     public void setTimes(String times) {
-
+        timescount_ride_home.setText(times);
     }
 
     @Override
     public void setSpeed(String speed) {
-
+        speed_ride_home.setText(speed);
     }
 
     @Override

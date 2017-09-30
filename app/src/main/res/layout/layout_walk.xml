@@ -32,7 +32,8 @@
         android:layout_height="33dp"
         android:layout_marginStart="146dp"
         android:layout_marginTop="248dp"
-        android:text="3478"
+        android:text="0"
+        android:textAlignment="center"
         android:textColor="#db6892"
         android:textSize="24sp" />
 

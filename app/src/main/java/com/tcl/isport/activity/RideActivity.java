@@ -165,6 +165,11 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
     }
 
     @Override
+    public void setStep(String step) {
+        //ride模式没有步数step
+    }
+
+    @Override
     public String getDistance() {
         return distance_ride.getText().toString();
     }
@@ -177,6 +182,12 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
     @Override
     public String getSpeed() {
         return duration_ride.getText().toString();
+    }
+
+    @Override
+    public int getStep() {
+        //返回-1状态码，表征ride
+        return -1;
     }
 
 

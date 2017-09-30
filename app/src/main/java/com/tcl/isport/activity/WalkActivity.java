@@ -30,7 +30,7 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
-    private TextView distance_walk,speed_walk,duration_walk;
+    private TextView distance_walk,speed_walk,duration_walk,step_walk;
     private ImageView map_walk,camera_walk, start_pause_walk, stop_walk;
     private String start_pause = "pause";
     private SportActivityPresenter walkActivityPresenter;
@@ -51,6 +51,7 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         distance_walk= (TextView) findViewById(R.id.distance_walk);
         speed_walk= (TextView) findViewById(R.id.speed_walk);
         duration_walk= (TextView) findViewById(R.id.duration_walk);
+        step_walk = (TextView) findViewById(R.id.step_walk);
         map_walk= (ImageView) findViewById(R.id.map_walk);
         map_walk.setOnClickListener(this);
         camera_walk = (ImageView) findViewById(R.id.camera_walk);
@@ -173,6 +174,11 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     }
 
     @Override
+    public void setStep(String step) {
+        step_walk.setText(step);
+    }
+
+    @Override
     public String getDistance() {
         return distance_walk.getText().toString();
     }
@@ -185,6 +191,11 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     @Override
     public String getSpeed() {
         return speed_walk.getText().toString();
+    }
+
+    @Override
+    public int getStep() {
+        return Integer.valueOf(step_walk.getText().toString());
     }
 
     @Override

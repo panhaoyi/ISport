@@ -52,7 +52,18 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
         iSportModel.findSportData();
     }
 
-    public void refreshData() {
+    //更新运动模块的骑行信息
+    private void refreshRideData() {
+        if (SportUtil.getTotalDistance(sportDataList) != null){
+            iSportFragment.setDistance(SportUtil.getTotalDistance(sportDataList));
+        }
+        if (SportUtil.getTotalTime(sportDataList) != null) {
+            iSportFragment.setDuration(SportUtil.getTotalTime(sportDataList));
+        }
+
+    }
+    //更新运动模块的健走和跑步信息
+    private void refreshWalkRunData() {
         if (SportUtil.getTotalDistance(sportDataList) != null){
             iSportFragment.setDistance(SportUtil.getTotalDistance(sportDataList));
         }
@@ -69,7 +80,7 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
 
     @Override
     public void doInWalk() {
-        refreshData();
+        refreshWalkRunData();
     }
 
     @Override
@@ -79,7 +90,7 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
 
     @Override
     public void doInRun() {
-        refreshData();
+        refreshWalkRunData();
     }
 
     @Override
@@ -89,7 +100,7 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
 
     @Override
     public void doInRide() {
-        refreshData();
+        refreshRideData();
     }
 
     /*added end by lishui.lin in 2017-09-29*/

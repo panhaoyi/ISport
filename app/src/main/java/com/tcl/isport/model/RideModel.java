@@ -69,9 +69,9 @@ public class RideModel implements ISportModel {
             public void done(AVException e) {
                 if (e == null) {
                     //提示成功的Toast
-                    Toast.makeText(mContext, "添加数据成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "添加骑行数据成功！", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "添加数据失败！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "添加骑行数据失败！", Toast.LENGTH_SHORT).show();
                 }
             }
         });

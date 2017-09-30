@@ -26,7 +26,7 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     private HomeFragmentPresenter homeWalkFragmentPresenter;
     private TextView mWeatherWalkHome;
     private ImageView mWeatherIconWalkHome;
-    private TextView distance_walk_home,duration_walk_home;
+    private TextView distance_walk_home,duration_walk_home, step_walk_home, timescount_walk_home, speed_walk_home;
 
     @Nullable
     @Override
@@ -44,6 +44,9 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
 
         distance_walk_home = (TextView) view.findViewById(R.id.distance_walk_home);
         duration_walk_home = (TextView) view.findViewById(R.id.duration_walk_home);
+        step_walk_home = (TextView) view.findViewById(R.id.step_walk_home);
+        timescount_walk_home = (TextView) view.findViewById(R.id.timescount_walk_home);
+        speed_walk_home = (TextView) view.findViewById(R.id.speed_walk_home);
     }
 
     @Override
@@ -58,17 +61,17 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
 
     @Override
     public void setStep(String step) {
-
+        step_walk_home.setText(step);
     }
 
     @Override
     public void setTimes(String times) {
-
+        timescount_walk_home.setText(times);
     }
 
     @Override
     public void setSpeed(String speed) {
-
+        speed_walk_home.setText(speed);
     }
 
     @Override
