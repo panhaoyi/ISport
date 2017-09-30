@@ -23,6 +23,7 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     private HomeFragmentPresenter homeRideFragmentPresenter;
     private TextView mWeatherRideHome;
     private ImageView mWeatherIconRideHome;
+    private TextView distance_ride_home,duration_ride_home;
 
     @Nullable
     @Override
@@ -37,16 +38,19 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     private void initView() {
         mWeatherRideHome = (TextView) view.findViewById(R.id.weather_ride_home);
         mWeatherIconRideHome = (ImageView) view.findViewById(R.id.weather_icon_ride_home);
+
+        distance_ride_home = (TextView) view.findViewById(R.id.distance_ride_home);
+        duration_ride_home = (TextView) view.findViewById(R.id.duration_ride_home);
     }
 
     @Override
     public void setDistance(String distance) {
-
+        distance_ride_home.setText(distance);
     }
 
     @Override
     public void setDuration(String duration) {
-
+        duration_ride_home.setText(duration);
     }
 
     @Override
@@ -81,5 +85,11 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     @Override
     public void setHistory() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        homeRideFragmentPresenter.getHomeSportData();
     }
 }
