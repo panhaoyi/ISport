@@ -11,9 +11,12 @@ import com.avos.avoscloud.SaveCallback;
 import com.tcl.isport.bean.Constant;
 import com.tcl.isport.bean.SportBean;
 import com.tcl.isport.imodel.ISportModel;
+import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.presenter.SportFragmentPresenter;
+import com.tcl.isport.util.SportUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,9 +25,14 @@ import java.util.List;
 public class RideModel implements ISportModel {
     //Ride数据模型接口实现
 
+    private HomeFragmentPresenter homeFragmentPresenter;
     private SportFragmentPresenter sportFragmentPresenter;
     public RideModel() {
 
+    }
+
+    public RideModel(HomeFragmentPresenter homeFragmentPresenter) {
+        this.homeFragmentPresenter = homeFragmentPresenter;
     }
 
     public RideModel(SportFragmentPresenter sportFragmentPresenter) {
@@ -54,15 +62,16 @@ public class RideModel implements ISportModel {
         ride.put("duration", sportBean.getDuration());
         ride.put("speed", sportBean.getSpeed());
         ride.put("step", sportBean.getStep());
+        ride.put("time", SportUtil.getNow());
         ride.put("userId", sportBean.getUserId());
         ride.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
                 if (e == null) {
                     //提示成功的Toast
-                    Toast.makeText(mContext, "添加数据成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "添加骑行数据成功！", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "添加数据失败！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "添加骑行数据失败！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -72,7 +81,8 @@ public class RideModel implements ISportModel {
     public void findSportData() {
         final List<AVObject> sportBeanList = new ArrayList<>();
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RIDE);
-//        avQuery.selectKeys(Arrays.asList("distance", "duration"));
+        avQuery.whereContains("time", SportUtil.getTodayDate());
+        avQuery.selectKeys(Arrays.asList("distance", "duration"));
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -80,6 +90,26 @@ public class RideModel implements ISportModel {
                     sportBeanList.addAll(list);
                     sportFragmentPresenter.setRideData(sportBeanList);
                     sportFragmentPresenter.doInRide();
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    public void findHomeSportData() {
+        final List<AVObject> sportBeanList = new ArrayList<>();
+        AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RIDE);
+        avQuery.selectKeys(Arrays.asList("distance", "duration"));
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    sportBeanList.addAll(list);
+                    homeFragmentPresenter.setRideDataToHome(sportBeanList);
+                    homeFragmentPresenter.doInRideToHome();
 
                 } else {
                     e.printStackTrace();
@@ -88,11 +118,16 @@ public class RideModel implements ISportModel {
             }
         });
     }
+
     public interface IRideModel{
         void setRideData(List<AVObject> lists);
         void doInRide();
     }
 
+    public interface IRideModeToHome {
+        void setRideDataToHome(List<AVObject> lists);
+        void doInRideToHome();
+    }
      /*  added end by lishui.lin on 17-9-29*/
 
 

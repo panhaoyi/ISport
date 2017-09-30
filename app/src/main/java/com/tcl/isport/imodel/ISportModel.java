@@ -28,4 +28,7 @@ public interface ISportModel {
     void saveSportData(Context mContext, SportBean sportBean);
 
     void findSportData();
+
+    //获取服务器数据到主页，
+    void findHomeSportData();
 }

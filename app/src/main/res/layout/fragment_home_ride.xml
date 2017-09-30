@@ -74,14 +74,14 @@
 
     <TextView
         android:id="@+id/duration_ride_home"
-        android:layout_width="54dp"
+        android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:layout_marginTop="215dp"
         android:layout_marginStart="156dp"
         android:gravity="center"
         android:text="0 h"
         android:textColor="#9b9b9b"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

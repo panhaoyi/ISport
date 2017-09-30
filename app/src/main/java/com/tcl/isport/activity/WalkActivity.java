@@ -51,7 +51,9 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         distance_walk= (TextView) findViewById(R.id.distance_walk);
         speed_walk= (TextView) findViewById(R.id.speed_walk);
         duration_walk= (TextView) findViewById(R.id.duration_walk);
-        step_walk= (TextView) findViewById(R.id.step_walk);
+
+        step_walk = (TextView) findViewById(R.id.step_walk);
+
         map_walk= (ImageView) findViewById(R.id.map_walk);
         map_walk.setOnClickListener(this);
         camera_walk = (ImageView) findViewById(R.id.camera_walk);
@@ -181,6 +183,7 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         step_walk.setText(""+step);
     }
     /*end add by haoyi.pan on 2017-9-30*/
+
 
     @Override
     public String getDistance() {

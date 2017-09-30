@@ -10,6 +10,7 @@ public interface ISportActivity {
     void setDuration(String duration);
     void setStep(int step);
 
+
     String getDistance();
     long getDuration();
     String getSpeed();

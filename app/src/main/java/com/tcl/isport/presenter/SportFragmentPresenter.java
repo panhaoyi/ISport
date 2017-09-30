@@ -9,8 +9,11 @@ import com.tcl.isport.iview.ISportFragment;
 import com.tcl.isport.model.RideModel;
 import com.tcl.isport.model.RunModel;
 import com.tcl.isport.model.WalkModel;
+import com.tcl.isport.util.LocationUtil;
+import com.tcl.isport.util.SportUtil;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -49,59 +52,23 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
         iSportModel.findSportData();
     }
 
-    //获取总距离
-    public String getTotalDistance() {
-        float totalDistance = 0f;
-        if (sportDataList != null && !sportDataList.isEmpty()) {
-            for (int i = 0; i < sportDataList.size(); i++) {
-                if (sportDataList.get(i).get("distance") != null){
-                    totalDistance += Float.valueOf((String) sportDataList.get(i).get("distance"));
-                }
-
-            }
-            DecimalFormat fnum = new DecimalFormat("#0.00");
-            return fnum.format(totalDistance);
-        } else {
-            return null;
+    //更新运动模块的骑行信息
+    private void refreshRideData() {
+        if (SportUtil.getTotalDistance(sportDataList) != null){
+            iSportFragment.setDistance(SportUtil.getTotalDistance(sportDataList));
+        }
+        if (SportUtil.getTotalTime(sportDataList) != null) {
+            iSportFragment.setDuration(SportUtil.getTotalTime(sportDataList));
         }
 
     }
-
-    //获取总时间
-    public String getTotalTime() {
-
-        if (sportDataList != null && !sportDataList.isEmpty()) {
-            long time = 0L;
-            for (int i = 0; i < sportDataList.size(); i++) {
-                if (sportDataList.get(i).get("duration") != null) {
-                    time += (Integer) sportDataList.get(i).get("duration");
-                }
-            }
-            if (time < 60) {
-
-                return time + " s";
-            } else if (time < 3600) {
-                long min = time / 60;
-                long sec = time - min * 60;
-                return min + "." + sec + " mins";
-            } else {
-                long hour = time / 3600;
-                time = time - hour * 3600;
-                long min = time / 60;
-                long sec = time - min * 60;
-                return hour + " h" + min + " mins" + sec + " s";
-            }
-        } else {
-            return null;
+    //更新运动模块的健走和跑步信息
+    private void refreshWalkRunData() {
+        if (SportUtil.getTotalDistance(sportDataList) != null){
+            iSportFragment.setDistance(SportUtil.getTotalDistance(sportDataList));
         }
-    }
-
-    public void refreshData() {
-        if (getTotalDistance() != null){
-            iSportFragment.setDistance(getTotalDistance());
-        }
-        if (getTotalTime() != null) {
-            iSportFragment.setDuration(getTotalTime());
+        if (SportUtil.getTotalTime(sportDataList) != null) {
+            iSportFragment.setDuration(SportUtil.getTotalTime(sportDataList));
         }
 
     }
@@ -113,7 +80,7 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
 
     @Override
     public void doInWalk() {
-        refreshData();
+        refreshWalkRunData();
     }
 
     @Override
@@ -123,7 +90,7 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
 
     @Override
     public void doInRun() {
-        refreshData();
+        refreshWalkRunData();
     }
 
     @Override
@@ -133,7 +100,7 @@ public class SportFragmentPresenter implements WalkModel.IWalkModel, RunModel.IR
 
     @Override
     public void doInRide() {
-        refreshData();
+        refreshRideData();
     }
 
     /*added end by lishui.lin in 2017-09-29*/

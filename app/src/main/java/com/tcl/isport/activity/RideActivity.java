@@ -166,7 +166,7 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
 
     @Override
     public void setStep(int step) {
-
+        //ride模式没有步数step
     }
 
     @Override
@@ -186,7 +186,7 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
 
     @Override
     public int getStep() {
-        return 0;
+        return -1;
     }
 
 
