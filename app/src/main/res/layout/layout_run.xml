@@ -29,10 +29,11 @@
 
     <TextView
         android:id="@+id/step_run"
-        android:layout_width="77dp"
+        android:layout_width="70dp"
         android:layout_height="33dp"
-        android:layout_marginStart="146dp"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="248dp"
+        android:gravity="center"
         android:text="3478"
         android:textColor="#db6892"
         android:textSize="24sp" />
@@ -40,8 +41,8 @@
     <TextView
         android:layout_width="12dp"
         android:layout_height="22dp"
-        android:layout_alignBottom="@+id/step_run"
-        android:layout_alignEnd="@+id/step_run"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="260dp"
         android:text="步"
         android:textColor="#db6892"
         android:textSize="12sp" />

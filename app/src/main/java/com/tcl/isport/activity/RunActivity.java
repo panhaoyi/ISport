@@ -22,7 +22,7 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
-    private TextView distance_run, speed_run, duration_run;
+    private TextView distance_run, speed_run, duration_run,step_run;
     private ImageView map_run, camera_run, start_pause_run, stop_run;
     private String start_pause = "pause";
     private SportActivityPresenter runActivityPresenter;
@@ -44,6 +44,7 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         distance_run = (TextView) findViewById(R.id.distance_run);
         speed_run = (TextView) findViewById(R.id.speed_run);
         duration_run = (TextView) findViewById(R.id.duration_run);
+        step_run= (TextView) findViewById(R.id.step_run);
         map_run = (ImageView) findViewById(R.id.map_run);
         map_run.setOnClickListener(this);
         camera_run = (ImageView) findViewById(R.id.camera_run);
@@ -57,6 +58,7 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         //启动服务，在点击事件设置一个flag判断是否首次启动服务
         runActivityPresenter.startLocationService(this);
         runActivityPresenter.bindLocationService(this);
+        runActivityPresenter.startStepService(this);
         //启动倒计时，当一直没有点击开始运动，则停止定位
 //        runActivityPresenter.startCountDown();
     }
@@ -132,6 +134,7 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
             case R.id.stop_run :
                 runActivityPresenter.unbindLocationService(this);
                 runActivityPresenter.stopLocationService(this);
+                runActivityPresenter.stopStepService(this);
                 runActivityPresenter.stopTime();
 
                 runActivityPresenter.saveSportData(this);
@@ -160,10 +163,24 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         return distance_run.getText().toString();
     }
 
+    /*start add by haoyi.pan on 2017-9-30*/
+    @Override
+    public void setStep(int step) {
+        step_run.setText(""+step);
+    }
+    /*end add by haoyi.pan on 2017-9-30*/
+
     @Override
     public long getDuration() {
         return  runActivityPresenter.convertStrToLong(duration_run.getText().toString());
     }
+
+    /*start add by haoyi.pan on 2017-9-30*/
+    @Override
+    public int getStep() {
+        return Integer.valueOf(step_run.getText().toString());
+    }
+    /*end add by haoyi.pan on 2017-9-30*/
 
     @Override
     public String getSpeed() {
@@ -186,6 +203,7 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         //停止服务和计时器
         runActivityPresenter.unbindLocationService(this);
         runActivityPresenter.stopLocationService(this);
+        runActivityPresenter.stopStepService(this);
         runActivityPresenter.stopTime();
     }
 

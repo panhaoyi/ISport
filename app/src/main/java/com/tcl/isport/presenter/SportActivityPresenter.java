@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Binder;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -24,7 +25,9 @@ import com.tcl.isport.model.RideModel;
 import com.tcl.isport.model.RunModel;
 import com.tcl.isport.model.WalkModel;
 import com.tcl.isport.service.SportLocationService;
+import com.tcl.isport.service.StepService;
 import com.tcl.isport.util.LocationUtil;
+import com.tcl.isport.util.StepDetector;
 import com.tcl.isport.util.TimeCounter;
 
 import java.text.ParseException;
@@ -44,9 +47,10 @@ public class SportActivityPresenter {
     private ISportModel iSportModel;
     private ISportActivity iSportActivity;
     private SportLocationService.MyBinder mBinder;
+    private Binder binder;
 
     private boolean isBind = false;
-    private boolean isRun = false;
+    public static boolean isRun = false;
     //计时器是否开始运作
     private boolean isStartRun = false;
     //位置监听是否进行中
@@ -71,18 +75,39 @@ public class SportActivityPresenter {
         }
     }
 
+    /*start add by haoyi.pan on 2017-9-30*/
+    public void startStepService(Context mContext){
+
+        mContext.startService(new Intent(mContext,StepService.class));
+
+    }
+
+    public void stopStepService(Context mContext){
+        mContext.stopService(new Intent(mContext,StepService.class));
+    }
+    /*end add by haoyi.pan on 2017-9-30*/
 
     public void startLocationService(Context mContext) {
         mContext.startService(new Intent(mContext, SportLocationService.class));
+        /*start add by haoyi.pan on 2017-9-30*/
+//        mContext.startService(new Intent(mContext,StepService.class));
+        /*end add by haoyi.pan on 2017-9-30*/
     }
 
     public void stopLocationService(Context mContext) {
         mContext.stopService(new Intent(mContext, SportLocationService.class));
+        /*start add by haoyi.pan on 2017-9-30*/
+//        mContext.stopService(new Intent(mContext,StepService.class));
+        /*end add by haoyi.pan on 2017-9-30*/
     }
 
     public void bindLocationService(Context mContext) {
         Intent intent = new Intent(mContext, SportLocationService.class);
         mContext.bindService(intent, connection, Service.BIND_AUTO_CREATE);
+//        /*start add by haoyi.pan on 2017-9-30*/
+//        Intent intentStep=new Intent(mContext,StepService.class);
+//        mContext.bindService(intentStep,connection,Service.BIND_AUTO_CREATE);
+//        /*end add by haoyi.pan on 2017-9-30*/
     }
 
     public void unbindLocationService(Context mContext) {
@@ -96,8 +121,7 @@ public class SportActivityPresenter {
     ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mBinder = (SportLocationService.MyBinder) service;
-
+                mBinder = (SportLocationService.MyBinder) service;
             //连接成功则开始计时
             startTime();
             setTimeRun(true);
@@ -133,6 +157,7 @@ public class SportActivityPresenter {
     public void pauseTime() {
         if (timeCounter != null) {
             timeCounter.pauseTime();
+            isRun = false;
         }
     }
 
@@ -188,6 +213,10 @@ public class SportActivityPresenter {
         }
         return "--'--";
     }
+    private int getStepCount(){
+        Log.v("SportActivityPresenter",StepDetector.CURRENT_STEP+"");
+        return StepDetector.CURRENT_STEP;
+    }
     //Handler使其能够在主线程执行
     Handler mHandler = new Handler(){
         @Override
@@ -197,6 +226,7 @@ public class SportActivityPresenter {
                 case 12345:
                     iSportActivity.setDuration(getTime());
                     iSportActivity.setDistance(getKilometers());
+                    iSportActivity.setStep(getStepCount());
                     iSportActivity.setSpeed(getMinforKilos());
                     break;
             }
@@ -256,6 +286,9 @@ public class SportActivityPresenter {
         sportBean.setDistance(iSportActivity.getDistance());
         sportBean.setDuration(iSportActivity.getDuration());
         sportBean.setSpeed(iSportActivity.getSpeed());
+        /*start add by haoyi.pan on 2017-9-30*/
+        sportBean.setStep(iSportActivity.getStep());
+        /*end add by haoyi.pan on 2017-9-30*/
         sportBean.setUserId("test leanCloud");
         iSportModel.saveSportData(mContext,sportBean);
     }

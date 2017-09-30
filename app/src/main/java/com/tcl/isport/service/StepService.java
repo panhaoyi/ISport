@@ -12,6 +12,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -29,6 +30,7 @@ import com.tcl.isport.activity.MainActivity;
 import com.tcl.isport.bean.Constant;
 import com.tcl.isport.bean.StepData;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.util.DbUtil;
 import com.tcl.isport.util.StepDetector;
 
@@ -44,13 +46,13 @@ public class StepService extends Service implements SensorEventListener {
     //计步器服务
     final String TAG = "StepService";
     private static int duration = 30000;
-    private static String CURRENTDATE = "";
+//    private static String CURRENTDATE = "";
     private SensorManager sensorManager;
     private StepDetector stepDetector;
     private NotificationManager nm;
     private NotificationCompat.Builder builder;
-    private Messenger messenger = new Messenger(new MessengerHandler());
-    private BroadcastReceiver mBatInfoReceiver;
+//    private Messenger messenger = new Messenger(new MessengerHandler());
+//    private BroadcastReceiver mBatInfoReceiver;
     private PowerManager.WakeLock mWakeLock;
     private TimeCount time;
 
@@ -60,15 +62,15 @@ public class StepService extends Service implements SensorEventListener {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return messenger.getBinder();
+        return new Binder();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        CURRENTDATE = getTodayDate();
-        //注册开屏关屏等广播
-        initBroadcastReceiver();
+//        CURRENTDATE = getTodayDate();
+//        //注册开屏关屏等广播以在不同情况下使用不同的保存频率
+//        initBroadcastReceiver();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -81,101 +83,101 @@ public class StepService extends Service implements SensorEventListener {
         startTimeCount();
 
         initTodayData();
-        updateNotification("今日步数:" + StepDetector.CURRENT_STEP + "步");
+        updateNotification("当前步数:" + StepDetector.CURRENT_STEP + "步");
     }
-
 
     @Override
     public void onDestroy() {
         stopForeground(true);
-        DbUtil.closeDb();
-        unregisterReceiver(mBatInfoReceiver);
+//        DbUtil.closeDb();
+//        unregisterReceiver(mBatInfoReceiver);
         Intent intent = new Intent(this, StepService.class);
-        startService(intent);
+        stopService(intent);
+        nm.cancelAll();
         super.onDestroy();
     }
 
-    private String getTodayDate() {
-        Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(date);
-    }
+//    private String getTodayDate() {
+//        Date date = new Date(System.currentTimeMillis());
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        return sdf.format(date);
+//    }
 
     //初始化广播
-    private void initBroadcastReceiver() {
-        //定义意图过滤器
-        final IntentFilter filter = new IntentFilter();
-        //屏幕灭屏广播
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        //日期变化
-        filter.addAction(Intent.ACTION_TIME_CHANGED);
-        //关闭广播
-        filter.addAction(Intent.ACTION_SHUTDOWN);
-        //屏幕高亮广播
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        //屏幕解锁广播
-        filter.addAction(Intent.ACTION_USER_PRESENT);
-        //长按电源键弹出关机对话框或者锁屏时广播
-        //有时候权限高系统对话框会覆盖在锁屏界面或关机对话框上，所以监听这个广播，当收到时隐藏自己的对话
-        filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
+//    private void initBroadcastReceiver() {
+//        //定义意图过滤器
+//        final IntentFilter filter = new IntentFilter();
+//        //屏幕灭屏广播
+//        filter.addAction(Intent.ACTION_SCREEN_OFF);
+//        //日期变化
+//        filter.addAction(Intent.ACTION_TIME_CHANGED);
+//        //关闭广播
+//        filter.addAction(Intent.ACTION_SHUTDOWN);
+//        //屏幕高亮广播
+//        filter.addAction(Intent.ACTION_SCREEN_ON);
+//        //屏幕解锁广播
+//        filter.addAction(Intent.ACTION_USER_PRESENT);
+//        //长按电源键弹出关机对话框或者锁屏时广播
+//        //有时候权限高系统对话框会覆盖在锁屏界面或关机对话框上，所以监听这个广播，当收到时隐藏自己的对话
+//        filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+//        BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
+//
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                String action = intent.getAction();
+//                switch (action) {
+//                    case Intent.ACTION_SCREEN_ON:
+//                        Log.v(TAG, "screen on");
+//                        break;
+//                    case Intent.ACTION_SCREEN_OFF:
+//                        Log.v(TAG, "screen off");
+//                        save();
+//                        //改为60s存储一次
+//                        duration = 60000;
+//                        break;
+//                    case Intent.ACTION_USER_PRESENT:
+//                        Log.v(TAG, "screen unlock");
+//                        save();
+//                        //30s
+//                        duration = 30000;
+//                        break;
+//                    case Intent.ACTION_CLOSE_SYSTEM_DIALOGS:
+//                        Log.v(TAG, "receive Intent.ACTION_CLOSE_SYSTEM_DIALOGS 出现系统对话框");
+//                        save();
+//                        break;
+//                    case Intent.ACTION_SHUTDOWN:
+//                        Log.v(TAG, "reveive ACTION_SHUTDOWN");
+//                        save();
+//                        break;
+//                    case Intent.ACTION_TIME_CHANGED:
+//                        Log.v(TAG, "receive ACTION_TIME_CHANGED");
+//                        initTodayData();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        };
+//        registerReceiver(mBatInfoReceiver, filter);
+//    }
 
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-                switch (action) {
-                    case Intent.ACTION_SCREEN_ON:
-                        Log.v(TAG, "screen on");
-                        break;
-                    case Intent.ACTION_SCREEN_OFF:
-                        Log.v(TAG, "screen off");
-                        save();
-                        //改为60s存储一次
-                        duration = 60000;
-                        break;
-                    case Intent.ACTION_USER_PRESENT:
-                        Log.v(TAG, "screen unlock");
-                        save();
-                        //30s
-                        duration = 30000;
-                        break;
-                    case Intent.ACTION_CLOSE_SYSTEM_DIALOGS:
-                        Log.v(TAG, "receive Intent.ACTION_CLOSE_SYSTEM_DIALOGS 出现系统对话框");
-                        save();
-                        break;
-                    case Intent.ACTION_SHUTDOWN:
-                        Log.v(TAG, "reveive ACTION_SHUTDOWN");
-                        save();
-                        break;
-                    case Intent.ACTION_TIME_CHANGED:
-                        Log.v(TAG, "receive ACTION_TIME_CHANGED");
-                        initTodayData();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-        registerReceiver(mBatInfoReceiver, filter);
-    }
-
-    private void save() {
-        //保存数据
-        int tempStep = StepDetector.CURRENT_STEP;
-        List<StepData> list = DbUtil.getQueryByDate(CURRENTDATE);
-        if (list.size() == 0 || list.isEmpty()) {
-            StepData data = new StepData();
-            data.setToday(CURRENTDATE);
-            data.setStep(tempStep + "");
-            DbUtil.insert(data);
-        } else if (list.size() == 1) {
-            StepData data = list.get(0);
-            data.setStep(tempStep + "");
-            DbUtil.update(data);
-        } else {
-            Log.v(TAG, "error in save()");
-        }
-    }
+//    private void save() {
+//        //保存数据
+//        int tempStep = StepDetector.CURRENT_STEP;
+//        List<StepData> list = DbUtil.getQueryByDate(CURRENTDATE);
+//        if (list.size() == 0 || list.isEmpty()) {
+//            StepData data = new StepData();
+//            data.setToday(CURRENTDATE);
+//            data.setStep(tempStep + "");
+//            DbUtil.insert(data);
+//        } else if (list.size() == 1) {
+//            StepData data = list.get(0);
+//            data.setStep(tempStep + "");
+//            DbUtil.update(data);
+//        } else {
+//            Log.v(TAG, "error in save()");
+//        }
+//    }
 
     private void startTimeCount() {
         time = new TimeCount(duration, 1000);
@@ -196,8 +198,10 @@ public class StepService extends Service implements SensorEventListener {
         int VERSION_CODES = Build.VERSION.SDK_INT;
         //API>19使用Google内置计步器
         if (VERSION_CODES > 19) {
+            Log.e("StepService","addCountStepLintener()");
             addCountStepListener();
         } else {
+            Log.e("StepService","addBasePedoLintener()");
             addBasePedoListener();
         }
     }
@@ -228,6 +232,7 @@ public class StepService extends Service implements SensorEventListener {
     private void addCountStepListener() {
         //API>19,首先拿到两种传感器,TYPE_STEP_COUNTER计步传感器用于记录本次开机后的步数,重启手机将重置
         //TYPE_STEP_DETECTOR步行检测传感器,每走一步触发一次事件
+        //这里使用TYPE_STEP_DETECTOR便于计算开始计步后的步数
         Sensor detectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 //        Sensor countSensor=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         Sensor countSensor = null;
@@ -254,7 +259,7 @@ public class StepService extends Service implements SensorEventListener {
         stepDetector.setOnSensorChangeListener(new StepDetector.OnSensorChangeListener() {
             @Override
             public void onChange() {
-                updateNotification("今日步数: " + StepDetector.CURRENT_STEP + " 步");
+                updateNotification("当前步数: " + StepDetector.CURRENT_STEP + " 步");
             }
         });
     }
@@ -263,21 +268,24 @@ public class StepService extends Service implements SensorEventListener {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //从数据库中初始化今日步数，并更新通知栏
         initTodayData();
-        updateNotification("今日步数: " + StepDetector.CURRENT_STEP + " 步");
+        updateNotification("当前步数: " + StepDetector.CURRENT_STEP + " 步");
         return START_STICKY;
     }
 
-    //获取当天数据,若为空,步数为0,若存在则获取数据库中的步数
+
     private void initTodayData() {
-        DbUtil.createDb(this);
-        List<StepData> list = DbUtil.getQueryByDate(CURRENTDATE);
-        if (list.size() == 0 || list.isEmpty()) {
-            stepDetector.CURRENT_STEP = 0;
-        } else if (list.size() == 1) {
-            stepDetector.CURRENT_STEP = Integer.parseInt(list.get(0).getStep());
-        } else {
-            Log.v(TAG, "error in initTodayData()");
-        }
+        //初始化数据
+        stepDetector.CURRENT_STEP=0;
+        //获取当天数据,若为空,步数为0,若存在则获取数据库中的步数
+//        DbUtil.createDb(this);
+//        List<StepData> list = DbUtil.getQueryByDate(CURRENTDATE);
+//        if (list.size() == 0 || list.isEmpty()) {
+//            stepDetector.CURRENT_STEP = 0;
+//        } else if (list.size() == 1) {
+//            stepDetector.CURRENT_STEP = Integer.parseInt(list.get(0).getStep());
+//        } else {
+//            Log.v(TAG, "error in initTodayData()");
+//        }
     }
 
     //更新通知
@@ -287,8 +295,8 @@ public class StepService extends Service implements SensorEventListener {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
         builder.setContentIntent(contentIntent);
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setTicker("Pedometer");
-        builder.setContentTitle("Pedometer");
+        builder.setTicker("ISport");
+        builder.setContentTitle("ISport");
         //设置不可清除
         builder.setOngoing(true);
         builder.setContentText(content);
@@ -303,9 +311,12 @@ public class StepService extends Service implements SensorEventListener {
         if (stepSensor == 0) {
             StepDetector.CURRENT_STEP = (int) event.values[0];
         } else if (stepSensor == 1) {
-            StepDetector.CURRENT_STEP++;
+            Log.e("StepService",""+SportActivityPresenter.isRun);
+            if(SportActivityPresenter.isRun){
+                StepDetector.CURRENT_STEP++;
+            }
         }
-        updateNotification("今日步数: " + StepDetector.CURRENT_STEP + " 步");
+        updateNotification("当前步数: " + StepDetector.CURRENT_STEP + " 步");
     }
 
     @Override
@@ -314,28 +325,28 @@ public class StepService extends Service implements SensorEventListener {
     }
 
     //与MainActivity通讯
-    class MessengerHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case Constant.MSG_FROM_CLIENT:
-                    try {
-                        Messenger messenger = msg.replyTo;
-                        Message replyMsg = Message.obtain(null, Constant.MSG_FROM_SERVER);
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("step", StepDetector.CURRENT_STEP);
-                        replyMsg.setData(bundle);
-                        //发送要返回的消息
-                        messenger.send(replyMsg);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    super.handleMessage(msg);
-            }
-        }
-    }
+//    class MessengerHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case Constant.MSG_FROM_CLIENT:
+//                    try {
+//                        Messenger messenger = msg.replyTo;
+//                        Message replyMsg = Message.obtain(null, Constant.MSG_FROM_SERVER);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putInt("step", StepDetector.CURRENT_STEP);
+//                        replyMsg.setData(bundle);
+//                        //发送要返回的消息
+//                        messenger.send(replyMsg);
+//                    } catch (RemoteException e) {
+//                        e.printStackTrace();
+//                    }
+//                    break;
+//                default:
+//                    super.handleMessage(msg);
+//            }
+//        }
+//    }
 
     private class TimeCount extends CountDownTimer {
 
@@ -352,7 +363,7 @@ public class StepService extends Service implements SensorEventListener {
         public void onFinish() {
             //如果计时器正常结束,则保存一次步数
             time.cancel();
-            save();
+//            save();
             startTimeCount();
         }
     }
