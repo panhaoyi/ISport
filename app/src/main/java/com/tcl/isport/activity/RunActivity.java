@@ -44,7 +44,7 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
         distance_run = (TextView) findViewById(R.id.distance_run);
         speed_run = (TextView) findViewById(R.id.speed_run);
         duration_run = (TextView) findViewById(R.id.duration_run);
-        step_run= (TextView) findViewById(R.id.step_run);
+        step_run = (TextView) findViewById(R.id.step_run);
         map_run = (ImageView) findViewById(R.id.map_run);
         map_run.setOnClickListener(this);
         camera_run = (ImageView) findViewById(R.id.camera_run);

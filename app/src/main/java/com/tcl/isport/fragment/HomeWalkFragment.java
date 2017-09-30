@@ -102,6 +102,7 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
     }
 
 }

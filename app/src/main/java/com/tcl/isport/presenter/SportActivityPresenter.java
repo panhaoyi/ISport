@@ -50,6 +50,8 @@ public class SportActivityPresenter {
     private Binder binder;
 
     private boolean isBind = false;
+    //线程运行状态
+    private boolean ThreadRun = true;
     public static boolean isRun = false;
     //计时器是否开始运作
     private boolean isStartRun = false;
@@ -121,7 +123,8 @@ public class SportActivityPresenter {
     ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-                mBinder = (SportLocationService.MyBinder) service;
+            mBinder = (SportLocationService.MyBinder) service;
+
             //连接成功则开始计时
             startTime();
             setTimeRun(true);
@@ -148,16 +151,17 @@ public class SportActivityPresenter {
             isStartRun = true;
             isRun = true;
             freshViewThread = new FreshViewThread();
+            freshViewThread.start();
         }
         timeCounter.startTime();
-        freshViewThread.start();
+        ThreadRun = true;
 
     }
 
     public void pauseTime() {
         if (timeCounter != null) {
             timeCounter.pauseTime();
-            isRun = false;
+            ThreadRun = false;
         }
     }
 
@@ -238,8 +242,11 @@ public class SportActivityPresenter {
 
         @Override
         public void run() {
+            //线程不能死亡，同一名称线程无法再次创建
             while (isRun){
-                mHandler.sendEmptyMessage(12345);
+                if (ThreadRun){
+                    mHandler.sendEmptyMessage(12345);
+                }
                 try {
                     sleep(1000);
                 } catch (InterruptedException e) {
