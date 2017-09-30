@@ -56,11 +56,11 @@ public class SportUtil {
             }
             if (time < 60) {
 
-                return time + "秒";
+                return time + " 秒";
             } else if (time < 3600) {
                 long min = time / 60;
                 long sec = time - min * 60;
-                return min + "." + sec + "分";
+                return min + "." + sec + " 分";
             } else {
                 long hour = time / 3600;
                 time = time - hour * 3600;

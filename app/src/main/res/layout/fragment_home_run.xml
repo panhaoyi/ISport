@@ -93,7 +93,7 @@
         android:gravity="center"
         android:text="0 h"
         android:textColor="#9b9b9b"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
