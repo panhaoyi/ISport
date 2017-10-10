@@ -11,10 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
 import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
 import com.tcl.isport.util.LocationUtil;
+
+import java.util.List;
 
 /**
  * Created by user on 17-9-5.
@@ -26,6 +30,8 @@ public class HomeRunFragment extends Fragment implements IHomeFragment {
     private TextView mWeatherRunHome;
     private ImageView mWeatherIconRunHome;
     private TextView distance_run_home, duration_run_home, step_run_home, timescount_run_home, speed_run_home;
+    //历史记录图表声明
+    private LineChart home_run_history_chart;
 
     @Nullable
     @Override
@@ -45,6 +51,8 @@ public class HomeRunFragment extends Fragment implements IHomeFragment {
         step_run_home = (TextView) view.findViewById(R.id.step_run_home);
         timescount_run_home = (TextView) view.findViewById(R.id.timescount_run_home);
         speed_run_home = (TextView) view.findViewById(R.id.speed_run_home);
+        home_run_history_chart = (LineChart) view.findViewById(R.id.home_run_history_chart);
+
     }
 
     @Override
@@ -87,13 +95,14 @@ public class HomeRunFragment extends Fragment implements IHomeFragment {
     }
 
     @Override
-    public void setHistory() {
-
+    public void setHistory(int type) {
+        homeRunFragmentPresenter.initHistoryChart(home_run_history_chart, 2);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         homeRunFragmentPresenter.getHomeSportData();
+        homeRunFragmentPresenter.getHomeHistoryData();
     }
 }

@@ -31,4 +31,16 @@ public interface ISportModel {
 
     //获取服务器数据到主页，
     void findHomeSportData();
+
+    //获取最近五条历史运动记录到主页
+    void showHomeHistoryData();
+
+    //获取当天的所有次数的详细历史记录到我的模块中的历史图表里
+    void findTodaySportData();
+
+    //获取本周的所有历史运动数据
+    void findWeekSportData();
+
+    //获取本月所有的历史运动数据
+    void findMonthSportData();
 }

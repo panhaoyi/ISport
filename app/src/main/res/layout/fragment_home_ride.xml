@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:layout_marginTop="215dp"
-        android:layout_marginStart="156dp"
+        android:layout_marginStart="146dp"
         android:gravity="center"
         android:text="0 h"
         android:textColor="#9b9b9b"
@@ -89,14 +89,30 @@
         android:layout_marginTop="330dp"
         android:background="#979797"/>
 
-    <TextView
-        android:layout_width="40dp"
-        android:layout_height="14dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="349dp"
-        android:text="@string/history_record"
-        android:textColor="#9b9b9b"
-        android:textSize="10sp" />
+    <!--<TextView-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="14dp"-->
+        <!--android:layout_marginStart="22dp"-->
+        <!--android:layout_marginTop="349dp"-->
+        <!--android:text="@string/history_record"-->
+        <!--android:textColor="#9b9b9b"-->
+        <!--android:textSize="10sp" />-->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="335dp"
+        android:text="@string/history_trend"
+        android:textColor="#9b9b9b"
+        android:textSize="9sp" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/home_ride_history_chart"
+        android:layout_width="match_parent"
+        android:layout_marginTop="345dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_height="140dp" />
 
 </RelativeLayout>

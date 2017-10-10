@@ -10,9 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
 import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
+
+import java.util.List;
 
 /**
  * Created by user on 17-9-5.
@@ -24,6 +28,7 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     private TextView mWeatherRideHome;
     private ImageView mWeatherIconRideHome;
     private TextView distance_ride_home,duration_ride_home, timescount_ride_home, speed_ride_home;
+    private LineChart home_ride_history_chart;
 
     @Nullable
     @Override
@@ -43,6 +48,7 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
         duration_ride_home = (TextView) view.findViewById(R.id.duration_ride_home);
         timescount_ride_home = (TextView) view.findViewById(R.id.timescount_ride_home);
         speed_ride_home = (TextView) view.findViewById(R.id.speed_ride_home);
+        home_ride_history_chart = (LineChart) view.findViewById(R.id.home_ride_history_chart);
     }
 
     @Override
@@ -85,13 +91,14 @@ public class HomeRideFragment extends Fragment implements IHomeFragment {
     }
 
     @Override
-    public void setHistory() {
-
+    public void setHistory(int type) {
+        homeRideFragmentPresenter.initHistoryChart(home_ride_history_chart, 3);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         homeRideFragmentPresenter.getHomeSportData();
+        homeRideFragmentPresenter.getHomeHistoryData();
     }
 }
