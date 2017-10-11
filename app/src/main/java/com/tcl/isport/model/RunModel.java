@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.tcl.isport.bean.Constant;
@@ -69,7 +70,7 @@ public class RunModel implements ISportModel {
         run.put("speed", sportBean.getSpeed());
         run.put("step", sportBean.getStep());
         run.put("time", SportUtil.getNow());
-        run.put("userId", sportBean.getUserId());
+        run.put("userId", AVUser.getCurrentUser());
         run.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
@@ -87,6 +88,7 @@ public class RunModel implements ISportModel {
     public void findSportData() {
         final List<AVObject> sportBeanList = new ArrayList<>();
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RUN);
+        avQuery.whereEqualTo("userId", AVUser.getCurrentUser());
         avQuery.whereContains("time", SportUtil.getTodayDate());
         avQuery.selectKeys(Arrays.asList("distance", "duration"));
         avQuery.findInBackground(new FindCallback<AVObject>() {
@@ -109,6 +111,7 @@ public class RunModel implements ISportModel {
     public void findHomeSportData() {
         final List<AVObject> sportBeanList = new ArrayList<>();
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RUN);
+        avQuery.whereEqualTo("userId", AVUser.getCurrentUser());
         avQuery.selectKeys(Arrays.asList("distance", "duration", "step"));
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
@@ -130,6 +133,7 @@ public class RunModel implements ISportModel {
     public void showHomeHistoryData() {
         final List<AVObject> sportBeanList = new ArrayList<>();
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RUN);
+        avQuery.whereEqualTo("userId", AVUser.getCurrentUser());
         avQuery.selectKeys(Arrays.asList("distance", "time"));
         avQuery.orderByDescending("createdAt");
         avQuery.limit(5);
@@ -151,6 +155,7 @@ public class RunModel implements ISportModel {
     @Override
     public void findTodaySportData() {
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RUN);
+        avQuery.whereEqualTo("userId", AVUser.getCurrentUser());
         avQuery.whereGreaterThan("createdAt", SportUtil.getToday());
         avQuery.selectKeys(Arrays.asList("distance", "duration","step"));
         avQuery.orderByAscending("createdAt");
@@ -171,6 +176,7 @@ public class RunModel implements ISportModel {
     @Override
     public void findWeekSportData() {
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RUN);
+        avQuery.whereEqualTo("userId", AVUser.getCurrentUser());
         avQuery.whereGreaterThan("createdAt", SportUtil.getWeek());
         avQuery.selectKeys(Arrays.asList("distance", "duration","step"));
         avQuery.orderByAscending("createdAt");
@@ -191,6 +197,7 @@ public class RunModel implements ISportModel {
     @Override
     public void findMonthSportData() {
         AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RUN);
+        avQuery.whereEqualTo("userId", AVUser.getCurrentUser());
         avQuery.whereGreaterThan("createdAt", SportUtil.getMonth());
         avQuery.selectKeys(Arrays.asList("distance", "duration","step"));
         avQuery.orderByAscending("createdAt");
