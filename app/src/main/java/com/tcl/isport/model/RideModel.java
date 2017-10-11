@@ -11,6 +11,7 @@ import com.avos.avoscloud.SaveCallback;
 import com.tcl.isport.bean.Constant;
 import com.tcl.isport.bean.SportBean;
 import com.tcl.isport.imodel.ISportModel;
+import com.tcl.isport.presenter.HistoryActivityPresenter;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.presenter.SportFragmentPresenter;
 import com.tcl.isport.util.SportUtil;
@@ -27,6 +28,7 @@ public class RideModel implements ISportModel {
 
     private HomeFragmentPresenter homeFragmentPresenter;
     private SportFragmentPresenter sportFragmentPresenter;
+    private HistoryActivityPresenter historyActivityPresenter;
     public RideModel() {
 
     }
@@ -38,6 +40,11 @@ public class RideModel implements ISportModel {
     public RideModel(SportFragmentPresenter sportFragmentPresenter) {
         this.sportFragmentPresenter = sportFragmentPresenter;
     }
+
+    public RideModel(HistoryActivityPresenter historyActivityPresenter) {
+        this.historyActivityPresenter = historyActivityPresenter;
+    }
+
     @Override
     public String getDistance() {
         return "0.00";
@@ -119,6 +126,89 @@ public class RideModel implements ISportModel {
         });
     }
 
+    @Override
+    public void showHomeHistoryData() {
+        final List<AVObject> sportBeanList = new ArrayList<>();
+        AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RIDE);
+        avQuery.selectKeys(Arrays.asList("distance", "time"));
+        avQuery.orderByDescending("createdAt");
+        avQuery.limit(5);
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    sportBeanList.addAll(list);
+                    homeFragmentPresenter.setRideDataToHome(sportBeanList);
+                    homeFragmentPresenter.doInRideToHomeHistory();
+
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    public void findTodaySportData() {
+        AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RIDE);
+        avQuery.whereGreaterThan("createdAt", SportUtil.getToday());
+        avQuery.selectKeys(Arrays.asList("distance", "duration","step"));
+        avQuery.orderByAscending("createdAt");
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    historyActivityPresenter.setWalkData(list);
+                    historyActivityPresenter.doInWalk();
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    public void findWeekSportData() {
+        AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RIDE);
+        avQuery.whereGreaterThan("createdAt", SportUtil.getWeek());
+        avQuery.selectKeys(Arrays.asList("distance", "duration","step"));
+        avQuery.orderByAscending("createdAt");
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    historyActivityPresenter.setWalkData(list);
+                    historyActivityPresenter.doInWalk();
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    public void findMonthSportData() {
+        AVQuery<AVObject> avQuery = new AVQuery<>(Constant.LEANCLOUD_TABLE_RIDE);
+        avQuery.whereGreaterThan("createdAt", SportUtil.getMonth());
+        avQuery.selectKeys(Arrays.asList("distance", "duration","step"));
+        avQuery.orderByAscending("createdAt");
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    historyActivityPresenter.setWalkData(list);
+                    historyActivityPresenter.doInWalk();
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
     public interface IRideModel{
         void setRideData(List<AVObject> lists);
         void doInRide();
@@ -127,6 +217,8 @@ public class RideModel implements ISportModel {
     public interface IRideModeToHome {
         void setRideDataToHome(List<AVObject> lists);
         void doInRideToHome();
+
+        void doInRideToHomeHistory();
     }
      /*  added end by lishui.lin on 17-9-29*/
 

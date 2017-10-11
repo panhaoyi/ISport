@@ -1,21 +1,19 @@
 package com.tcl.isport.fragment;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
 import com.tcl.isport.iview.IHomeFragment;
 import com.tcl.isport.presenter.HomeFragmentPresenter;
 import com.tcl.isport.R;
-import com.tcl.isport.util.LocationUtil;
-
 
 /**
  * Created by user on 17-9-4.
@@ -27,6 +25,8 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     private TextView mWeatherWalkHome;
     private ImageView mWeatherIconWalkHome;
     private TextView distance_walk_home,duration_walk_home, step_walk_home, timescount_walk_home, speed_walk_home;
+    //历史记录图表声明
+    private LineChart home_walk_history_chart;
 
     @Nullable
     @Override
@@ -47,6 +47,7 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
         step_walk_home = (TextView) view.findViewById(R.id.step_walk_home);
         timescount_walk_home = (TextView) view.findViewById(R.id.timescount_walk_home);
         speed_walk_home = (TextView) view.findViewById(R.id.speed_walk_home);
+        home_walk_history_chart = (LineChart) view.findViewById(R.id.home_walk_history_chart);
     }
 
     @Override
@@ -89,14 +90,15 @@ public class HomeWalkFragment extends Fragment implements IHomeFragment {
     }
 
     @Override
-    public void setHistory() {
-
+    public void setHistory(int type) {
+        homeWalkFragmentPresenter.initHistoryChart(home_walk_history_chart, 1);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         homeWalkFragmentPresenter.getHomeSportData();
+        homeWalkFragmentPresenter.getHomeHistoryData();
     }
 
     @Override
