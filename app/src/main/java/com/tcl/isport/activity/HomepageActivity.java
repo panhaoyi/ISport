@@ -17,7 +17,7 @@ import com.tcl.isport.iview.IHomepageActivity;
  */
 public class HomepageActivity extends Activity implements View.OnClickListener,IHomepageActivity {
     //个人主页,主界面-我-个人信息/点击其他用户进入用户个人主页
-    private ImageView back, new_topic, photo;
+    private ImageView back, add, photo;
     private TextView city, lv, distance, duration;
     private ListView listView;
 
@@ -30,8 +30,8 @@ public class HomepageActivity extends Activity implements View.OnClickListener,I
 
         back = (ImageView) findViewById(R.id.back_homepage);
         back.setOnClickListener(this);
-        new_topic = (ImageView) findViewById(R.id.new_topic_homepage);
-        new_topic.setOnClickListener(this);
+        add = (ImageView) findViewById(R.id.add_homepage);
+        add.setOnClickListener(this);
         photo = (ImageView) findViewById(R.id.photo_homepage);
         city = (TextView) findViewById(R.id.city_homepage);
         lv = (TextView) findViewById(R.id.lv_homepage);
@@ -46,9 +46,8 @@ public class HomepageActivity extends Activity implements View.OnClickListener,I
             case R.id.back_homepage:
                 finish();
                 break;
-            case R.id.new_topic_homepage:
-                Intent intent=new Intent(this,NewTopicActivity.class);
-                startActivity(intent);
+            case R.id.add_homepage:
+
                 break;
             default:
                 break;

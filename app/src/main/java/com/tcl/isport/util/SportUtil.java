@@ -43,7 +43,7 @@ public class SportUtil {
             return fnum.format(totalDistance);
         } else {
             //错误值显示在用户界面
-            return "00";
+            return "0.00";
         }
 
     }
@@ -74,7 +74,7 @@ public class SportUtil {
             }
         } else {
             //错误值显示在用户界面
-            return "00 s";
+            return "0 秒";
         }
     }
 

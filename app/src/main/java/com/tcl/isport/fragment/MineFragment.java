@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.tcl.isport.activity.ActivityManageActivity;
 import com.tcl.isport.activity.ContactUsActivity;
-import com.tcl.isport.activity.FriendActivity;
 import com.tcl.isport.activity.HomepageActivity;
 import com.tcl.isport.activity.InformationActivity;
 import com.tcl.isport.activity.HistoryActivity;
@@ -30,8 +29,8 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
     private ImageView photo;
     //editInformation为编辑个人资料按钮,name和signatue从数据库读取加载
     private TextView editInformation, name, signature;
-    private RelativeLayout homepage;
-    private LinearLayout myMessage, friends, sportsHistory, manageActivity, myCollection, contactUs;
+    private RelativeLayout information;
+    private LinearLayout myMessage,homepage, sportsHistory, manageActivity, myCollection, contactUs;
     private Intent intent;
 
     @Nullable
@@ -42,14 +41,14 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         photo = (ImageView) view.findViewById(R.id.photo_mine);
         editInformation = (TextView) view.findViewById(R.id.edit_information_mine);
         editInformation.setOnClickListener(this);
-        homepage= (RelativeLayout) view.findViewById(R.id.homepage_mine);
-        homepage.setOnClickListener(this);
+        information= (RelativeLayout) view.findViewById(R.id.information_mine);
+        information.setOnClickListener(this);
         name = (TextView) view.findViewById(R.id.name_mine);
         signature = (TextView) view.findViewById(R.id.signature_mine);
         myMessage = (LinearLayout) view.findViewById(R.id.my_message_mine);
         myMessage.setOnClickListener(this);
-        friends = (LinearLayout) view.findViewById(R.id.friends_mine);
-        friends.setOnClickListener(this);
+        homepage= (LinearLayout) view.findViewById(R.id.homepage_mine);
+        homepage.setOnClickListener(this);
         sportsHistory = (LinearLayout) view.findViewById(R.id.sports_history_mine);
         sportsHistory.setOnClickListener(this);
         manageActivity = (LinearLayout) view.findViewById(R.id.manage_activity_mine);
@@ -70,18 +69,17 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
                 intent = new Intent(getActivity(), InformationActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.homepage_mine:
-                //跳转到个人主页
-                intent=new Intent(getActivity(), HomepageActivity.class);
+            case R.id.information_mine:
+                intent = new Intent(getActivity(), InformationActivity.class);
                 startActivity(intent);
                 break;
             case R.id.my_message_mine:
                 //跳转到我的消息
 
                 break;
-            case R.id.friends_mine:
-                //跳转到好友列表
-                intent=new Intent(getActivity(), FriendActivity.class);
+            case R.id.homepage_mine:
+                //跳转到个人主页
+                intent=new Intent(getActivity(), HomepageActivity.class);
                 startActivity(intent);
                 break;
             case R.id.sports_history_mine:

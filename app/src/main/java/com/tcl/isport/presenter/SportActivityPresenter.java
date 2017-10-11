@@ -51,8 +51,8 @@ public class SportActivityPresenter {
 
     private boolean isBind = false;
     //线程运行状态
-    private boolean ThreadRun = true;
-    public static boolean isRun = false;
+    public static boolean ThreadRun = true;
+    private boolean isRun = false;
     //计时器是否开始运作
     private boolean isStartRun = false;
     //位置监听是否进行中

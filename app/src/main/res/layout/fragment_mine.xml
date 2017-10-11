@@ -28,7 +28,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/homepage_mine"
+        android:id="@+id/information_mine"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#4a4949">
@@ -157,7 +157,7 @@
         android:background="#4a4949" />
 
     <LinearLayout
-        android:id="@+id/friends_mine"
+        android:id="@+id/homepage_mine"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">
@@ -171,7 +171,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:gravity="center_vertical"
-            android:text="好友列表"
+            android:text="个人主页"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
     </LinearLayout>

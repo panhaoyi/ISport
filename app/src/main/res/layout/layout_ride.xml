@@ -3,7 +3,7 @@
     android:id="@+id/layout_ride"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#262525">
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/distance_ride"

@@ -69,7 +69,6 @@
         <activity android:name=".activity.ActivityContentActivity"/>
         <activity android:name=".activity.ActivityTimeActivity"/>
         <activity android:name=".activity.ActivityManageActivity"/>
-        <activity android:name=".activity.FriendActivity"/>
 
         <service android:name=".service.StepService">
             <intent-filter>

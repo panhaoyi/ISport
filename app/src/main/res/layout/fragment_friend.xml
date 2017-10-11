@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/layout_friend"
-    android:background="#262525">
-    <!--主界面-我-好友列表-->
+    android:layout_height="match_parent">
+    <!--主界面-好友-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
-        <ImageView
-            android:id="@+id/back_friend"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="18dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/bt_back"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/back_friend"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_marginStart="18dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/bt_back"/>-->
         <TextView
             android:layout_width="32dp"
             android:layout_height="22dp"

@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_homepage"
-    android:background="#262525">
+    android:background="@drawable/background">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="232dp">
@@ -15,12 +15,12 @@
             android:layout_marginTop="12dp"
             android:src="@drawable/bt_back"/>
         <ImageView
-            android:id="@+id/new_topic_homepage"
+            android:id="@+id/add_homepage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="314dp"
             android:layout_marginTop="12dp"
-            android:src="@drawable/bt_new_moment"/>
+            android:src="@drawable/ic_contacts"/>
         <ImageView
             android:id="@+id/photo_homepage"
             android:layout_width="58dp"

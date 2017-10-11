@@ -3,7 +3,7 @@
     android:id="@+id/layout_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#262525">
+    android:background="@drawable/background">
     <!--地图，运动轨迹界面-->
     <com.amap.api.maps.MapView
         android:id="@+id/map"

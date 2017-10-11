@@ -311,8 +311,9 @@ public class StepService extends Service implements SensorEventListener {
         if (stepSensor == 0) {
             StepDetector.CURRENT_STEP = (int) event.values[0];
         } else if (stepSensor == 1) {
-            Log.e("StepService",""+SportActivityPresenter.isRun);
-            if(SportActivityPresenter.isRun){
+//            Log.e("StepService",""+SportActivityPresenter.ThreadRun);
+            //计时线程暂停
+            if(SportActivityPresenter.ThreadRun){
                 StepDetector.CURRENT_STEP++;
             }
         }

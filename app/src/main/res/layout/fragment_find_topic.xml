@@ -2,11 +2,116 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="473dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="207dp"
+                android:src="@drawable/topic1" />
+
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="28dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="104dp"
+                android:text="跑步时,什么让你越来越坚持"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="14dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="219dp"
+                android:text="精选话题"
+                android:textColor="@color/textGray"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="244dp"
+                android:src="@drawable/topic1" />
+
+            <TextView
+                android:layout_width="58dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="43dp"
+                android:layout_marginTop="268dp"
+                android:text="#生活方式#"
+                android:textColor="@color/colorWhite"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="62dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="244dp"
+                android:src="@drawable/topic1" />
+
+            <TextView
+                android:layout_width="58dp"
+                android:layout_height="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="268dp"
+                android:text="#均衡饮食#"
+                android:textColor="@color/colorWhite"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="62dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="23dp"
+                android:layout_marginTop="244dp"
+                android:src="@drawable/topic1" />
+
+            <TextView
+                android:layout_width="58dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="43dp"
+                android:layout_marginTop="268dp"
+                android:text="#运动音乐#"
+                android:textColor="@color/colorWhite"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="152dp"
+                android:layout_marginTop="325dp"
+                android:src="@drawable/topic2" />
+
+            <TextView
+                android:layout_width="129dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="439dp"
+                android:text="#运动,内心的平静#"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="495dp"
+                android:background="#979797" />
+        </RelativeLayout>
+    </ScrollView>
+
     <ImageView
         android:id="@+id/add_topic"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="278dp"
         android:layout_marginTop="403dp"
-        android:src="@drawable/bt_new"/>
+        android:src="@drawable/bt_new" />
 </RelativeLayout>
