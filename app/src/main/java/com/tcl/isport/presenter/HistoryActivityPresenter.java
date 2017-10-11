@@ -69,13 +69,14 @@ public class HistoryActivityPresenter implements WalkModel.IWalkModel {
     }
     
     private void initHistoryChart(LineChart mineHistory) {
+        //清空上一次的图表
+        mineHistory.clear();
 
-        if (entries.isEmpty()) {
+        if (entries == null || entries.isEmpty()) {
             mineHistory.setNoDataText("无有效运动数据或网络连接异常");
             return;
         }
-        //清空上一次的图表
-        mineHistory.clear();
+
 
         mineHistory.setTouchEnabled(true);
         mineHistory.setScaleEnabled(false);
@@ -145,7 +146,16 @@ public class HistoryActivityPresenter implements WalkModel.IWalkModel {
     }
 
     private void refreshDayUi() {
-        if (historyDataList == null && historyDataList.isEmpty()) {
+        if (historyDataList == null || historyDataList.isEmpty()) {
+            if (sportType == 3) {
+                iHistoryActivity.setSteps("0");
+            } else {
+                iHistoryActivity.setSteps("0");
+                iHistoryActivity.setDistance("0");
+            }
+            iHistoryActivity.setTimes(0);
+            iHistoryActivity.setDuration("00:00:00");
+            iHistoryActivity.setAvgSpeed("0");
             return;
         }
         if (sportType == 3) {
@@ -162,7 +172,11 @@ public class HistoryActivityPresenter implements WalkModel.IWalkModel {
 
 
     private void disposeData() {
+
         entries.clear();
+        if (historyDataList == null || historyDataList.isEmpty()) {
+            return;
+        }
         int length = historyDataList.size();
         for (int i = 0; i < length; i++) {
             entries.add(new Entry(i +1 , Float.valueOf((String) historyDataList.get(i).get("distance"))));

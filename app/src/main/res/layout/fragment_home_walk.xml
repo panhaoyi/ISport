@@ -31,8 +31,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="303dp"
         android:layout_marginTop="34dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:text="0 次"
         android:textColor="@color/colorWhite"
         android:textSize="14sp" />
