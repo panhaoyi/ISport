@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_activity_new"
     android:background="@drawable/background">
     <RelativeLayout
+        android:id="@+id/relativelayout1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -34,6 +35,7 @@
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/edit_theme"
+        android:layout_below="@+id/relativelayout1"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:background="#444444">
@@ -62,6 +64,7 @@
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/edit_intro"
+        android:layout_below="@+id/edit_theme"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:background="#444444"
@@ -90,6 +93,7 @@
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@+id/edit_intro"
         android:id="@+id/edit_content"
         android:layout_width="match_parent"
         android:layout_height="62dp"
@@ -119,6 +123,7 @@
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@+id/edit_content"
         android:id="@+id/edit_number"
         android:layout_width="match_parent"
         android:layout_height="62dp"
@@ -149,6 +154,7 @@
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@+id/edit_number"
         android:id="@+id/edit_time"
         android:layout_width="match_parent"
         android:layout_height="62dp"
@@ -178,6 +184,7 @@
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@+id/edit_time"
         android:id="@+id/edit_location"
         android:layout_width="match_parent"
         android:layout_height="83dp"
@@ -208,6 +215,7 @@
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@+id/edit_location"
         android:id="@+id/edit_deadline"
         android:layout_width="match_parent"
         android:layout_height="62dp"
@@ -237,6 +245,7 @@
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@+id/edit_deadline"
         android:id="@+id/edit_cover"
         android:layout_width="match_parent"
         android:layout_height="102dp"
@@ -264,4 +273,11 @@
             android:layout_centerVertical="true"
             android:src="@drawable/bt_edit_information"/>
     </RelativeLayout>
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progress_activity_new"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_centerInParent="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="gone"/>
+</RelativeLayout>

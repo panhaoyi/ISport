@@ -34,14 +34,14 @@ public class ActivityTimeActivity extends Activity implements View.OnClickListen
 
         time = (EditText) findViewById(R.id.theme_activity_theme);
         time.addTextChangedListener(this);
-        time.setHint("日期格式如:2017-09-01");
+        time.setHint("时间格式如:2017-09-01 13:01:00");
         cancel = (TextView) findViewById(R.id.cancel_activity_theme);
         cancel.setOnClickListener(this);
         tag = (TextView) findViewById(R.id.tag_activity_theme);
         confirm = (TextView) findViewById(R.id.confirm_activity_theme);
         confirm.setOnClickListener(this);
         number = (TextView) findViewById(R.id.number_activity_theme);
-        number.setText("0/10");
+        number.setText("0/19");
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
         tag.setText(type);
@@ -56,7 +56,8 @@ public class ActivityTimeActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.confirm_activity_theme:
                 //确定更改
-                Pattern pattern = Pattern.compile("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$");
+//                Pattern pattern = Pattern.compile("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$");
+                Pattern pattern = Pattern.compile("(\\d{2}|\\d{4})(?:\\-)?([0]{1}\\d{1}|[1]{1}[0-2]{1})(?:\\-)?([0-2]{1}\\d{1}|[3]{1}[0-1]{1})(?:\\s)?([0-1]{1}\\d{1}|[2]{1}[0-3]{1})(?::)?([0-5]{1}\\d{1})(?::)?([0-5]{1}\\d{1})");
                 Matcher matcher = pattern.matcher(time.getText().toString());
                 if ("活动时间".equals(type)&&matcher.matches()) {
                     Intent data = new Intent();
@@ -94,10 +95,10 @@ public class ActivityTimeActivity extends Activity implements View.OnClickListen
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (s.length() > 10) {
-            s.delete(10, s.length());
+        if (s.length() > 19) {
+            s.delete(19, s.length());
         } else {
-            number.setText(s.length() + "/10");
+            number.setText(s.length() + "/19");
         }
     }
 }

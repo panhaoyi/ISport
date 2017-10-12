@@ -12,5 +12,5 @@ public interface IActivityNewActivity {
     String getTime();
     String getLocation();
     String getDeadline();
-    void getCover();
+    byte[] getCover();
 }

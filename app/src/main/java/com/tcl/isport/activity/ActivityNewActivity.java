@@ -2,13 +2,15 @@ package com.tcl.isport.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +18,13 @@ import android.widget.Toast;
 import com.tcl.isport.R;
 import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.IActivityNewActivity;
+import com.tcl.isport.presenter.NewActivityPresenter;
 import com.tcl.isport.ui.MyPopupWindow;
+import com.tcl.isport.util.ImageUtil;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by haoyi.pan on 17-9-28.
@@ -24,11 +32,14 @@ import com.tcl.isport.ui.MyPopupWindow;
 public class ActivityNewActivity extends Activity implements View.OnClickListener,IActivityNewActivity {
     private ImageView back,cover;
     private RelativeLayout editTheme,editIntro,editContent,editNumber,editTime,editLocation,editDeadline,editCover;
-    private TextView theme,intro,content,number,time,location,deadline;
+    private TextView pub,theme,intro,content,number,time,location,deadline;
+    private ProgressBar progressBar;
     private Intent intent;
     private MyPopupWindow myPopupWindow;
     private WindowManager.LayoutParams params;
     private String activityTheme,activityIntro,activityContent;
+    private byte[] bytesCover=null;
+    private NewActivityPresenter newActivityPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +48,8 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
 
         back= (ImageView) findViewById(R.id.back_activity_new);
         back.setOnClickListener(this);
+        pub= (TextView) findViewById(R.id.pub_activity_new);
+        pub.setOnClickListener(this);
         editTheme= (RelativeLayout) findViewById(R.id.edit_theme);
         editTheme.setOnClickListener(this);
         editIntro= (RelativeLayout) findViewById(R.id.edit_intro);
@@ -60,6 +73,9 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
         time= (TextView) findViewById(R.id.time_activity_new);
         location= (TextView) findViewById(R.id.location_activity_new);
         deadline= (TextView) findViewById(R.id.deadline_activity_new);
+        cover= (ImageView) findViewById(R.id.cover_activity_new);
+        progressBar= (ProgressBar) findViewById(R.id.progress_activity_new);
+        newActivityPresenter=new NewActivityPresenter(this);
     }
 
     @Override
@@ -68,6 +84,28 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
             case R.id.back_activity_new:
                 //返回
                 finish();
+                break;
+            case R.id.pub_activity_new:
+                if("".equals(theme.getText())){
+                    Toast.makeText(this,"请编辑活动主题!",Toast.LENGTH_SHORT).show();
+                }else if("".equals(intro.getText())){
+                    Toast.makeText(this,"请编辑活动简介!",Toast.LENGTH_SHORT).show();
+                }else if("".equals(content.getText())){
+                    Toast.makeText(this,"请编辑行程详情!",Toast.LENGTH_SHORT).show();
+                }else if("".equals(number.getText())){
+                    Toast.makeText(this,"请编辑人数规模!",Toast.LENGTH_SHORT).show();
+                }else if("".equals(time.getText())){
+                    Toast.makeText(this,"请编辑活动时间!",Toast.LENGTH_SHORT).show();
+                }else if("".equals(location.getText())){
+                    Toast.makeText(this,"请编辑活动地点!",Toast.LENGTH_SHORT).show();
+                }else if("".equals(deadline.getText())){
+                    Toast.makeText(this,"请编辑截止时间!",Toast.LENGTH_SHORT).show();
+                }else if(bytesCover==null){
+                    Toast.makeText(this,"请添加封面图片!",Toast.LENGTH_SHORT).show();
+                }else{
+                    progressBar.setVisibility(View.VISIBLE);
+                    newActivityPresenter.pubActivity(this);
+                }
                 break;
             case R.id.edit_theme:
                 //活动主题
@@ -122,12 +160,21 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
                 if(myPopupWindow.getOption().equals("number")){
                     number.setText(myPopupWindow.getText1());
                     myPopupWindow.dismiss();
+                }else if (myPopupWindow.getOption().equals("photo")){
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    startActivityForResult(intent, 11);
+                    myPopupWindow.dismiss();
                 }
                 break;
             case R.id.text2_option:
                 //点击底部弹窗选项2
                 if(myPopupWindow.getOption().equals("number")){
                     number.setText(myPopupWindow.getText2());
+                    myPopupWindow.dismiss();
+                }else if (myPopupWindow.getOption().equals("photo")){
+
                     myPopupWindow.dismiss();
                 }
                 break;
@@ -164,6 +211,33 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
         }else if (resultCode==7){
             deadline.setText(data.getStringExtra("deadline"));
         }
+        if (requestCode==11&&resultCode==RESULT_OK){
+            try {
+                cover.setImageBitmap(ImageUtil.getBitmapFormUri(this,data.getData()));
+                Bitmap bm=ImageUtil.getBitmapFormUri(this,data.getData());
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                bytesCover=baos.toByteArray();
+
+//                cover.setImageBitmap(MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData()));
+//                bytesCover=getBytes(getContentResolver().openInputStream(data.getData()));
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public byte[] getBytes(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, len);
+        }
+        return byteArrayOutputStream.toByteArray();
     }
 
     private void setMyPopWindow(){
@@ -219,7 +293,7 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
     }
 
     @Override
-    public void getCover() {
-
+    public byte[] getCover() {
+        return bytesCover;
     }
 }

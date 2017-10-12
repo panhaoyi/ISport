@@ -41,4 +41,5 @@ dependencies {
     compile files('libs/avoscloud-push-v4.4.8.jar')
     //LeanCloud统计包
     compile files('libs/avoscloud-statistics-v4.4.8.jar')
+    compile files('libs/MPAndroidChart-v3.0.2.jar')
 }
