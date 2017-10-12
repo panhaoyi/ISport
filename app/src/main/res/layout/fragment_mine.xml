@@ -13,6 +13,7 @@
             android:layout_height="22dp"
             android:gravity="center"
             android:layout_centerInParent="true"
+            android:id="@+id/logOut"
             android:text="个人资料"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />

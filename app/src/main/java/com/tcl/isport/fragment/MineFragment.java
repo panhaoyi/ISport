@@ -12,12 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVUser;
 import com.tcl.isport.activity.ActivityManageActivity;
 import com.tcl.isport.activity.ContactUsActivity;
 import com.tcl.isport.activity.FriendActivity;
 import com.tcl.isport.activity.HomepageActivity;
 import com.tcl.isport.activity.InformationActivity;
 import com.tcl.isport.activity.HistoryActivity;
+import com.tcl.isport.activity.LoginActivity;
 import com.tcl.isport.iview.IMineFragment;
 import com.tcl.isport.R;
 
@@ -33,6 +35,9 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
     private RelativeLayout homepage;
     private LinearLayout myMessage, friends, sportsHistory, manageActivity, myCollection, contactUs;
     private Intent intent;
+    ///////////登出////////////
+    private TextView logOut;
+    ///////////////////////////
 
     @Nullable
     @Override
@@ -58,6 +63,18 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         myCollection.setOnClickListener(this);
         contactUs = (LinearLayout) view.findViewById(R.id.contact_us_mine);
         contactUs.setOnClickListener(this);
+
+        ///////////登出////////////
+        logOut = (TextView) view.findViewById(R.id.logOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AVUser.logOut();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+            }
+        });
+        ///////////////////////////
         return view;
     }
 

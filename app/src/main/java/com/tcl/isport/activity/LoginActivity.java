@@ -38,9 +38,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
     //快速登录，手机注册，忘记密码，trying为第三方登录文字，作为开发时入口方便测试
     private TextView quicklogin, register, forget_password;
     private LoginPresenter loginPresenter;
-    /////////开发完成后删除start////////
-    private TextView trying;
-    /////////开发完成后删除end////////
     private Intent intent;
     private String STORAGE_PERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE";
     private String PHONE_PERMISSION = "android.permission.READ_PHONE_STATE";
@@ -78,18 +75,14 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
         register.setOnClickListener(this);
         forget_password = (TextView) findViewById(R.id.forget_pasword);
         forget_password.setOnClickListener(this);
-        /////////开发完成后删除start////////
-        trying = (TextView) findViewById(R.id.trying_login);
-        trying.setOnClickListener(this);
-        /////////开发完成后删除end////////
         initPermission();
 
         loginPresenter = new LoginPresenter(this);
         //如果已经登录成功，则不用再登录！
-//        if (AVUser.getCurrentUser() != null) {
-//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//            LoginActivity.this.finish();
-//        }
+        if (AVUser.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            LoginActivity.this.finish();
+        }
     }
 
     public void initPermission() {
@@ -130,13 +123,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
-            /////////开发完成后删除start////////
-            case R.id.trying_login:
-                //点击第三方登录，跳转到主界面
-                intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                break;
-            /////////开发完成后删除end////////
             default:
                 break;
         }
@@ -191,7 +177,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
     @Override
     public void failLogin() {
 
-        showLoginToast("登录失败，用户或密码错误！");
+        showLoginToast("登录失败，手机号或密码错误！");
     }
 
     private void showLoginToast(String content) {
