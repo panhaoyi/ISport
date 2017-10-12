@@ -7,7 +7,6 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SignUpCallback;
-import com.avos.avoscloud.ops.BaseOp;
 import com.tcl.isport.imodel.IUserModel;
 import com.tcl.isport.presenter.LoginPresenter;
 import com.tcl.isport.presenter.RegisterPresenter;
@@ -32,33 +31,6 @@ public class UserModel implements IUserModel {
 
     public UserModel(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
-    }
-
-    @Override
-    public void addUser(String phoneNumber,String password,String verification) {
-        final AVUser user=new AVUser();
-        user.setMobilePhoneNumber(phoneNumber);
-        user.setPassword(password);
-        //验证验证码
-//        AVUser.verifyMobilePhoneInBackground(verification, new AVMobilePhoneVerifyCallback() {
-//            @Override
-//            public void done(AVException e) {
-//                if(e==null){
-//                    //验证码验证成功
-//                    user.saveInBackground(new SaveCallback() {
-//                        @Override
-//                        public void done(AVException e) {
-//                            if(e==null){
-//
-//                            }
-//                        }
-//                    });
-//                }
-//                else{
-//                    //验证失败
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -95,9 +67,6 @@ public class UserModel implements IUserModel {
                     registerPresenter.setRegisterState(true);
                 } else {
                     registerPresenter.setRegisterState(false);
-//                    if (e.getCode() == AVException.INVALID_PHONE_NUMBER) {
-//
-//                    }
                 }
                 registerPresenter.doInRegister();
             }
@@ -154,6 +123,7 @@ public class UserModel implements IUserModel {
     }
 
     public interface IUserModel {
+        //未验证手机号和密码注册
         void setCheckPhoneStatea(boolean phoneState);
         void doInCheckPhone();
         void setRegisterState(boolean registerState);

@@ -25,9 +25,9 @@ import com.tcl.isport.util.UserUtil;
  */
 public class RegisterActivity extends Activity implements View.OnClickListener,IRegisterActivity {
     //注册界面
-    private EditText phoneNumber,verification, password;
+    private EditText phoneNumber,password_first, password;
     //获取验证码，跳转到登录界面
-    private TextView getVerification,login;
+    private TextView login;
     private Button register;
     private RegisterPresenter registerPresenter;
 
@@ -42,10 +42,10 @@ public class RegisterActivity extends Activity implements View.OnClickListener,I
                 |View.SYSTEM_UI_FLAG_IMMERSIVE);
         phoneNumber = (EditText) findViewById(R.id.phonenumber_register);
         phoneNumber.setOnFocusChangeListener(onFocusChangeListener);
-        verification= (EditText) findViewById(R.id.verification_register);
+        password_first= (EditText) findViewById(R.id.password_register_first);
         password = (EditText) findViewById(R.id.password_register);
-        getVerification= (TextView) findViewById(R.id.get_verification_register);
-        getVerification.setOnClickListener(this);
+//        getVerification= (TextView) findViewById(R.id.get_verification_register);
+//        getVerification.setOnClickListener(this);
         register = (Button) findViewById(R.id.register_register);
         register.setOnClickListener(this);
         login= (TextView) findViewById(R.id.login_register);
@@ -81,18 +81,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener,I
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.get_verification_register:
-                //点击获取验证码，服务器发送验证码到手机
-//                registerPresenter.sendVerification();
-//                Toast.makeText(this,"已发送验证码",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.register_register:
                 //注册
-                if (attemptRegister()) {
-                    registerPresenter.registerUser(phoneNumber.getText().toString(),
-                            password.getText().toString());
-                }
-//                registerPresenter.register();
+                attemptRegister();
                 break;
             case R.id.login_register:
                 //切换到登录界面
@@ -105,16 +96,51 @@ public class RegisterActivity extends Activity implements View.OnClickListener,I
         }
     }
 
-    private boolean attemptRegister(){
-        boolean isValid = false;
+    private void attemptRegister(){
+
+        String phone = phoneNumber.getText().toString();
+        String pwd_first = password_first.getText().toString();
         String pwd = password.getText().toString();
-        if (isPasswordValid(pwd)) {
-            isValid = true;
-        } else {
-            showRegisterToast("密码长度小于6位！");
-            isValid = false;
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (TextUtils.isEmpty(phone)) {
+            showRegisterToast("手机号码为空！");
+            focusView = phoneNumber;
+            cancel = true;
+        }else if (!UserUtil.checkValidPhoneNumber(phone)) {
+            showRegisterToast("输入手机号码非法！");
+            focusView = phoneNumber;
+            cancel = true;
+        }else if (TextUtils.isEmpty(pwd_first)) {
+            showRegisterToast("第一次密码为空值！");
+            focusView = password_first;
+            cancel = true;
+        }else if (!isPasswordValid(pwd_first)) {
+            showRegisterToast("第一次密码长度小于6位！");
+            focusView = password_first;
+            cancel = true;
+        }else if (TextUtils.isEmpty(pwd)) {
+            showRegisterToast("第二次输入密码为空值！");
+            focusView = password;
+            cancel = true;
+        }else if (!isPasswordValid(pwd)) {
+            showRegisterToast("第二次密码长度小于6位！");
+            focusView = password;
+            cancel = true;
+        } else if (!TextUtils.equals(pwd_first, pwd)) {
+            showRegisterToast("两次输入密码不一致！");
+            focusView = password;
+            cancel = true;
         }
-        return isValid;
+
+
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
+            registerPresenter.registerUser(phone, pwd);
+        }
     }
 
     private boolean isPasswordValid(String password) {
@@ -136,7 +162,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener,I
 
     @Override
     public String getVerification() {
-        return verification.getText().toString();
+        return password_first.getText().toString();
     }
 
     @Override

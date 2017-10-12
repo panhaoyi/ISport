@@ -129,6 +129,7 @@
     <ImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:id="@+id/qq_logIn"
         android:layout_marginStart="83dp"
         android:layout_marginTop="557dp"
         android:src="@drawable/ic_qq" />

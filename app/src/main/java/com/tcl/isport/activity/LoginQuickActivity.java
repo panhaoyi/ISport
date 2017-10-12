@@ -138,7 +138,7 @@ public class LoginQuickActivity extends Activity implements View.OnClickListener
 
     @Override
     public void failVerification() {
-       showLoginQuickToast("获取验证码失败，此手机号未注册！");
+       showLoginQuickToast("获取验证码失败，此手机号未认证！");
     }
 
     @Override

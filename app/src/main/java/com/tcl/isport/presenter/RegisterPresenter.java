@@ -24,32 +24,13 @@ public class RegisterPresenter implements UserModel.IUserModel {
         iUserModel=new UserModel(this);
     }
 
-    public void sendVerification(){
-//        AVUser.requestMobilePhoneVerifyInBackground(iRegisterActivity.getPhoneNumber(), new RequestMobileCodeCallback() {
-//            @Override
-//            public void done(AVException e) {
-//                if(e==null){
-//                    //调用成功
-//
-//                }
-//                else{
-//                    //调用失败
-//                }
-//            }
-//        });
-    }
-
-    public void register(){
-        //iUserModel.addUser(iRegisterActivity.getPhoneNumber(),iRegisterActivity.getPassword(),iRegisterActivity.getVerification());
-    }
-
     public void registerUser(String phoneNumber, String password) {
         iUserModel.registerUser(phoneNumber, password);
     }
+
     public void checkUser(String phoneNumber){
         iUserModel.checkUser(phoneNumber);
     }
-
 
     @Override
     public void setCheckPhoneStatea(boolean phoneState) {

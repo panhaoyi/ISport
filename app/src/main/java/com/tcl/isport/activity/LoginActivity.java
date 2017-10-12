@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
     private Button login;
     //快速登录，手机注册，忘记密码，trying为第三方登录文字，作为开发时入口方便测试
     private TextView quicklogin, register, forget_password;
+    private ImageView qq_logIn;
     private LoginPresenter loginPresenter;
     private Intent intent;
     private String STORAGE_PERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE";
@@ -65,16 +67,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
         //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
         MyApplication.hide(this, R.id.layout_login);
 
-        phonenumber = (EditText) findViewById(R.id.phonenumber_login);
-        password = (EditText) findViewById(R.id.password_login);
-        login = (Button) findViewById(R.id.login_login);
-        login.setOnClickListener(this);
-        quicklogin = (TextView) findViewById(R.id.quicklogin_login);
-        quicklogin.setOnClickListener(this);
-        register = (TextView) findViewById(R.id.register_login);
-        register.setOnClickListener(this);
-        forget_password = (TextView) findViewById(R.id.forget_pasword);
-        forget_password.setOnClickListener(this);
+        initView();
+        initListener();
         initPermission();
 
         loginPresenter = new LoginPresenter(this);
@@ -84,6 +78,28 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
             LoginActivity.this.finish();
         }
     }
+
+
+    private void initView() {
+        phonenumber = (EditText) findViewById(R.id.phonenumber_login);
+        password = (EditText) findViewById(R.id.password_login);
+        login = (Button) findViewById(R.id.login_login);
+        quicklogin = (TextView) findViewById(R.id.quicklogin_login);
+        register = (TextView) findViewById(R.id.register_login);
+        forget_password = (TextView) findViewById(R.id.forget_pasword);
+
+        qq_logIn = (ImageView) findViewById(R.id.qq_logIn);
+    }
+
+    private void initListener() {
+        login.setOnClickListener(this);
+        quicklogin.setOnClickListener(this);
+        register.setOnClickListener(this);
+        forget_password.setOnClickListener(this);
+
+        qq_logIn.setOnClickListener(this);
+    }
+
 
     public void initPermission() {
         //动态请求权限
@@ -123,6 +139,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.qq_logIn:
+                //第三方登录：qq
             default:
                 break;
         }
