@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,10 +17,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.avos.avoscloud.AVUser;
 import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.ILoginActivity;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.LoginPresenter;
+import com.tcl.isport.util.UserUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +37,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
     private Button login;
     //快速登录，手机注册，忘记密码，trying为第三方登录文字，作为开发时入口方便测试
     private TextView quicklogin, register, forget_password;
+    private LoginPresenter loginPresenter;
     /////////开发完成后删除start////////
     private TextView trying;
     /////////开发完成后删除end////////
@@ -77,6 +83,13 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
         trying.setOnClickListener(this);
         /////////开发完成后删除end////////
         initPermission();
+
+        loginPresenter = new LoginPresenter(this);
+        //如果已经登录成功，则不用再登录！
+//        if (AVUser.getCurrentUser() != null) {
+//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//            LoginActivity.this.finish();
+//        }
     }
 
     public void initPermission() {
@@ -104,7 +117,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
         switch (v.getId()) {
             case R.id.login_login:
                 //登陆
-
+                attemptLogin();
                 break;
             case R.id.quicklogin_login:
                 //跳转到快速登录界面
@@ -127,5 +140,67 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
             default:
                 break;
         }
+    }
+
+    private void attemptLogin() {
+        String phone = phonenumber.getText().toString();
+        String pwd = password.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (TextUtils.isEmpty(phone)) {
+            showLoginToast("手机号码为空！");
+            focusView = phonenumber;
+            cancel = true;
+        }
+
+        if (!UserUtil.checkValidPhoneNumber(phone)) {
+            showLoginToast("输入手机号码非法！");
+            focusView = phonenumber;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(pwd)) {
+            showLoginToast("输入密码为空值！");
+            focusView = password;
+            cancel = true;
+        }
+
+        if (!isPasswordValid(pwd)) {
+            showLoginToast("密码长度小于6位！");
+            focusView = password;
+            cancel = true;
+        }
+
+
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
+            loginPresenter.startLogin(phone, pwd);
+        }
+
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password.length() > 5;
+    }
+
+    @Override
+    public void successLogin() {
+        //登录成功，开始跳转主页面，并销毁此界面
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void failLogin() {
+
+        showLoginToast("登录失败，用户或密码错误！");
+    }
+
+    private void showLoginToast(String content) {
+        Toast.makeText(LoginActivity.this, content, Toast.LENGTH_SHORT).show();
     }
 }
