@@ -11,6 +11,10 @@ public interface IUserModel {
     void registerUser(String phoneNumber,String password);
     //登录
     void loginUser(String phoneNumber,String password);
+    //获取快速登录验证码
+    void getQuickLoginVerification(String phoneNumber);
+    //进行快速登录判断
+    void quickLoginUser(String phoneNumber, String verification);
     //更改个人信息,密码/昵称/个性签名/绑定手机/绑定邮箱
     void updateUser();
 }

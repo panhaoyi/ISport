@@ -153,21 +153,15 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
             showLoginToast("手机号码为空！");
             focusView = phonenumber;
             cancel = true;
-        }
-
-        if (!UserUtil.checkValidPhoneNumber(phone)) {
+        }else if (!UserUtil.checkValidPhoneNumber(phone)) {
             showLoginToast("输入手机号码非法！");
             focusView = phonenumber;
             cancel = true;
-        }
-
-        if (TextUtils.isEmpty(pwd)) {
+        }else if (TextUtils.isEmpty(pwd)) {
             showLoginToast("输入密码为空值！");
             focusView = password;
             cancel = true;
-        }
-
-        if (!isPasswordValid(pwd)) {
+        }else if (!isPasswordValid(pwd)) {
             showLoginToast("密码长度小于6位！");
             focusView = password;
             cancel = true;

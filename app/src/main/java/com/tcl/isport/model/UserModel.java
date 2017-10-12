@@ -5,7 +5,9 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.LogInCallback;
+import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SignUpCallback;
+import com.avos.avoscloud.ops.BaseOp;
 import com.tcl.isport.imodel.IUserModel;
 import com.tcl.isport.presenter.LoginPresenter;
 import com.tcl.isport.presenter.RegisterPresenter;
@@ -118,6 +120,35 @@ public class UserModel implements IUserModel {
     }
 
     @Override
+    public void getQuickLoginVerification(String phoneNumber) {
+        AVUser.requestLoginSmsCodeInBackground(phoneNumber, new RequestMobileCodeCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    loginPresenter.setLoginQuickVerification(true);
+                } else {
+                    loginPresenter.setLoginQuickVerification(false);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void quickLoginUser(String phoneNumber, String verification) {
+        AVUser.signUpOrLoginByMobilePhoneInBackground(phoneNumber, verification, new LogInCallback<AVUser>() {
+            @Override
+            public void done(AVUser avUser, AVException e) {
+                if (e == null) {
+                    //快速登录成功
+                    loginPresenter.setLoginQuickState(true);
+                } else {
+                    loginPresenter.setLoginQuickState(false);
+                }
+            }
+        });
+    }
+
+    @Override
     public void updateUser() {
 
     }
@@ -131,5 +162,7 @@ public class UserModel implements IUserModel {
 
     public interface IUserModelLogin {
         void setLoginState(boolean loginState);
+        void setLoginQuickState(boolean quickLoginState);
+        void setLoginQuickVerification(boolean loginQuickVerification);
     }
 }
