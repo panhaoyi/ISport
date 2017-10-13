@@ -29,7 +29,7 @@ public class NewActivityPresenter {
         activityBean.setTime(iActivityNewActivity.getTime());
         activityBean.setLocation(iActivityNewActivity.getLocation());
         activityBean.setDeadline(iActivityNewActivity.getDeadline());
-        activityBean.setCover(new AVFile("cover",iActivityNewActivity.getCover()));
+        activityBean.setCover(iActivityNewActivity.getCover());
         iActivityModel.saveActivity(activity,activityBean);
         return false;
     }

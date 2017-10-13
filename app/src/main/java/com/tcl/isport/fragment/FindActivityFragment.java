@@ -35,8 +35,9 @@ public class FindActivityFragment extends Fragment implements IFindActivityFragm
     private ImageView add_activity;
     private ListView listView;
     private SimpleAdapter simpleAdapter;
-    private FindActivityPresenter findActivityPresenter;
     private List<Map<String,Object>> data;
+    private FindActivityPresenter findActivityPresenter;
+    private boolean isFirst=true;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,10 +48,10 @@ public class FindActivityFragment extends Fragment implements IFindActivityFragm
         add_activity.setOnClickListener(this);
 
         listView= (ListView) view.findViewById(R.id.listview_find_activity);
-        simpleAdapter=new SimpleAdapter(this.getContext(),data,R.layout.item_activity
-                ,new String[]{"picture","theme","countdown","number"}
-                ,new int[]{R.id.picture_item_activity,R.id.theme_item_activity,R.id.countdown_item_activity,R.id.number_item_activity});
-        listView.setAdapter(simpleAdapter);
+//        simpleAdapter=new SimpleAdapter(this.getContext(),data,R.layout.item_activity
+//                ,new String[]{"picture","theme","countdown","number"}
+//                ,new int[]{R.id.picture_item_activity,R.id.theme_item_activity,R.id.countdown_item_activity,R.id.number_item_activity});
+//        listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(this);
 
         return view;
@@ -59,8 +60,12 @@ public class FindActivityFragment extends Fragment implements IFindActivityFragm
     @Override
     public void onResume() {
         super.onResume();
-        data=new ArrayList<>();
-        findActivityPresenter.refreshData();
+        if (isFirst!=true) {
+            data = new ArrayList<>();
+            findActivityPresenter.refreshData();
+        }else{
+            isFirst=false;
+        }
     }
 
     @Override
@@ -131,6 +136,7 @@ public class FindActivityFragment extends Fragment implements IFindActivityFragm
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent=new Intent(getActivity(), ActivityDetailActivity.class);
+        intent.putExtra("objectId",data.get(position).get("objectId").toString());
         startActivity(intent);
     }
 }

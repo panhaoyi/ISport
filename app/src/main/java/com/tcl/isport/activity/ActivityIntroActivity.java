@@ -71,11 +71,11 @@ public class ActivityIntroActivity extends Activity implements  View.OnClickList
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (s.length()>140){
-            s.delete(140,s.length());
+        if (s.length()>80){
+            s.delete(80,s.length());
         }
         else{
-            number.setText(s.length()+"/140");
+            number.setText(s.length()+"/80");
         }
     }
 }

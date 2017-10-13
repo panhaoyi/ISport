@@ -17,7 +17,7 @@
             android:src="@drawable/bt_back" />
 
         <TextView
-            android:id="@+id/join_activity"
+            android:id="@+id/join_activity_detail"
             android:layout_width="28dp"
             android:layout_height="20dp"
             android:layout_marginEnd="20dp"
@@ -27,15 +27,23 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"
             />
-        <ImageView
-            android:id="@+id/setting_activity"
-            android:layout_width="20dp"
+        <com.tcl.isport.ui.MySpinner
+            android:id="@+id/spinner_activity_detail"
+            android:layout_width="90dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_map_setting"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textAlignment="center" />
+        <ImageView
+            android:id="@+id/setting_activity_detail"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:background="@drawable/ic_map_setting"/>
         </RelativeLayout>
 
     <ScrollView
@@ -46,11 +54,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/cover_activity_detail"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:src="@drawable/activity1" />
 
             <TextView
+                android:id="@+id/theme_activity_detail"
                 android:layout_width="200dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="22dp"
@@ -60,17 +70,19 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:layout_width="102dp"
+                android:id="@+id/countdown_activity_detail"
+                android:layout_width="132dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="217dp"
+                android:layout_marginStart="187dp"
                 android:layout_marginTop="243dp"
                 android:background="@drawable/frame_activity_time"
                 android:gravity="center"
-                android:text="距离活动开始还有10天"
+                android:text="距离活动开始还有10天10小时10分"
                 android:textColor="@color/colorWhite"
                 android:textSize="8sp" />
 
             <ImageView
+                android:id="@+id/collect_activity_detail"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="327dp"
@@ -78,8 +90,9 @@
                 android:src="@drawable/ic_uncollected" />
 
             <TextView
+                android:id="@+id/intro_activity_detail"
                 android:layout_width="316dp"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="293dp"
                 android:text="每一次的艰苦训练，总想着多前进一里就好。
@@ -99,12 +112,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="148dp"
+                android:layout_height="178dp"
                 android:layout_marginTop="414dp"
                 android:background="#444444" />
 
             <TextView
-                android:layout_width="150dp"
+                android:id="@+id/location_activity_detail"
+                android:layout_width="250dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="421dp"
@@ -113,15 +127,17 @@
                 android:textSize="9sp" />
 
             <TextView
-                android:layout_width="100dp"
+                android:id="@+id/time_activity_detail"
+                android:layout_width="150dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="441dp"
-                android:text="活动日期: 2017.10.17"
+                android:text="活动时间: 2017.10.17 12:00:00"
                 android:textColor="@color/textGray"
                 android:textSize="9sp" />
 
             <TextView
+                android:id="@+id/number_activity_detail"
                 android:layout_width="100dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="22dp"
@@ -140,8 +156,9 @@
                 android:textSize="9sp" />
 
             <TextView
+                android:id="@+id/content_activity_detail"
                 android:layout_width="250dp"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="62dp"
                 android:layout_marginTop="481dp"
                 android:text="6:40集合 晨跑5公里，连续坚持1个月,挑战自我。
@@ -154,22 +171,24 @@
                 android:layout_width="100dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="22dp"
-                android:layout_marginTop="531dp"
+                android:layout_marginTop="561dp"
                 android:text="发起人"
                 android:textColor="@color/textGray"
                 android:textSize="9sp" />
 
             <ImageView
+                android:id="@+id/photo_activity_detail"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="65dp"
-                android:layout_marginTop="531dp"
+                android:layout_marginTop="561dp"
                 android:src="@drawable/ic_user_photo" />
 
 
         </RelativeLayout>
     </ScrollView>
     <TextView
+        android:id="@+id/apply_number_activity_detail"
         android:layout_width="78dp"
         android:layout_height="20dp"
         android:layout_marginStart="23dp"
@@ -179,7 +198,8 @@
         android:textSize="9sp" />
 
     <TextView
-        android:layout_width="125dp"
+        android:id="@+id/deadline_activity_detail"
+        android:layout_width="150dp"
         android:layout_height="20dp"
         android:layout_marginStart="104dp"
         android:layout_marginTop="541dp"

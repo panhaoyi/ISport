@@ -71,11 +71,11 @@ public class ActivityContentActivity extends Activity implements  View.OnClickLi
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (s.length()>600){
-            s.delete(600,s.length());
+        if (s.length()>150){
+            s.delete(150,s.length());
         }
         else{
-            number.setText(s.length()+"/600");
+            number.setText(s.length()+"/150");
         }
     }
 }

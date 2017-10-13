@@ -15,7 +15,7 @@ public class ActivityBean {
     private String time="";
     private String location="";
     private String deadline="";
-    private AVFile cover;
+    private byte[] cover;
     private String userId = "null";
 
     public String getObjectId() {
@@ -82,11 +82,11 @@ public class ActivityBean {
         this.deadline = deadline;
     }
 
-    public AVFile getCover() {
+    public byte[] getCover() {
         return cover;
     }
 
-    public void setCover(AVFile cover) {
+    public void setCover(byte[] cover) {
         this.cover = cover;
     }
 

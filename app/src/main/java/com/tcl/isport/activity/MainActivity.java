@@ -80,6 +80,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        //隐藏虚拟按键,沉浸式状态栏,设置布局marginTop为状态栏高度
+        MyApplication.hide(this,R.id.activity_main);
+    }
+
+    @Override
     public void onClick(View v) {
         //点击切换fragment
         switch (v.getId()) {

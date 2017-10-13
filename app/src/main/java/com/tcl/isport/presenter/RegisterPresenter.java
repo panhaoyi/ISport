@@ -46,6 +46,7 @@ public class RegisterPresenter implements UserModel.IUserModel {
     public void registerUser(String phoneNumber, String password) {
         iUserModel.registerUser(phoneNumber, password);
     }
+
     public void checkUser(String phoneNumber){
         iUserModel.checkUser(phoneNumber);
     }
