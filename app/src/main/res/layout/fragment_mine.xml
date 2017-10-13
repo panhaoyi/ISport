@@ -13,6 +13,7 @@
             android:layout_height="22dp"
             android:gravity="center"
             android:layout_centerInParent="true"
+            android:id="@+id/logOut"
             android:text="个人资料"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
@@ -20,7 +21,9 @@
             android:id="@+id/edit_information_mine"
             android:layout_width="32dp"
             android:layout_height="20dp"
-            android:layout_marginStart="311dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="30dp"
+
             android:layout_centerVertical="true"
             android:text="编辑"
             android:textColor="@color/colorWhite"
@@ -151,9 +154,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="#4a4949" />
 
     <LinearLayout
@@ -177,9 +181,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="#4a4949" />
 
     <LinearLayout
@@ -203,9 +208,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="#4a4949" />
 
     <LinearLayout
@@ -229,9 +235,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="#4a4949" />
 
     <LinearLayout
@@ -255,9 +262,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="#4a4949" />
     <LinearLayout
         android:id="@+id/contact_us_mine"
@@ -280,8 +288,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="#4a4949" />
 </LinearLayout>

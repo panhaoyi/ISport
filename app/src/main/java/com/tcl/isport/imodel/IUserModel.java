@@ -6,7 +6,6 @@ package com.tcl.isport.imodel;
 public interface IUserModel {
     //User数据操作
     //注册
-    void addUser(String phoneNumber,String password,String verification);
     void checkUser(String phoneNumber);
     void registerUser(String phoneNumber,String password);
     //登录
