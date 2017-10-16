@@ -170,9 +170,9 @@
             android:textSize="14sp"/>
         <TextView
             android:id="@+id/time_activity_new"
-            android:layout_width="78dp"
+            android:layout_width="118dp"
             android:layout_height="20dp"
-            android:layout_marginStart="231dp"
+            android:layout_marginStart="211dp"
             android:layout_centerVertical="true"
             android:textColor="@color/textGray"
             android:textSize="14sp"/>
@@ -231,9 +231,9 @@
             android:textSize="14sp"/>
         <TextView
             android:id="@+id/deadline_activity_new"
-            android:layout_width="78dp"
+            android:layout_width="118dp"
             android:layout_height="20dp"
-            android:layout_marginStart="231dp"
+            android:layout_marginStart="211dp"
             android:layout_centerVertical="true"
             android:textColor="@color/textGray"
             android:textSize="14sp"/>

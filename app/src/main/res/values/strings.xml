@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ISport</string>
+    <string name="app_name">WeSport</string>
     <string name="skip">SKIP</string>
     <string name="next">NEXT</string>
     <string name="input_phonenumber">请输入手机号</string>

@@ -11,6 +11,7 @@ import java.util.Date;
 public class DateUtil {
     public static String compareDate(String date,int type){
         long day,hour,minute;
+        date=date+":00";
         DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date date1=dateFormat.parse(date);
@@ -35,6 +36,8 @@ public class DateUtil {
     }
 
     public static boolean compareDate(String dateBefore,String dateAfter){
+        dateBefore=dateBefore+":00";
+        dateAfter=dateAfter+":00";
         DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date date1=dateFormat.parse(dateBefore);

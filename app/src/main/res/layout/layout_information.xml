@@ -77,10 +77,10 @@
 
         <TextView
             android:id="@+id/name_information"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="231dp"
+            android:layout_marginStart="221dp"
             android:gravity="center"
             android:text="Yuri"
             android:textColor="#9b9b9b"

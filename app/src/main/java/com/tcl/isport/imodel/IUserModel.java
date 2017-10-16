@@ -1,5 +1,7 @@
 package com.tcl.isport.imodel;
 
+import com.avos.avoscloud.AVUser;
+
 /**
  * Created by haoyi.pan on 17-9-18.
  */
@@ -15,5 +17,7 @@ public interface IUserModel {
     //进行快速登录判断
     void quickLoginUser(String phoneNumber, String verification);
     //更改个人信息,密码/昵称/个性签名/绑定手机/绑定邮箱
-    void updateUser();
+    void updateUser(AVUser user);
+
+    void getPhoto();
 }

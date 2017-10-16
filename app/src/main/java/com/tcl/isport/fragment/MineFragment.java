@@ -1,6 +1,7 @@
 package com.tcl.isport.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.tcl.isport.activity.HistoryActivity;
 import com.tcl.isport.activity.LoginActivity;
 import com.tcl.isport.iview.IMineFragment;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.InformationActivityPresenter;
 
 /**
  * Created by user on 17-9-4.
@@ -37,19 +39,28 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
     ///////////登出////////////
     private TextView logOut;
     ///////////////////////////
+    private AVUser user;
+    private InformationActivityPresenter informationActivityPresenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         //头像
+        user=AVUser.getCurrentUser();
         photo = (ImageView) view.findViewById(R.id.photo_mine);
         editInformation = (TextView) view.findViewById(R.id.edit_information_mine);
         editInformation.setOnClickListener(this);
         information= (RelativeLayout) view.findViewById(R.id.information_mine);
         information.setOnClickListener(this);
         name = (TextView) view.findViewById(R.id.name_mine);
+        name.setText(user.getUsername());
         signature = (TextView) view.findViewById(R.id.signature_mine);
+        try{
+            signature.setText(user.get("signature").toString());
+        }catch (Exception e){
+            signature.setText("爱生活,爱运动!");
+        }
         myMessage = (LinearLayout) view.findViewById(R.id.my_message_mine);
         myMessage.setOnClickListener(this);
         homepage= (LinearLayout) view.findViewById(R.id.homepage_mine);
@@ -62,6 +73,7 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         myCollection.setOnClickListener(this);
         contactUs = (LinearLayout) view.findViewById(R.id.contact_us_mine);
         contactUs.setOnClickListener(this);
+        informationActivityPresenter=new InformationActivityPresenter(this);
 
         ///////////登出////////////
         logOut = (TextView) view.findViewById(R.id.logOut);
@@ -75,6 +87,18 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         });
         ///////////////////////////
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        name.setText(user.getUsername());
+        try{
+            signature.setText(user.get("signature").toString());
+        }catch (Exception e){
+            signature.setText("爱生活,爱运动!");
+        }
+        informationActivityPresenter.getPhoto();
     }
 
     @Override
@@ -124,8 +148,8 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
     }
 
     @Override
-    public void setPhoto() {
-
+    public void setPhoto(Bitmap bitmap) {
+        photo.setImageBitmap(bitmap);
     }
 
     @Override

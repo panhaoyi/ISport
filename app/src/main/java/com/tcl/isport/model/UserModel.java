@@ -1,13 +1,20 @@
 package com.tcl.isport.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.GetDataCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.RequestMobileCodeCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
 import com.tcl.isport.imodel.IUserModel;
+import com.tcl.isport.presenter.InformationActivityPresenter;
 import com.tcl.isport.presenter.LoginPresenter;
 import com.tcl.isport.presenter.RegisterPresenter;
 
@@ -21,6 +28,7 @@ public class UserModel implements IUserModel {
 
     private RegisterPresenter registerPresenter;
     private LoginPresenter loginPresenter;
+    private InformationActivityPresenter informationActivityPresenter;
 
     public UserModel() {
     }
@@ -31,6 +39,10 @@ public class UserModel implements IUserModel {
 
     public UserModel(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
+    }
+
+    public UserModel(InformationActivityPresenter informationActivityPresenter){
+        this.informationActivityPresenter=informationActivityPresenter;
     }
 
     @Override
@@ -118,8 +130,36 @@ public class UserModel implements IUserModel {
     }
 
     @Override
-    public void updateUser() {
+    public void updateUser(AVUser user) {
+        user.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e==null){
+//                    informationActivityPresenter.refreshView();
+                }else{
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
+    @Override
+    public void getPhoto() {
+        AVUser avUser=AVUser.getCurrentUser();
+        AVFile avFile= (AVFile) avUser.get("photo");
+        avFile.getDataInBackground(new GetDataCallback() {
+            @Override
+            public void done(byte[] bytes, AVException e) {
+                if (e == null) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+                    informationActivityPresenter.setPhoto(bitmap);
+//                    informationActivityPresenter.refreshView();
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public interface IUserModel {

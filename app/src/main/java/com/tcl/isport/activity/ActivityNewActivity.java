@@ -1,6 +1,9 @@
 package com.tcl.isport.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,11 +11,13 @@ import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.tcl.isport.R;
@@ -25,6 +30,7 @@ import com.tcl.isport.util.ImageUtil;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 
 /**
  * Created by haoyi.pan on 17-9-28.
@@ -32,7 +38,7 @@ import java.io.InputStream;
 public class ActivityNewActivity extends Activity implements View.OnClickListener,IActivityNewActivity {
     private ImageView back,cover;
     private RelativeLayout editTheme,editIntro,editContent,editNumber,editTime,editLocation,editDeadline,editCover;
-    private TextView pub,theme,intro,content,number,time,location,deadline;
+    private TextView pub,theme,intro,content,number,activityTime,location,deadline;
     private ProgressBar progressBar;
     private Intent intent;
     private MyPopupWindow myPopupWindow;
@@ -40,6 +46,9 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
     private String activityTheme,activityIntro,activityContent;
     private byte[] bytesCover=null;
     private NewActivityPresenter newActivityPresenter;
+    private StringBuffer stringBuilder;
+    private Calendar c;
+    private Dialog dateDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +79,7 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
         intro= (TextView) findViewById(R.id.intro_activity_new);
         content= (TextView) findViewById(R.id.content_activity_new);
         number= (TextView) findViewById(R.id.number_activity_new);
-        time= (TextView) findViewById(R.id.time_activity_new);
+        activityTime= (TextView) findViewById(R.id.time_activity_new);
         location= (TextView) findViewById(R.id.location_activity_new);
         deadline= (TextView) findViewById(R.id.deadline_activity_new);
         cover= (ImageView) findViewById(R.id.cover_activity_new);
@@ -94,7 +103,7 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
                     Toast.makeText(this,"请编辑行程详情!",Toast.LENGTH_SHORT).show();
                 }else if("".equals(number.getText())){
                     Toast.makeText(this,"请编辑人数规模!",Toast.LENGTH_SHORT).show();
-                }else if("".equals(time.getText())){
+                }else if("".equals(activityTime.getText())){
                     Toast.makeText(this,"请编辑活动时间!",Toast.LENGTH_SHORT).show();
                 }else if("".equals(location.getText())){
                     Toast.makeText(this,"请编辑活动地点!",Toast.LENGTH_SHORT).show();
@@ -132,9 +141,31 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.edit_time:
                 //活动时间
-                intent=new Intent(this,ActivityTimeActivity.class);
-                intent.putExtra("type","活动时间");
-                startActivityForResult(intent,5);
+//                intent=new Intent(this,ActivityTimeActivity.class);
+//                intent.putExtra("type","活动时间");
+//                startActivityForResult(intent,5);
+                Calendar c=Calendar.getInstance();
+                Dialog dateDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                        // TODO Auto-generated method stub
+                        stringBuilder=new StringBuffer("");
+                        stringBuilder.append(arg1+"-"+(arg2+1)+"-"+arg3+" ");
+                        Calendar time=Calendar.getInstance();
+                        Dialog timeDialog=new TimePickerDialog(ActivityNewActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                // TODO Auto-generated method stub
+                                stringBuilder.append(hourOfDay+":"+minute);
+                                activityTime.setText(stringBuilder);
+                            }
+                        }, time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), true);
+                        timeDialog.setTitle("请选择时间");
+                        timeDialog.show();
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                dateDialog.setTitle("请选择日期");
+                dateDialog.show();
                 break;
             case R.id.edit_location:
                 //活动地点
@@ -144,9 +175,31 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.edit_deadline:
                 //截止时间
-                intent=new Intent(this,ActivityTimeActivity.class);
-                intent.putExtra("type","截止时间");
-                startActivityForResult(intent,7);
+//                intent=new Intent(this,ActivityTimeActivity.class);
+//                intent.putExtra("type","截止时间");
+//                startActivityForResult(intent,7);
+                c=Calendar.getInstance();
+                dateDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                        // TODO Auto-generated method stub
+                        stringBuilder=new StringBuffer("");
+                        stringBuilder.append(arg1+"-"+(arg2+1)+"-"+arg3+" ");
+                        Calendar time=Calendar.getInstance();
+                        Dialog timeDialog=new TimePickerDialog(ActivityNewActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                // TODO Auto-generated method stub
+                                stringBuilder.append(hourOfDay+":"+minute);
+                                deadline.setText(stringBuilder);
+                            }
+                        }, time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), true);
+                        timeDialog.setTitle("请选择时间");
+                        timeDialog.show();
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                dateDialog.setTitle("请选择日期");
+                dateDialog.show();
                 break;
             case R.id.edit_cover:
                 //封面图片
@@ -205,7 +258,7 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
             content.setText("已填写");
             activityContent=data.getStringExtra("content");
         }else if (resultCode==5){
-            time.setText(data.getStringExtra("time"));
+            activityTime.setText(data.getStringExtra("time"));
         }else if (resultCode==6){
             location.setText(data.getStringExtra("location"));
         }else if (resultCode==7){
@@ -279,7 +332,7 @@ public class ActivityNewActivity extends Activity implements View.OnClickListene
 
     @Override
     public String getTime() {
-        return time.getText().toString();
+        return activityTime.getText().toString();
     }
 
     @Override
