@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <!--主界面-好友-->
 
     <RelativeLayout
@@ -20,43 +22,51 @@
             android:layout_centerInParent="true"
             android:text="好友"
             android:textColor="@color/colorWhite"
-            android:textSize="16sp"/>
-        <ImageView
-            android:id="@+id/message_friend"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="18dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_message"/>
+            android:textSize="16sp" />
+
+        <!--<ImageView-->
+            <!--android:id="@+id/message_friend"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_marginEnd="18dp"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/ic_message" />-->
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp">
+
         <LinearLayout
             android:layout_width="286dp"
             android:layout_height="31dp"
-            android:layout_marginStart="16dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/border_search"/>
+            android:layout_marginStart="16dp"
+            android:background="@drawable/border_search" />
+
         <ImageView
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:layout_marginStart="27dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_search"/>
+            android:layout_marginStart="27dp"
+            android:src="@drawable/ic_search" />
+
         <EditText
+            android:id="@+id/user_id"
             android:layout_width="200dp"
             android:layout_height="17dp"
-            android:layout_marginStart="48dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="48dp"
             android:gravity="start"
             android:background="@null"
-            android:hint="搜索用户,话题,活动"
-            android:textColorHint="@color/textGray"
+            android:hint="搜索用户id"
+            android:inputType="number"
             android:textColor="@color/colorWhite"
+            android:textColorHint="@color/textGray"
             android:textSize="12sp"/>
         <TextView
+            android:id="@+id/addFriends"
             android:layout_width="24dp"
             android:layout_height="33dp"
             android:layout_marginEnd="16dp"
@@ -64,6 +74,24 @@
             android:layout_centerVertical="true"
             android:text="+"
             android:textColor="@color/colorWhite"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
+
     </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="#ddd"
+        app:tabGravity="center"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
 </LinearLayout>

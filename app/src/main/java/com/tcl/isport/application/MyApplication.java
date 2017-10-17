@@ -12,8 +12,9 @@ import android.widget.FrameLayout;
 import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
 import com.tcl.isport.R;
+import com.tcl.isport.presenter.FriendFragmentPresenter;
 
-import java.lang.reflect.Method;
+import cn.leancloud.chatkit.LCChatKit;
 
 /**
  * Created by haoyi.pan on 17-9-25.
@@ -33,7 +34,10 @@ public class MyApplication extends Application {
         super.onCreate();
         //初始化leancloud
 //        AVOSCloud.initialize(this,"L170AceMRxUFJVxa9cjQoBc1-gzGzoHsz","YLJjFIgV2Q1QPSwEKDtmxfAv");
-        AVOSCloud.initialize(this,APP_ID,APP_KEY);
+        //此函数用于设置用户体系
+//        LCChatKit.getInstance().setProfileProvider(FriendFragmentPresenter.getInstance());
+        LCChatKit.getInstance().init(getApplicationContext(), APP_ID, APP_KEY);
+//        AVOSCloud.initialize(this,APP_ID,APP_KEY);
         //开启leancloud debug log
         AVOSCloud.setDebugLogEnabled(true);
         AVAnalytics.enableCrashReport(this, true);

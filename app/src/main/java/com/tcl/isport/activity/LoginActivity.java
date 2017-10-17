@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,12 +40,14 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
     //快速登录，手机注册，忘记密码，trying为第三方登录文字，作为开发时入口方便测试
     private TextView quicklogin, register, forget_password;
     private ImageView qq_logIn;
+    private ProgressBar progressBar;
     private LoginPresenter loginPresenter;
     private Intent intent;
     private String STORAGE_PERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE";
     private String PHONE_PERMISSION = "android.permission.READ_PHONE_STATE";
     private String LOCATION_PERMISSION = "android.permission.ACCESS_FINE_LOCATION";
     private String CONTACTS_PERMISSION = "android.permission.GET_ACCOUNTS";
+    private String RECORD_AUDIO = "android.permission.RECORD_AUDIO";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
         register = (TextView) findViewById(R.id.register_login);
         forget_password = (TextView) findViewById(R.id.forget_pasword);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         qq_logIn = (ImageView) findViewById(R.id.qq_logIn);
     }
 
@@ -115,6 +120,9 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
         }
         if (ContextCompat.checkSelfPermission(this, CONTACTS_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
             permissionList.add(CONTACTS_PERMISSION);
+        }
+        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(RECORD_AUDIO);
         }
         if (!permissionList.isEmpty()) {
             ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), 666);
@@ -181,6 +189,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
             focusView.requestFocus();
         } else {
             loginPresenter.startLogin(phone, pwd);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
     }
@@ -199,7 +208,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
 
     @Override
     public void failLogin() {
-
+        progressBar.setVisibility(View.INVISIBLE);
         showLoginToast("登录失败，手机号或密码错误！");
     }
 

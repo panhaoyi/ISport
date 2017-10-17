@@ -69,7 +69,7 @@ public class UserModel implements IUserModel {
     @Override
     public void registerUser(String phoneNumber, String password) {
         AVUser user = new AVUser();
-        user.setUsername(phoneNumber);
+        user.setUsername("用户"+phoneNumber);
         user.setMobilePhoneNumber(phoneNumber);
         user.setPassword(password);
         user.signUpInBackground(new SignUpCallback() {
@@ -147,6 +147,9 @@ public class UserModel implements IUserModel {
     public void getPhoto() {
         AVUser avUser=AVUser.getCurrentUser();
         AVFile avFile= (AVFile) avUser.get("photo");
+        if (avFile == null) {
+            return;
+        }
         avFile.getDataInBackground(new GetDataCallback() {
             @Override
             public void done(byte[] bytes, AVException e) {
