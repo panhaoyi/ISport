@@ -16,6 +16,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.tcl.isport.R;
+import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.IRegisterActivity;
 import com.tcl.isport.presenter.RegisterPresenter;
 import com.tcl.isport.util.UserUtil;
@@ -36,10 +37,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener,I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_register);
         //隐藏虚拟按键
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                |View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                |View.SYSTEM_UI_FLAG_IMMERSIVE);
+        MyApplication.hide(this,R.id.layout_register);
         phoneNumber = (EditText) findViewById(R.id.phonenumber_register);
         phoneNumber.setOnFocusChangeListener(onFocusChangeListener);
         password_first= (EditText) findViewById(R.id.password_register_first);

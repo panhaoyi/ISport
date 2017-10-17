@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,19 +21,19 @@
         android:layout_marginTop="47dp"
         android:text="@string/weather"
         android:textColor="#9b9b9b"
-        android:textSize="9sp"/>
+        android:textSize="9sp" />
 
     <TextView
         android:id="@+id/timescount_ride_home"
         android:layout_width="38dp"
         android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="303dp"
         android:layout_marginTop="34dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:text="0 次"
         android:textColor="@color/colorWhite"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/speed_ride_home"
@@ -44,40 +43,40 @@
         android:layout_marginTop="56dp"
         android:text="0.0 km/h"
         android:textColor="@color/colorWhite"
-        android:textSize="9sp"/>
+        android:textSize="9sp" />
 
     <LinearLayout
         android:layout_width="206dp"
         android:layout_height="206dp"
         android:layout_marginStart="77dp"
         android:layout_marginTop="89dp"
-        android:background="@drawable/frame_home_ride"/>
+        android:background="@drawable/frame_home_ride" />
 
     <TextView
         android:id="@+id/distance_ride_home"
         android:layout_width="101dp"
         android:layout_height="67dp"
-        android:layout_marginTop="147dp"
         android:layout_marginStart="109dp"
+        android:layout_marginTop="147dp"
         android:text="0.00"
-        android:textSize="48sp"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"
+        android:textSize="48sp" />
 
     <TextView
         android:layout_width="38dp"
         android:layout_height="25dp"
-        android:layout_marginTop="177dp"
         android:layout_marginStart="214dp"
+        android:layout_marginTop="177dp"
         android:text="公里"
         android:textColor="@color/colorWhite"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/duration_ride_home"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="215dp"
-        android:layout_marginStart="146dp"
         android:gravity="center"
         android:text="0 h"
         android:textColor="#9b9b9b"
@@ -87,16 +86,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="330dp"
-        android:background="#979797"/>
+        android:background="#979797" />
 
     <!--<TextView-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="14dp"-->
-        <!--android:layout_marginStart="22dp"-->
-        <!--android:layout_marginTop="349dp"-->
-        <!--android:text="@string/history_record"-->
-        <!--android:textColor="#9b9b9b"-->
-        <!--android:textSize="10sp" />-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="14dp"-->
+    <!--android:layout_marginStart="22dp"-->
+    <!--android:layout_marginTop="349dp"-->
+    <!--android:text="@string/history_record"-->
+    <!--android:textColor="#9b9b9b"-->
+    <!--android:textSize="10sp" />-->
 
     <TextView
         android:layout_width="match_parent"
@@ -110,9 +109,9 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/home_ride_history_chart"
         android:layout_width="match_parent"
-        android:layout_marginTop="345dp"
-        android:layout_marginStart="22dp"
+        android:layout_height="140dp"
         android:layout_marginEnd="22dp"
-        android:layout_height="140dp" />
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="345dp" />
 
 </RelativeLayout>

@@ -139,6 +139,11 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.forget_pasword:
+                //忘记密码
+                intent=new Intent(LoginActivity.this,FindPasswordActivity.class);
+                startActivity(intent);
+                break;
             case R.id.qq_logIn:
                 //第三方登录：qq
             default:

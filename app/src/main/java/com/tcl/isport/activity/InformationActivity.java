@@ -137,8 +137,8 @@ public class InformationActivity extends Activity implements OnClickListener,IIn
                 break;
             case R.id.changeBirth_information:
                 //修改出生日期
-                intent=new Intent(this,ActivityTimeActivity.class);
-                startActivity(intent);
+//                intent=new Intent(this,ActivityTimeActivity.class);
+//                startActivity(intent);
                 Calendar calendar = Calendar.getInstance();
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 

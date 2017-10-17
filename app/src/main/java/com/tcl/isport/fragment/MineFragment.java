@@ -1,5 +1,7 @@
 package com.tcl.isport.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -37,10 +39,11 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
     private LinearLayout myMessage,homepage, sportsHistory, manageActivity, myCollection, contactUs;
     private Intent intent;
     ///////////登出////////////
-    private TextView logOut;
+//    private TextView logOut;
     ///////////////////////////
     private AVUser user;
     private InformationActivityPresenter informationActivityPresenter;
+    private boolean isFirst=true;
 
     @Nullable
     @Override
@@ -76,15 +79,15 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         informationActivityPresenter=new InformationActivityPresenter(this);
 
         ///////////登出////////////
-        logOut = (TextView) view.findViewById(R.id.logOut);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AVUser.logOut();
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                getActivity().finish();
-            }
-        });
+//        logOut = (TextView) view.findViewById(R.id.logOut);
+//        logOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AVUser.logOut();
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//                getActivity().finish();
+//            }
+//        });
         ///////////////////////////
         return view;
     }
@@ -98,7 +101,15 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         }catch (Exception e){
             signature.setText("爱生活,爱运动!");
         }
-        informationActivityPresenter.getPhoto();
+        if (isFirst){
+            isFirst=false;
+        }else {
+            try {
+                informationActivityPresenter.getPhoto();
+            }catch (Exception e){
+
+            }
+        }
     }
 
     @Override
@@ -107,8 +118,17 @@ public class MineFragment extends Fragment implements View.OnClickListener, IMin
         switch (v.getId()) {
             case R.id.edit_information_mine:
                 //跳转到编辑个人资料
-                intent = new Intent(getActivity(), InformationActivity.class);
-                startActivity(intent);
+//                intent = new Intent(getActivity(), InformationActivity.class);
+//                startActivity(intent);
+                new AlertDialog.Builder(this.getActivity()).setMessage("是否确定注销登录?").setNegativeButton("取消",null)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                AVUser.logOut();
+                                startActivity(new Intent(getActivity(), LoginActivity.class));
+                                getActivity().finish();
+                            }
+                        }).show();
                 break;
             case R.id.information_mine:
                 intent = new Intent(getActivity(), InformationActivity.class);
