@@ -264,8 +264,7 @@
             android:layout_width="92dp"
             android:layout_height="62dp"
             android:layout_marginStart="227dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/activity1"/>
+            android:layout_centerVertical="true"/>
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
