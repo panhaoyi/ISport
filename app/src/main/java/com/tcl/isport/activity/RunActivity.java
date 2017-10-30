@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tcl.isport.application.MyApplication;
 import com.tcl.isport.iview.ISportActivity;
@@ -80,10 +81,10 @@ public class RunActivity extends Activity implements View.OnClickListener,ISport
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //禁用Android的返回按钮
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//           
-//        }
-        return super.onKeyDown(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Toast.makeText(this,"请长按结束退出本次运动!",Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 
     @Override
