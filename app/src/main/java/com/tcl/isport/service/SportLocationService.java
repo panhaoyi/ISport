@@ -218,8 +218,7 @@ public class SportLocationService extends Service {
             } else {
                 if (aMapLocation.getErrorCode() == 0){
                     //考虑GPS
-
-                    if (aMapLocation.getAccuracy() < 30) {//尽量减少定位距离的误差,在室内，不开启GPS的准确度更高
+//                    if (aMapLocation.getAccuracy() < 30) {//尽量减少定位距离的误差,在室内，不开启GPS的准确度更高
                         // 根据精确度来区分使用轨迹纠偏，特别时在室内和室外的两种情况
 //                        Log.e("GPS status", "--" + aMapLocation.getLocationType()+
 //                                "--"+aMapLocation.getGpsAccuracyStatus()+"=="+aMapLocation.getAccuracy()
@@ -248,9 +247,12 @@ public class SportLocationService extends Service {
                             }
                         }
                     }
-                } else {
-                    //定位错误码，对定位失败进行判断处理
-                }
+//                } else {
+//                    //定位错误码，对定位失败进行判断处理
+//                }
+//                } else {
+//                    //定位错误码，对定位失败进行判断处理
+//                }
 
             }
 
