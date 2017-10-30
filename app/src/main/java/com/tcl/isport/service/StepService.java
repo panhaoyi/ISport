@@ -234,9 +234,10 @@ public class StepService extends Service implements SensorEventListener {
         //API>19,首先拿到两种传感器,TYPE_STEP_COUNTER计步传感器用于记录本次开机后的步数,重启手机将重置
         //TYPE_STEP_DETECTOR步行检测传感器,每走一步触发一次事件
         //这里使用TYPE_STEP_DETECTOR便于计算开始计步后的步数
-        Sensor detectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        Sensor countSensor=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-//        Sensor countSensor = null;
+//        Sensor detectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+        Sensor detectorSensor=null;
+//        Sensor countSensor=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Sensor countSensor = null;
         if (countSensor != null) {
             stepSensor = 0;
             Log.v(TAG, "countSensor");
