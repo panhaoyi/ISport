@@ -25,6 +25,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.tcl.isport.activity.MainActivity;
 import com.tcl.isport.bean.Constant;
@@ -234,8 +235,8 @@ public class StepService extends Service implements SensorEventListener {
         //TYPE_STEP_DETECTOR步行检测传感器,每走一步触发一次事件
         //这里使用TYPE_STEP_DETECTOR便于计算开始计步后的步数
         Sensor detectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-//        Sensor countSensor=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        Sensor countSensor = null;
+        Sensor countSensor=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+//        Sensor countSensor = null;
         if (countSensor != null) {
             stepSensor = 0;
             Log.v(TAG, "countSensor");
@@ -259,7 +260,10 @@ public class StepService extends Service implements SensorEventListener {
         stepDetector.setOnSensorChangeListener(new StepDetector.OnSensorChangeListener() {
             @Override
             public void onChange() {
-                updateNotification("当前步数: " + StepDetector.CURRENT_STEP + " 步");
+//                updateNotification("当前步数: " + StepDetector.CURRENT_STEP + " 步");
+//                if(SportActivityPresenter.ThreadRun){
+//                    StepDetector.CURRENT_STEP++;
+//                }
             }
         });
     }
@@ -309,7 +313,10 @@ public class StepService extends Service implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (stepSensor == 0) {
-            StepDetector.CURRENT_STEP = (int) event.values[0];
+//            StepDetector.CURRENT_STEP = (int) event.values[0];
+            if(SportActivityPresenter.ThreadRun){
+                StepDetector.CURRENT_STEP++;
+            }
         } else if (stepSensor == 1) {
 //            Log.e("StepService",""+SportActivityPresenter.ThreadRun);
             //计时线程暂停
