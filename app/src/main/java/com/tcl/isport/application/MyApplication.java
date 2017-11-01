@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
 import com.tcl.isport.R;
-import com.tcl.isport.presenter.FriendFragmentPresenter;
 
 import cn.leancloud.chatkit.LCChatKit;
 

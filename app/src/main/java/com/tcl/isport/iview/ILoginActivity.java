@@ -6,5 +6,5 @@ package com.tcl.isport.iview;
 public interface ILoginActivity {
 
     void successLogin();
-    void failLogin();
+    void failLogin(int flag);
 }

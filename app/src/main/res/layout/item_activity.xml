@@ -5,6 +5,7 @@
 
     <ImageView
         android:id="@+id/picture_item_activity"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="140dp" />
     <TextView

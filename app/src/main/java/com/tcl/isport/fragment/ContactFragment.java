@@ -143,9 +143,15 @@ public class ContactFragment extends Fragment implements IFriendFragment {
   @Override
   public void setFriendData(List<LCChatKitUser> partUsers) {
 
-    itemAdapter.setMemberList(partUsers);
-    itemAdapter.notifyDataSetChanged();
-    refreshLayout.setRefreshing(false);
-    refreshMe();
+    if (partUsers != null && partUsers.size() > 0) {
+      itemAdapter.setMemberList(partUsers);
+      itemAdapter.notifyDataSetChanged();
+      refreshLayout.setRefreshing(false);
+      refreshMe();
+    } else {
+      refreshLayout.setRefreshing(false);
+      refreshMe();
+    }
+
   }
 }

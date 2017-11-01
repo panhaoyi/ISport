@@ -207,9 +207,20 @@ public class LoginActivity extends Activity implements View.OnClickListener, ILo
     }
 
     @Override
-    public void failLogin() {
+    public void failLogin(int flag) {
         progressBar.setVisibility(View.INVISIBLE);
-        showLoginToast("登录失败，手机号或密码错误！");
+        if (flag == 0) {
+            showLoginToast("登录失败，网络异常！");
+        } else if (flag == 210) {
+            showLoginToast("登录失败，用户名和密码不匹配！");
+        } else if (flag == 211) {
+            showLoginToast("登录失败，找不到该用户！");
+        } else if (flag == 213) {
+            showLoginToast("登录失败，手机号码对应用户不存在！");
+        } else if (flag == 10001) {
+            showLoginToast("登录失败，未知原因！");
+        }
+
     }
 
     private void showLoginToast(String content) {

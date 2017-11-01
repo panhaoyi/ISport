@@ -2,6 +2,7 @@ package com.tcl.isport.model;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
@@ -13,10 +14,12 @@ import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
+import com.avos.avoscloud.UpdatePasswordCallback;
 import com.tcl.isport.imodel.IUserModel;
 import com.tcl.isport.presenter.InformationActivityPresenter;
 import com.tcl.isport.presenter.LoginPresenter;
 import com.tcl.isport.presenter.RegisterPresenter;
+import com.tcl.isport.util.LocationUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -92,9 +95,20 @@ public class UserModel implements IUserModel {
             public void done(AVUser avUser, AVException e) {
                 if (e == null) {
                     //登录成功
-                    loginPresenter.setLoginState(true);
+                    loginPresenter.setLoginState(10000);
                 } else {
-                    loginPresenter.setLoginState(false);
+                    if (e.getCode() == 210) {
+                        loginPresenter.setLoginState(210);
+                    } else if (e.getCode() == 211) {
+                        loginPresenter.setLoginState(211);
+                    } else if (e.getCode() == 213) {
+                        loginPresenter.setLoginState(213);
+                    } else if (e.getCode() == 0) {
+                        loginPresenter.setLoginState(0);
+                    } else {
+                        loginPresenter.setLoginState(10001);
+                    }
+
                 }
             }
         });
@@ -124,6 +138,36 @@ public class UserModel implements IUserModel {
                     loginPresenter.setLoginQuickState(true);
                 } else {
                     loginPresenter.setLoginQuickState(false);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getVerification(String phoneNumber) {
+        AVUser.requestPasswordResetBySmsCodeInBackground(phoneNumber, new RequestMobileCodeCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    loginPresenter.setFindPwdVerification(true);
+                } else {
+                    loginPresenter.setFindPwdVerification(false);
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void resetPwd(String verification, String pwd) {
+        AVUser.resetPasswordBySmsCodeInBackground(verification, pwd, new UpdatePasswordCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    loginPresenter.setFindPwdResetPwd(true);
+                } else {
+                    loginPresenter.setFindPwdResetPwd(false);
+                    e.printStackTrace();
                 }
             }
         });
@@ -174,8 +218,12 @@ public class UserModel implements IUserModel {
     }
 
     public interface IUserModelLogin {
-        void setLoginState(boolean loginState);
+        void setLoginState(int loginState);
         void setLoginQuickState(boolean quickLoginState);
         void setLoginQuickVerification(boolean loginQuickVerification);
+
+        void setFindPwdVerification(boolean findPwdVerification);
+
+        void setFindPwdResetPwd(boolean findPwdResetPwd);
     }
 }
