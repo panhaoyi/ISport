@@ -7,6 +7,8 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +38,7 @@ import java.util.Calendar;
  * Created by haoyi.pan on 17-9-26.
  */
 public class InformationActivity extends Activity implements OnClickListener,IInformationActivity {
+    private static final String TAG = "InformationActivity";
     //主界面-我-资料编辑
     private ImageView back,photo;
     private RelativeLayout changePhoto,changeName,changeSex,changeBirth,changeCity,changeSignature;
@@ -185,7 +188,8 @@ public class InformationActivity extends Activity implements OnClickListener,IIn
                     myPopupWindow.dismiss();
                 }else if(myPopupWindow.getOption().equals("photo")){
                     //如当前是选择相机拍摄上传头像
-
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 23);
                     myPopupWindow.dismiss();
                 }
                 break;
@@ -212,6 +216,14 @@ public class InformationActivity extends Activity implements OnClickListener,IIn
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        else if (requestCode == 23 && resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] bytesPhoto=baos.toByteArray();
+            informationActivityPresenter.changePhoto(bytesPhoto);
         }
     }
 

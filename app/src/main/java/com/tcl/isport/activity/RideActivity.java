@@ -2,7 +2,10 @@ package com.tcl.isport.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +18,8 @@ import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RideActivity extends Activity implements View.OnClickListener,ISportActivity, View.OnLongClickListener  {
@@ -22,11 +27,13 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
+    private static final String TAG = "RideActivity";
+    private final int TAKE_PHOTO_NORMAL = 4;
     private TextView distance_ride, speed_ride, duration_ride;
     private ImageView map_ride, camera_ride, start_pause_ride, stop_ride;
     private String start_pause = "pause";
     private SportActivityPresenter rideActivityPresenter;
-
+    private String mFilePath = Environment.getExternalStorageDirectory().getAbsoluteFile() + "/wesport";
     private Intent intent;
 
     //给开始定时和暂停计时的判断
@@ -122,6 +129,37 @@ public class RideActivity extends Activity implements View.OnClickListener,ISpor
                 break;
         }
     }
+
+    //Begin added by lishui.lin for XR_id on 17-11-6
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == TAKE_PHOTO_NORMAL) {
+//                Uri imgUri = Uri.fromFile(getImgFile());
+                //传递imgPath到活动发布
+                Intent intent = new Intent(RideActivity.this, ActivityNewActivity.class);
+                intent.putExtra("ImgPath", mFilePath);
+                RideActivity.this.startActivity(intent);
+            }
+        }
+    }
+
+    //设置文件存储路径，返回一个file
+    private Uri getImgFile() {
+        File file = new File(mFilePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        //设置图片的名字
+        String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        mFilePath = mFilePath + "/" + fileName + ".jpg";
+
+        Uri contentUri = FileProvider.getUriForFile(RideActivity.this,
+                "com.tcl.isport.fileprovider", new File(mFilePath));
+        return contentUri;
+    }
+    //End added by lishui.lin for XR_id on 17-11-6
 
     //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
     private void startExercise(){

@@ -56,6 +56,15 @@ public class ImageUtil {
         return compressImage(bitmap);//再进行质量压缩
     }
 
+    //Begin added by lishui.lin for XR_id on 17-11-6
+    public static Bitmap getBitmapFromPath(String imgPath) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        Bitmap bitmap = null;
+        bitmap = BitmapFactory.decodeFile(imgPath,options);
+        return compressImage(bitmap);//再进行质量压缩
+    }
+    //End added by lishui.lin for XR_id on 17-11-6
     /**
      * 质量压缩方法
      *

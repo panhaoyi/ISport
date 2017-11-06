@@ -1,5 +1,6 @@
 package com.tcl.isport.presenter;
 
+
 import com.tcl.isport.imodel.IUserModel;
 import com.tcl.isport.iview.IFindPasswordActivity;
 import com.tcl.isport.iview.ILoginActivity;
@@ -10,6 +11,8 @@ import com.tcl.isport.model.UserModel;
  * Created by haoyi.pan on 17-9-18.
  */
 public class LoginPresenter implements  UserModel.IUserModelLogin{
+    private static final String TAG = "LoginPresenter";
+
     private ILoginActivity iLoginActivity;
     private ILoginQuickActivity iLoginQuickActivity;
     private IFindPasswordActivity iFindPasswordActivity;

@@ -61,7 +61,7 @@
             android:layout_marginStart="122dp"
             android:layout_marginTop="58dp"
             android:gravity="start"
-            android:text="爱生活爱运动~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            android:text="爱生活爱运动~~~~~~~~~~"
             android:textColor="@color/colorWhite"
             android:textSize="10sp" />
         <!--编辑按钮图标-->

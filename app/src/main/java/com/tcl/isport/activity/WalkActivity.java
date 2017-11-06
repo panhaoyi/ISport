@@ -2,9 +2,14 @@ package com.tcl.isport.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,8 +25,12 @@ import com.tcl.isport.bean.SportBean;
 import com.tcl.isport.iview.ISportActivity;
 import com.tcl.isport.presenter.SportActivityPresenter;
 import com.tcl.isport.R;
+import com.tcl.isport.util.ImageUtil;
 import com.tcl.isport.util.LocationUtil;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -31,11 +40,14 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
     //主界面-运动-健走-Go
     //开始/暂停/停止运动，计步计时记里程，拍照发话题
 
+    private static final String TAG = "WalkActivity";
+
+    private final int TAKE_PHOTO_NORMAL = 2;
     private TextView distance_walk,speed_walk,duration_walk,step_walk;
     private ImageView map_walk,camera_walk, start_pause_walk, stop_walk;
     private String start_pause = "pause";
     private SportActivityPresenter walkActivityPresenter;
-
+    private String mFilePath = Environment.getExternalStorageDirectory().getAbsoluteFile() + "/wesport";
     //给开始定时和暂停计时的判断
     private boolean isStart = false;
     //倒计时是否已经取消
@@ -107,8 +119,10 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
                 startActivity(intent);
                 break;
             case R.id.camera_walk:
-//                intent=new Intent(WalkActivity.this,CameraActivity.class);
-//                startActivity(intent);
+                Intent intentToCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intentToCamera.putExtra(MediaStore.EXTRA_OUTPUT, getImgFile());
+                startActivityForResult(intentToCamera, TAKE_PHOTO_NORMAL);
+
                 break;
             case R.id.start_pause_walk:
 
@@ -134,8 +148,36 @@ public class WalkActivity extends Activity implements View.OnClickListener,ISpor
         }
     }
 
+    //Begin added by lishui.lin for XR_id on 17-11-6
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == TAKE_PHOTO_NORMAL) {
+//                Uri imgUri = Uri.fromFile(getImgFile());
+                //传递imgPath到活动发布
+                Intent intent = new Intent(WalkActivity.this, ActivityNewActivity.class);
+                intent.putExtra("ImgPath", mFilePath);
+                WalkActivity.this.startActivity(intent);
+            }
+        }
+    }
 
+    //设置文件存储路径，返回一个file
+    private Uri getImgFile() {
+        File file = new File(mFilePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        //设置图片的名字
+        String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        mFilePath = mFilePath + "/" + fileName + ".jpg";
 
+        Uri contentUri = FileProvider.getUriForFile(WalkActivity.this,
+                        "com.tcl.isport.fileprovider", new File(mFilePath));
+        return contentUri;
+    }
+    //End added by lishui.lin for XR_id on 17-11-6
     //倒计时，当用户一直不点击开始超过12秒，停止监听位置变化，节省电量
     private void startExercise(){
         if (walkActivityPresenter.getLocationState()) {
